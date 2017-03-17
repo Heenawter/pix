@@ -1,0 +1,116 @@
+/*
+    Group:            4
+*/
+
+/****************** SOURCE INFORMATION FOR CSS STYLES ******************/
+/* This design is based on the Holy Grail layout provided to us in the
+/* lecture notes. That is, we got the code from the following:
+/*		http://codepen.io/pfederl/pen/bgRvqR?editors=1100
+/***********************************************************************/
+
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700,800);
+@import url(https://fonts.googleapis.com/css?family=Quicksand:400,700);
+
+@import url(https://fonts.googleapis.com/css?family=Pacifico:400,700);
+
+/* https://coolors.co/551d00-9d6146-b47458-981a3f-eb8a91 */
+
+body {
+	color: #551d00;
+	font-family: 'Open Sans', sans-serif;
+  padding-top: 120px;
+  padding-bottom: 30px;
+}
+
+/******************************************************************
+NAVIGATION BAR
+******************************************************************/
+
+.navbar {
+  border-color: #981a3f;
+  margin-bottom: 0px;
+  background: #ee9fa5; /* fallback for old browsers */
+	background: -webkit-linear-gradient(90deg, #ee9fa5 , #FFEDBC); /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(90deg, #ee9fa5 , #FFEDBC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */*/
+	height: auto;
+}
+
+.navbar-brand {
+  height: auto;
+}
+
+.navbar-brand > img {
+	width: 100%;
+	height: auto;
+}
+
+#nav-content {
+	padding-top: 25px;
+}
+
+.navbar-nav > li > a {
+  font-size: 2em;
+  color: #551d00;
+}
+
+.navbar-nav > .active > a,
+.navbar-nav > .active > a:hover,
+.navbar-nav > .active > a:focus {
+  background: none;
+  color: #981a3f;
+}
+
+.navbar-nav > li > a:hover {
+  background: none;
+  color: #b47458;
+  transition: .3s ease-in-out;
+}
+
+.navbar-default .navbar-nav > .active > a:hover {
+  color: #eb8a91;
+}
+
+@media (max-width: 767px) {
+	#nav-content {
+		padding-top: 0px;
+		text-align: center;
+	}
+}
+
+.navbar-toggle {
+	height: 100px;
+	font-size: 3em;
+}
+
+
+/******************************************************************
+SEARCH BOX
+******************************************************************/
+
+.input-group {
+	padding-top: 5px;
+	text-align: center;
+}
+
+@media (max-width: 767px) {
+	.input-group {
+		padding-top: 0px;
+	}
+	.navbar-form {
+		width: 100%;
+		margin: 0px;
+	}
+}
+
+/******************************************************************
+THUMBNAILS
+******************************************************************/
+
+.thumbnail {
+  border: none;
+}
+
+.thumbnail:hover {
+  opacity: 0.7;
+  transition: .3s ease-in-out;
+}
