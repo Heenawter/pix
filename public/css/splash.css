@@ -29,13 +29,6 @@ body {
 	background: #FFEDBC; /* fallback for old browsers */
 	background: -webkit-linear-gradient(180deg, #ee9fa5 , #FFEDBC); /* Chrome 10-25, Safari 5.1-6 */
 	background: linear-gradient(180deg, #ee9fa5 , #FFEDBC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-	/*background: -moz-linear-gradient(0deg, #ee9fa5 0%, #c64d6f 100%);
-	background: -webkit-linear-gradient(0deg, #ee9fa5 0%,#c64d6f 100%);
-	background: linear-gradient(0deg, #ee9fa5 0%, #c64d6f 100%);*/
-	/*background-image: url("http://68.media.tumblr.com/8cac5540dc1768eacfd7d41f03c47574/tumblr_inline_n25edrGLjI1qhwjx8.gif");
-	background-repeat: no-repeat;
-	background-size: cover;*/
 }
 
 .flex-container {
@@ -60,29 +53,50 @@ body {
   padding-bottom: 10px;
 }
 
-#user-controls {
-	flex: 0 1 auto;
-	align-self: auto;
-	text-align: center;
-	width: auto;
-	max-width: 480px;
-	width: 100%;
-	font-family: 'Pacifico', sans-serif;
+
+.form-control {
+  height: auto!important;
+  padding: 8px 12px !important;
+
 }
 
-#user-controls input {
-  color: #551d00;
-	font-family: 'Open Sans', sans-serif;
-	border: 3px solid #551d00;
-	border-radius: 10px;
-	padding: 5px;
-	height: 20px;
-	width: 97%;
+.main-center{
+ 	max-width: 480px;
+  width: 100%;
+  padding: 10px 10px;
+  padding-top: 40px;
+  text-shadow: none;
+  /*box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.31);*/
 }
 
-#user-controls input:focus {
-	border: 3px solid #981a3f;
-	outline: none;
+.input-group span.input-group-addon {
+  background-color: #981a3f;
+  color: white;
+  font-size: 17px;
+  border-color: #981a3f;
+}
+
+.input-group input {
+  border-color: #981a3f;
+  transition: .2s ease-in-out;
+}
+
+.input-group input:focus {
+  border-color: rgba(180, 116, 88, 0.8);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(180, 116, 88, 0.6);
+}
+
+.btn-google {
+  height:37px;
+  background-color: #eb8a91;
+  border-color: #981a3f;
+  text-align: center;
+}
+
+.btn-social>:first-child {
+  border-right: 1px solid rgba(152,26,63,0.8);
+  background-color: #981a3f;
+  width:41px;
 }
 
 /* http://jessica-eldredge.com/2014/01/26/headings-with-lines/ */
@@ -91,13 +105,16 @@ body {
   overflow: hidden;
   text-align: center;
 	font-size: 3em;
+  padding-bottom: 19px;
 	margin-top: 0px;
 	margin-bottom: 0px;
+  order: 0;
+  font-family: 'Pacifico';
 }
 
 .fancy span {
   display: inline-block;
-  padding: 0 15px;
+  padding: 0 20px;
   position: relative;
 }
 
@@ -118,35 +135,6 @@ body {
 
 .fancy span:after {
   left: 100%;
-}
-
-/* Google+ button: referenced from http://cssdeck.com/labs/flatbuttons */
-#user-controls .google-button {
-	width: 100%;
-	padding-top: 10px;
-	margin-bottom: -10px;
-	margin-top: 10px;
-}
-
-#user-controls .google-button .icon {
-	background: #981a3f;
-	height: 37px;
-	margin-top: -37px;
-	width: 37px;
-	color: white;
-}
-
-#user-controls .google-button .text {
-	background: #eb8a91;
-	height: 37px;
-	width: 100%;
-	color: #fff;
-	font-family: 'Open Sans', sans-serif;
-	margin: auto;
-}
-
-#user-controls .google-button .text:hover {
-  cursor: pointer;
 }
 
 @media (max-width: 480px) {

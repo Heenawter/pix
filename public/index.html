@@ -6,29 +6,53 @@
 <html lang="en">
 	<head>
 		<title>pix | home</title>
+
 		<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-		<link rel="stylesheet" href="css/splash.css"/>
+
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet"
+					href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+					integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+					crossorigin="anonymous">
+					<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+						integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+						crossorigin="anonymous"></script>
+
+		<link rel="stylesheet" href="css/bootstrap-social.css"/>
+		<link rel="stylesheet" href="css/splash.css"/>
 	</head>
 
 	<body>
 		<div class="flex-container">
-    	<div id="logo"><img src="images\logo.png"></div>
+			<div id="logo"><img src="images\logo.png"></div>
 
-			<div id="user-controls">
-				<div class="google-button">
-					<div class="text">Sign in with Google</div>
-					<div class="icon"><i class="fa fa-google"></i></div>
-				</div>
+			<div class="main-login main-center">
+				<form class="sign-in" method="post" action="#">
+					<div class="form-group ">
+						<a class="btn btn-block btn-social btn-google">
+							<span class="fa fa-google"></span> Sign in with Google
+						</a>
+					</div>
+				</form>
 
 				<div class="fancy"><span>or</span></div>
-				<input type="text" placeholder="Username"></input>
 
-				<div class="google-button">
-					<div class="text">Sign up with Google</div>
-					<div class="icon"><i class="fa fa-google"></i></div>
-				</div>
-
+				<form class="sign-up" method="post" action="#">
+					<div class="form-group">
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-user fa-lg" aria-hidden="true"></i></span>
+								<input type="text" class="form-control" name="username" id="username"  placeholder="Enter your Username"/>
+							</div>
+						</div>
+					</div>
+					<div class="form-group ">
+						<a class="btn btn-block btn-social btn-google">
+					    <span class="fa fa-google"></span> Sign up with Google
+					  </a>
+					</div>
+				</form>
 			</div>
 		</div>
 	</body>
