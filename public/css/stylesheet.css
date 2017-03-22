@@ -22,6 +22,7 @@ body {
   padding-bottom: 30px;
 }
 
+
 /******************************************************************
 NAVIGATION BAR
 ******************************************************************/
@@ -50,24 +51,20 @@ NAVIGATION BAR
 
 .navbar-nav > li > a {
   font-size: 2em;
-  color: #551d00;
-}
-
-.navbar-nav > .active > a,
-.navbar-nav > .active > a:hover,
-.navbar-nav > .active > a:focus {
-  background: none;
   color: #981a3f;
+	transition: .2s ease-in-out;
 }
 
 .navbar-nav > li > a:hover {
   background: none;
-  color: #b47458;
-  transition: .2s ease-in-out;
+  color: #D46B7B;
 }
 
-.navbar-default .navbar-nav > .active > a:hover {
-  color: #eb8a91;
+.navbar-toggle {
+	height: 100px;
+	font-size: 3em;
+	margin-bottom: 0px;
+	padding-bottom: 0px;
 }
 
 @media (max-width: 767px) {
@@ -77,9 +74,15 @@ NAVIGATION BAR
 	}
 }
 
-.navbar-toggle {
-	height: 100px;
-	font-size: 3em;
+@media (max-width: 305px) {
+	.navbar-brand {
+		padding-left: 10px;
+	}
+
+	.navbar-toggle {
+			margin-left: 0px;
+			margin-right: 0px;
+	}
 }
 
 
@@ -93,37 +96,55 @@ SEARCH BOX
 }
 
 .search {
-	border-color: #551d00;
-	transition: .2s ease-in-out;
+	border-color: #981a3f;
+  transition: .2s ease-in-out;
+  color: #551d00;
+}
+
+.search::placeholder {
+  color: #eb8a91;
 }
 
 .search:focus {
-	border-color: rgba(180, 116, 88, 0.8);
-	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(180, 116, 88, 0.6);
+	border-color: rgba(235, 138, 145, 0.8);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(235, 138, 145, 0.6);
 }
 
 .search-btn {
-	background-color:  #551d00;
-	color: white;
-	border-color: #551d00;
+	background-color: #981a3f;
+  color: white;
+  font-size: 17px;
+	height: 34px;
+  border-color: #981a3f;
 	transition: .2s ease-in-out;
 }
 
 .search-btn:hover {
-	background-color: #b47458;
+	background-color: #D46B7B;
 	color: white;
-	border-color: #b47458;
+	border-color: #D46B7B;
 }
 
 @media (max-width: 767px) {
 	.input-group {
 		padding-top: 0px;
 	}
+
 	.navbar-form {
 		width: 100%;
 		margin: 0px;
 	}
 }
+
+
+/******************************************************************
+ALBUM HEADER
+******************************************************************/
+
+.album-header {
+	text-align: center;
+}
+
 
 /******************************************************************
 THUMBNAILS
