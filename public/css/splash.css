@@ -86,6 +86,11 @@ FORM
 .input-group input {
   border-color: #981a3f;
   transition: .2s ease-in-out;
+  color: #551d00;
+}
+
+.input-group input::placeholder {
+  color: #c89985;
 }
 
 .input-group input:focus {
