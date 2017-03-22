@@ -42,6 +42,9 @@ body {
 	text-align: center;
 }
 
+/******************************************************************
+LOGO STUFF
+******************************************************************/
 
 #logo {
 		flex: 0 1 auto;
@@ -54,6 +57,12 @@ body {
 }
 
 
+/******************************************************************
+FORM
+******************************************************************/
+
+/* Reference: http://bootsnipp.com/snippets/featured/register-page-design */
+
 .form-control {
   height: auto!important;
   padding: 8px 12px !important;
@@ -65,8 +74,6 @@ body {
   width: 100%;
   padding: 10px 10px;
   padding-top: 40px;
-  text-shadow: none;
-  /*box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.31);*/
 }
 
 .input-group span.input-group-addon {
@@ -82,8 +89,8 @@ body {
 }
 
 .input-group input:focus {
-  border-color: rgba(180, 116, 88, 0.8);
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(180, 116, 88, 0.6);
+  border-color: rgba(235, 138, 145, 0.8);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(235, 138, 145, 0.6);
 }
 
 .btn-google {
@@ -91,6 +98,7 @@ body {
   background-color: #eb8a91;
   border-color: #981a3f;
   text-align: center;
+  transition: .2s ease-in-out;
 }
 
 .btn-social>:first-child {
@@ -99,7 +107,17 @@ body {
   width:41px;
 }
 
-/* http://jessica-eldredge.com/2014/01/26/headings-with-lines/ */
+.btn-google:hover {
+  background-color: #D46B7B;
+  border-color: #981a3f;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(235, 138, 145, 0.6);
+}
+
+/******************************************************************
+FANCY DIVIDER
+******************************************************************/
+
+/* Reference: http://jessica-eldredge.com/2014/01/26/headings-with-lines/ */
 
 .fancy {
   overflow: hidden;
@@ -138,7 +156,7 @@ body {
 }
 
 @media (max-width: 480px) {
-	#logo, #user-controls {
+	#logo, .main-center {
 		max-width: 85%;
 	}
 }
