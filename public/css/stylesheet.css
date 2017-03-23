@@ -150,37 +150,46 @@ ALBUM HEADER
 THUMBNAILS
 ******************************************************************/
 
-.thumbnail {
-  border: none;
-	color: #551d00;
+.album {
 	text-align: center;
+	color: #551d00;
 }
 
-.thumbnail .overlay {
-	text-align: center;
+.thumbnail {
+  border: none;
+}
 
+.thumbnail:hover {
+	text-decoration: none;
+}
+
+.thumbnail:hover .album-caption {
+	color:  #9d6146;
+}
+
+.album-pic {
+	display: flex;
+	justify-content: center;
+}
+
+.thumbnail .album-overlay {
 	position: absolute;
-	display: block;
-	top: 30px;
+	top: 25px;
+	visibility: collapse;
 	opacity: 0;
 	transition: .3s ease-in-out;
 }
 
-.thumbnail:hover .overlay {
+.thumbnail:hover .album-overlay {
 	opacity: 1;
+	visibility: visible;
 }
 
-.thumbnail .album {
+.thumbnail .album-img {
 	opacity: 1;
 	transition: .3s ease-in-out;
 }
 
-.thumbnail:hover .album {
+.thumbnail:hover .album-img {
   opacity: 0.7;
-	color: #9d6146;
-	text-decoration: none;
-}
-
-.thumbnail .caption {
-	text-align: center;
 }
