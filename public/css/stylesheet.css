@@ -143,8 +143,23 @@ ALBUM HEADER
 
 .album-header {
 	text-align: center;
+	font-size: 2em;
+	padding-bottom: 30px;
+	padding-top: 20px;
 }
 
+
+.album-header .user-name {
+	display: inline-block;
+}
+
+.album-header .user-icon .fa-circle {
+	color: #981a3f;
+}
+
+.album-header .user-icon .fa-user {
+	color: white;
+}
 
 /******************************************************************
 THUMBNAILS
