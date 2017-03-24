@@ -1,4 +1,6 @@
-$(document).ready(function(){
+$(function() {
+  handle_search();
+
   //   var submitIcon = $('.searchbox-icon');
   //   var inputBox = $('.searchbox-input');
   //   var searchBox = $('.searchbox');
@@ -37,4 +39,24 @@ $(document).ready(function(){
   //     $('.searchbox-input').val('');
   //     $('.searchbox-icon').css('display','block');
   // }
+});
+
+function handle_search() {
+  let searchBox = $('.search-bar');
+  let input = $('.search-input');
+  let submit = $('.search-btn');
+  let isOpen = false;
+
+  submit.click(function() {
+    if(isOpen) {
+      isOpen = false;
+      searchBox.removeClass('search-bar-open');
+      searchBox.addClass('search-bar-closed');
+      input.focusout();
+    } else {
+      isOpen = true;
+      searchBox.removeClass('search-bar-closed');
+      searchBox.addClass('search-bar-open');
+    }
+  });
 }
