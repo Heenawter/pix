@@ -297,3 +297,11 @@ THUMBNAILS
 	box-shadow: none;
 	padding: inherit;
 }
+
+.album-add-btn:enabled {
+	background-color: transparent;
+	border: none;
+	outline: none;
+	box-shadow: none;
+	padding: inherit;
+}
