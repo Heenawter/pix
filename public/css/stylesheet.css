@@ -76,11 +76,21 @@ NAVIGATION BAR
 		padding-top: 0px;
 		text-align: center;
 	}
+
+	.navbar-right {
+		margin: auto;
+		padding: 0px;
+	}
 }
 
 @media (max-width: 305px) {
 	.navbar-brand {
 		padding-left: 10px;
+	}
+
+	.logout-btn {
+		margin-bottom: 50px;
+		padding-bottom: 50px;
 	}
 
 	.navbar-toggle {
@@ -113,13 +123,22 @@ SEARCH BOX
 
 
 @media (max-width: 767px) {
-	.input-group {
-		padding-top: 0px;
+	.search-bar {
+		display: block;
+		padding: 0px;
 	}
 
-	.navbar-form {
+	.search-btn {
+		float:right;
 		width: 100%;
-		margin: 0px;
+	}
+
+	.search-bar-closed .search-btn {
+		top: -20px;
+	}
+
+	.search-bar-open .search-btn {
+		margin-bottom: 10px;
 	}
 }
 
@@ -178,7 +197,6 @@ SEARCH BOX
 .search-bar-closed .search-btn:hover {
 	color: #D46B7B;
 }
-
 
 /******************************************************************
 ALBUM HEADER
