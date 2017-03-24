@@ -105,8 +105,6 @@ SEARCH BOX
 	box-shadow: none;
 }
 
-
-
 .search-bar .search-btn:enabled {
 	border: none;
 	outline: none;
@@ -254,7 +252,9 @@ THUMBNAILS
   opacity: 0.7;
 }
 
- .album-after {
+/*************************** ADD ALBUM ***************************/
+
+.album-after {
 	display: flex;
 	justify-content: center;
 }
@@ -270,4 +270,12 @@ THUMBNAILS
 
 .album-add-btn:hover {
 	color:  #ee9fa5;
+}
+
+.album-add-btn:active {
+	background-color: transparent;
+	border: none;
+	outline: none;
+	box-shadow: none;
+	padding: inherit;
 }
