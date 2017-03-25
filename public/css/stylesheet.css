@@ -108,6 +108,16 @@ SEARCH BOX
 	text-align: center;
 }
 
+.search-bar .search {
+	border-color: #981a3f;
+  color: #551d00;
+}
+
+.search-bar .search:focus {
+	border-color: rgba(235, 138, 145, 0.8);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(235, 138, 145, 0.6);
+}
+
 .search-bar .search-btn:active {
 	background-color: transparent;
 	border: none;
@@ -119,6 +129,10 @@ SEARCH BOX
 	border: none;
 	outline: none;
 	box-shadow: none;
+}
+
+.search-bar .search::placeholder {
+  color: #eb8a91;
 }
 
 
@@ -144,24 +158,10 @@ SEARCH BOX
 
 /***************************** OPEN ******************************/
 
-.search-bar-open .search {
-	border-color: #981a3f;
-  color: #551d00;
-}
-
 .search-bar-open .search-input {
 	visibility: visible;
 	transition: .2s ease-in;
 	height: 55px;
-}
-
-.search-bar-open .search::placeholder {
-  color: #eb8a91;
-}
-
-.search-bar-open .search:focus {
-	border-color: rgba(235, 138, 145, 0.8);
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(235, 138, 145, 0.6);
 }
 
 .search-bar-open .search-btn {
