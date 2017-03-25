@@ -270,6 +270,25 @@ THUMBNAILS
   opacity: 0.7;
 }
 
+/************************* DELETE ALBUM **************************/
+
+.thumbnail .delete-album {
+	visibility: hidden;
+	position: absolute;
+	font-size: 3em;
+	text-align: right;
+	width: 100%;
+	background-color: red;
+}
+
+.thumbnail .delete-album .delete-album-icon {
+	background-color: green;
+}
+
+.thumbnail:hover .delete-album  {
+	visibility: visible;
+}
+
 /*************************** ADD ALBUM ***************************/
 
 .album-after {
@@ -278,7 +297,7 @@ THUMBNAILS
 }
 
 .album-add-btn {
-	color: #FFEDBC;
+	color: #ee9fa5;
 	font-size: 7.5em;
 	width: 100%;
 	background-color: transparent;
@@ -287,7 +306,7 @@ THUMBNAILS
 }
 
 .album-add-btn:hover {
-	color:  #ee9fa5;
+	color:  #981a3f;
 }
 
 .album-add-btn:active {
