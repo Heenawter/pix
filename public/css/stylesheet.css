@@ -285,6 +285,7 @@ THUMBNAILS
 
 .thumbnail .album-overlay .view-album-icon {
 	transition: .5s color;
+	padding: 5px;
 }
 
 .thumbnail .album-overlay .view-album-icon:hover {
@@ -293,6 +294,7 @@ THUMBNAILS
 
 .thumbnail .album-overlay .delete-album-icon {
 	transition: .5s color;
+	padding: 5px;
 }
 
 .thumbnail .album-overlay .delete-album-icon:hover {
