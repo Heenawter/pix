@@ -262,6 +262,9 @@ THUMBNAILS
 	align-items: center;
 }
 
+
+/************************ ALBUM OVERLAY **************************/
+
 .thumbnail .album-overlay {
 	position: absolute;
 	display: flex;
@@ -275,16 +278,21 @@ THUMBNAILS
 	opacity: 0;
 }
 
-
 .thumbnail:hover .album-overlay {
 	opacity: 1;
 	transition: .3s ease-in-out;
 }
 
-
+.thumbnail .album-overlay .view-album-icon {
+	transition: .5s color;
+}
 
 .thumbnail .album-overlay .view-album-icon:hover {
 	color: #981a3f;
+}
+
+.thumbnail .album-overlay .delete-album-icon {
+	transition: .5s color;
 }
 
 .thumbnail .album-overlay .delete-album-icon:hover {
@@ -292,55 +300,13 @@ THUMBNAILS
 }
 
 
-/*
-.thumbnail .album-overlay {
-	position: absolute;
-	top: 25px;
-	visibility: collapse;
-	opacity: 0;
-	transition: .3s ease-in-out;
-}
-
-.thumbnail:hover .album-overlay {
-	opacity: 1;
-	visibility: visible;
-}*/
-
 .thumbnail .album-img {
 	opacity: 1;
 	transition: .3s ease-in-out;
 }
 
 .thumbnail:hover .album-img {
-  opacity: 0.7;
-}
-
-/************************* DELETE ALBUM **************************/
-
-.thumbnail .delete-album {
-	opacity: 0;
-	position: absolute;
-	font-size: 3em;
-	color: #ee9fa5;
-	text-align: right;
-	padding: 15px;
-	top: -10px;
-	padding-top: 100px;
-	width: 188px;
-
-	transition: .3s ease-in-out;
-}
-
-.thumbnail:hover .delete-album  {
-	opacity: 1;
-}
-
-.thumbnail .delete-album .delete-album-icon {
-	transition: .5s color;
-}
-
-.thumbnail .delete-album .delete-album-icon:hover {
-	color: #981a3f;
+  opacity: 0.75;
 }
 
 /*************************** ADD ALBUM ***************************/
