@@ -61,7 +61,7 @@ NAVIGATION BAR
 
 .navbar-nav > li > a:hover {
   background: none;
-  color: #D46B7B;
+  color: #ee9fa5;
 }
 
 .navbar-toggle {
@@ -174,9 +174,9 @@ SEARCH BOX
 }
 
 .search-bar-open .search-btn:hover {
-	background-color: #D46B7B;
+	background-color: #ee9fa5;
 	color: white;
-	border-color: #D46B7B;
+	border-color: #ee9fa5;
 }
 
 /**************************** CLOSED *****************************/
@@ -195,7 +195,7 @@ SEARCH BOX
 }
 
 .search-bar-closed .search-btn:hover {
-	color: #D46B7B;
+	color: #ee9fa5;
 }
 
 /******************************************************************
@@ -207,6 +207,7 @@ ALBUM HEADER
 	font-size: 2em;
 	padding-bottom: 30px;
 	padding-top: 20px;
+	color: #981a3f;
 }
 
 
@@ -221,6 +222,18 @@ ALBUM HEADER
 .album-header .user-icon .fa-user {
 	color: white;
 }
+
+.album-header .line {
+  white-space:no-wrap;
+  overflow:hidden;
+  text-align:center;
+	padding-top: 10px;
+}
+
+.album-header .line>hr {
+	border-top: 1px solid #ee9fa5;
+}
+
 
 /******************************************************************
 THUMBNAILS
@@ -259,6 +272,7 @@ THUMBNAILS
 .thumbnail:hover .album-overlay {
 	opacity: 1;
 	visibility: visible;
+	display: none;
 }
 
 .thumbnail .album-img {
@@ -273,7 +287,7 @@ THUMBNAILS
 /************************* DELETE ALBUM **************************/
 
 .thumbnail .delete-album {
-	visibility: hidden;
+	opacity: 0;
 	position: absolute;
 	font-size: 3em;
 	color: #ee9fa5;
@@ -282,15 +296,20 @@ THUMBNAILS
 	top: -10px;
 	padding-top: 100px;
 	width: 188px;
+
+	transition: .3s ease-in-out;
 }
 
 .thumbnail:hover .delete-album  {
-	visibility: visible;
+	opacity: 1;
 }
 
+.thumbnail .delete-album .delete-album-icon {
+	transition: .5s color;
+}
 
 .thumbnail .delete-album .delete-album-icon:hover {
-		color: #981a3f;
+	color: #981a3f;
 }
 
 /*************************** ADD ALBUM ***************************/
