@@ -18,10 +18,14 @@
 body {
 	color: #551d00;
 	font-family: 'Open Sans', sans-serif;
-  padding-top: 120px;
-  padding-bottom: 30px;
+  padding-top: 110px;
+	background-color: white;
 }
 
+.header {
+	background-color: white;
+
+}
 
 /******************************************************************
 NAVIGATION BAR
@@ -30,9 +34,9 @@ NAVIGATION BAR
 .navbar {
   border-color: #981a3f;
   margin-bottom: 0px;
-  background: #ee9fa5; /* fallback for old browsers */
-	background: -webkit-linear-gradient(90deg, #ee9fa5 , #FFEDBC); /* Chrome 10-25, Safari 5.1-6 */
-	background: linear-gradient(90deg, #ee9fa5 , #FFEDBC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */*/
+  background: #f49fa5; /* fallback for old browsers */
+	background: -webkit-linear-gradient(90deg, #f49fa5 , #FFEDBC); /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(90deg, #f49fa5 , #FFEDBC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */*/
 	height: auto;
 }
 
@@ -61,7 +65,7 @@ NAVIGATION BAR
 
 .navbar-nav > li > a:hover {
   background: none;
-  color: #ee9fa5;
+  color: #f49fa5;
 }
 
 .navbar-toggle {
@@ -174,9 +178,9 @@ SEARCH BOX
 }
 
 .search-bar-open .search-btn:hover {
-	background-color: #ee9fa5;
+	background-color: #f49fa5;
 	color: white;
-	border-color: #ee9fa5;
+	border-color: #f49fa5;
 }
 
 /**************************** CLOSED *****************************/
@@ -195,77 +199,95 @@ SEARCH BOX
 }
 
 .search-bar-closed .search-btn:hover {
-	color: #ee9fa5;
+	color: #f49fa5;
 }
 
 /******************************************************************
-ALBUM HEADER
+GALLERY / ALBUM HEADER
 ******************************************************************/
 
-.album-header {
+.header {
 	text-align: center;
 	font-size: 2em;
 	padding-bottom: 30px;
-	padding-top: 20px;
+	padding-top: 30px;
 	color: #981a3f;
+	/*background-color: #f49fa5;*/
+	margin-top: 0px;
+	font-family: 'Pacifico';
 }
 
 
-.album-header .user-name {
+.header .user-name {
 	display: inline-block;
+	font-size: 1.25em;
 }
 
-.album-header .user-icon .fa-circle {
+.header .user-icon .fa-circle {
 	color: #981a3f;
 }
 
-.album-header .user-icon .fa-user {
+.header .user-icon .fa-user {
 	color: white;
 }
 
-.album-header .line {
+.header .line {
   white-space:no-wrap;
   overflow:hidden;
   text-align:center;
 	padding-top: 10px;
 }
 
-.album-header .line hr {
-	border-top: 1px solid #ee9fa5;
+.header .line hr {
+	border-top: 1px solid #551d00;
 }
 
+.gallery-header .user-icon .fa-folder-open {
+	color: white;
+}
+
+@media (max-width: 767px) {
+	.header .line hr {
+		display: none;
+	}
+	.header {
+			padding-top: 0px;
+	}
+}
 
 /******************************************************************
 THUMBNAILS
 ******************************************************************/
 
-.album {
+.gallery {
 	text-align: center;
 	color: #551d00;
 }
 
 .thumbnail {
   border: none;
+	background-color: #fff2dd;
+	padding-top: 20px;
 }
 
 .thumbnail:hover {
 	text-decoration: none;
 }
 
-.thumbnail:hover .album-caption {
+.thumbnail:hover .gallery-caption {
 	color:  #9d6146;
 }
 
-.album-pic {
+.gallery-pic {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 
 
-/************************ ALBUM OVERLAY **************************/
+/************************ GALLERY OVERLAY **************************/
 
-.thumbnail .album-overlay {
+.thumbnail .gallery-overlay {
 	position: absolute;
 	display: flex;
 	align-items: center;
@@ -278,48 +300,50 @@ THUMBNAILS
 	opacity: 0;
 }
 
-.thumbnail:hover .album-overlay {
+.thumbnail:hover .gallery-overlay {
 	opacity: 1;
 	transition: .3s ease-in-out;
 }
 
-.thumbnail .album-overlay .view-album-icon {
+.thumbnail .gallery-overlay .view-gallery-icon {
 	transition: .5s color;
 	padding: 5px;
 }
 
-.thumbnail .album-overlay .view-album-icon:hover {
+.thumbnail .gallery-overlay .view-gallery-icon:hover {
 	color: #981a3f;
 }
 
-.thumbnail .album-overlay .delete-album-icon {
+.thumbnail .gallery-overlay .delete-gallery-icon {
 	transition: .5s color;
 	padding: 5px;
 }
 
-.thumbnail .album-overlay .delete-album-icon:hover {
+.thumbnail .gallery-overlay .delete-gallery-icon:hover {
 	color: #981a3f;
 }
 
 
-.thumbnail .album-img {
+.thumbnail .gallery-img {
 	opacity: 1;
 	transition: .3s ease-in-out;
 }
 
-.thumbnail:hover .album-img {
+.thumbnail:hover .gallery-img {
   opacity: 0.75;
 }
 
-/*************************** ADD ALBUM ***************************/
+/*************************** ADD GALLERY ***************************/
 
-.album-after {
+.gallery-after {
 	display: flex;
 	justify-content: center;
+	height: 230px;
+	align-items: center;
 }
 
-.album-add-btn {
-	color: #ee9fa5;
+.gallery-add-btn {
+	color: #fcdab6;
 	font-size: 7.5em;
 	width: 100%;
 	background-color: transparent;
@@ -327,11 +351,11 @@ THUMBNAILS
 	transition: .5s color;
 }
 
-.album-add-btn:hover {
-	color:  #981a3f;
+.gallery-add-btn:hover {
+	color:  #f49fa5;
 }
 
-.album-add-btn:active {
+.gallery-add-btn:active {
 	background-color: transparent;
 	border: none;
 	outline: none;
@@ -339,7 +363,7 @@ THUMBNAILS
 	padding: inherit;
 }
 
-.album-add-btn:enabled {
+.gallery-add-btn:enabled {
 	background-color: transparent;
 	border: none;
 	outline: none;
