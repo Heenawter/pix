@@ -6,7 +6,7 @@
 <html lang="en" content="text/html">
 	<head>
 		<meta charset="utf-8"/>
-		<title>pix | test album</title>
+		<title>pix | test gallery</title>
 
 		<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
 
@@ -15,7 +15,6 @@
 			  src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"
 			  integrity="sha256-0YPKAwZP7Mp3ALMRVB2i8GXeEndvCq3eSl/WsAl1Ryk="
 			  crossorigin="anonymous"></script>
-
 
 		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet"
@@ -67,21 +66,24 @@
 	</div>
 	</nav>
 
-  <div class="container">
-    <div class="gallery-header col-xs-12">
-			<span class="col-xs-4 line"><hr></span>
-			<span class="col-xs-4">
-				<span class="user-icon fa-stack fa-lg">
-				  <span class="fa fa-circle fa-stack-2x"></span>
-				  <span class="fa fa-folder-open fa-stack-1x"></span>
-				</span>
-				<span class="user-name">Album Name</span>
+	<div class="header">
+		<div class="container">
+		<span class="col-lg-4 col-md-3 col-sm-2 hidden-xs-down line"><hr></span>
+		<span class="col-lg-4 col-md-6 col-sm-8 col-xs-12">
+			<span class="user-icon fa-stack fa-lg">
+				<span class="fa fa-circle fa-stack-2x"></span>
+				<span class="gallery-header fa fa-user fa-stack-1x"></span>
 			</span>
-			<span class="col-xs-4 line"><hr></span>
+			<span class="jumbotron-heading user-name">Gallery Owner</span>
+		</span>
+		<span class="col-lg-4 col-md-3 col-sm-2 hidden-xs-down line"><hr></span>
 		</div>
+	</div>
 
-		<div class="row">
-		 	<div class="gallery col-lg-3 col-md-3 col-sm-4 col-xs-12">
+	<div class="gallery">
+  <div class="container">
+
+		 	<div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
 				<a href="#" class="thumbnail">
 					<span class="gallery-pic">
 						<img class="gallery-img" src="images/folder.png">
@@ -93,7 +95,7 @@
 					<div class="gallery-caption caption">Album Name</div>
 				</a>
 		 	</div>
-			<div class="gallery col-lg-3 col-md-3 col-sm-4 col-xs-12">
+			<div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
 				<a href="#" class="thumbnail">
 					<span class="gallery-pic">
 						<img class="gallery-img" src="images/folder.png">
@@ -105,7 +107,7 @@
 					<div class="gallery-caption caption">Album Name</div>
 				</a>
 		 	</div>
-		 	<div class="gallery col-lg-3 col-md-3 col-sm-4 col-xs-12">
+		 	<div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
 				<a href="#" class="thumbnail">
 					<span class="gallery-pic">
 						<img class="gallery-img" src="images/folder.png">
@@ -117,7 +119,7 @@
 					<div class="gallery-caption caption">Album Name</div>
 				</a>
 		 	</div>
-			<div class="gallery col-lg-3 col-md-3 col-sm-4 col-xs-12">
+			<div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
 				<a href="#" class="thumbnail">
 					<span class="gallery-pic">
 						<img class="gallery-img" src="images/folder.png">
@@ -129,7 +131,7 @@
 					<div class="gallery-caption caption">Album Name</div>
 				</a>
 			</div>
-			<div class="gallery col-lg-3 col-md-3 col-sm-4 col-xs-12">
+			<div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
 				<a href="#" class="thumbnail">
 					<span class="gallery-pic">
 						<img class="gallery-img" src="images/folder.png">
@@ -142,12 +144,12 @@
 				</a>
 			</div>
 			<div class="gallery-after col-lg-3 col-md-3 col-sm-4 col-xs-12">
-				<button type="button" class="gallery-add-btn">
+				<button type="button" class="thumbnail gallery-add-btn">
 						<span class="fa fa-plus-circle fa-lg"></span>
 				</a>
 			</div>
- 		</div>
 	</div><!-- /.container -->
+</div>
 	</body>
 
 </html>
