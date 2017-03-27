@@ -246,6 +246,11 @@ GALLERY / ALBUM HEADER
 	color: white;
 }
 
+.gallery-header .user-icon .fa-folder-open {
+	color: white;
+}
+
+
 @media (max-width: 767px) {
 	.header .line hr {
 		display: none;
@@ -259,14 +264,18 @@ GALLERY / ALBUM HEADER
 THUMBNAILS
 ******************************************************************/
 
-.gallery {
+.gallery, .album {
 	text-align: center;
 	color: #551d00;
 }
 
+
 .thumbnail {
   border: none;
 	background-color: #fff2dd;
+}
+
+.gallery .thumbnail {
 	padding-top: 20px;
 }
 
@@ -278,16 +287,21 @@ THUMBNAILS
 	color:  #9d6146;
 }
 
-.gallery-pic {
+.gallery-pic, .album-pic {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 
+.album-img {
+	max-width: 300px;
+}
+
 
 /************************ GALLERY OVERLAY **************************/
 
-.thumbnail .gallery-overlay {
+.thumbnail .gallery-overlay,
+.thumbnail .album-overlay {
 	position: absolute;
 	display: flex;
 	align-items: center;
@@ -300,49 +314,56 @@ THUMBNAILS
 	opacity: 0;
 }
 
-.thumbnail:hover .gallery-overlay {
+.thumbnail:hover .gallery-overlay,
+.thumbnail:hover .album-overlay {
 	opacity: 1;
 	transition: .3s ease-in-out;
 }
 
-.thumbnail .gallery-overlay .view-gallery-icon {
+.thumbnail .gallery-overlay .view-gallery-icon,
+.thumbnail .album-overlay .view-album-icon {
 	transition: .5s color;
 	padding: 5px;
 }
 
-.thumbnail .gallery-overlay .view-gallery-icon:hover {
+.thumbnail .gallery-overlay .view-gallery-icon:hover,
+.thumbnail .album-overlay .view-album-icon:hover {
 	color: #981a3f;
 }
 
-.thumbnail .gallery-overlay .delete-gallery-icon {
+.thumbnail .gallery-overlay .delete-gallery-icon,
+.thumbnail .album-overlay .delete-album-icon  {
 	transition: .5s color;
 	padding: 5px;
 }
 
-.thumbnail .gallery-overlay .delete-gallery-icon:hover {
+.thumbnail .gallery-overlay .delete-gallery-icon:hover,
+.thumbnail .album-overlay .delete-album-icon:hover {
 	color: #981a3f;
 }
 
 
-.thumbnail .gallery-img {
+.thumbnail .gallery-img,
+.thumbnail .album-img  {
 	opacity: 1;
 	transition: .3s ease-in-out;
 }
 
-.thumbnail:hover .gallery-img {
+.thumbnail:hover .gallery-img,
+.thumbnail:hover .album-img {
   opacity: 0.75;
 }
 
 /*************************** ADD GALLERY ***************************/
 
-.gallery-after {
+.after {
 	display: flex;
 	justify-content: center;
 	height: 230px;
 	align-items: center;
 }
 
-.gallery-add-btn {
+.add-btn {
 	color: #fcdab6;
 	font-size: 7.5em;
 	width: 100%;
@@ -351,11 +372,11 @@ THUMBNAILS
 	transition: .5s color;
 }
 
-.gallery-add-btn:hover {
+.add-btn:hover {
 	color:  #f49fa5;
 }
 
-.gallery-add-btn:active {
+.add-btn:active {
 	background-color: transparent;
 	border: none;
 	outline: none;
@@ -363,7 +384,7 @@ THUMBNAILS
 	padding: inherit;
 }
 
-.gallery-add-btn:enabled {
+.add-btn:enabled {
 	background-color: transparent;
 	border: none;
 	outline: none;
