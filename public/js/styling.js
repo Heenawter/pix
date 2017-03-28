@@ -1,56 +1,46 @@
+
 $(function() {
   toggle_search();
-  handle_photo();
-})
+  if ($('#lightbox').length != 0)
+    lightboxInit();
+});
 
 
-// http://bootsnipp.com/snippets/featured/bootstrap-lightbox
-function handle_photo() {
-  var $lightbox = $('#lightbox');
-  //
-  // $($('.thumbnail')).on('click', function(event) {
-  //   event.preventDefault();
-  //   if($(window).width() > 767) {
-  //     var $img = $(this).find('img'),
-  //       src = $img.attr('src'),
-  //       alt = $img.attr('alt'),
-  //       css = {
-  //         'maxWidth': $(window).width() - 100,
-  //         'maxHeight': $(window).height() - 100 };
-  //
-  //       $lightbox.find('.close').addClass('hidden');
-  //       $lightbox.find('img').attr('src', src);
-  //       $lightbox.find('img').attr('alt', alt);
-  //       $lightbox.find('img').css(css);
-  //   }
-  // });
-  //
-  // $lightbox.on('shown.bs.modal', function (e) {
-  //   var $img = $lightbox.find('img');
-  //
-  //   $lightbox.find('.modal-dialog').css({'width': $img.width()});
-  //   $lightbox.find('.close').removeClass('hidden');
-  // });
+function lightboxInit() {
+  $('.thumbnail').click(function(e){
+    let size = window.getComputedStyle(document.body,':after').getPropertyValue('content').replace( /"/g, '' ); //http://adactio.com/journal/5429/
 
-      // var $img = $(this).find('img'),
-      //   src = $img.attr('src'),
-      //   alt = $img.attr('alt'),
-      //   css = {
-      //     'maxWidth': $(window).width() - 100,
-      //     'maxHeight': $(window).height() - 100 };
-      //
-      //   $lightbox.find('.close').addClass('hidden');
-      //   $lightbox.find('img').attr('src', src);
-      //   $lightbox.find('img').attr('alt', alt);
-      //   $lightbox.find('img').css(css);
-      // });
-      //
-      // $lightbox.on('shown.bs.modal', function (e) {
-      //   var $img = $lightbox.find('img');
-      //
-      //   $lightbox.find('.modal-dialog').css({'width': $img.width()});
-      //   $lightbox.find('.close').removeClass('hidden');
-      // });
+    /* http://codepen.io/bradfrost/pen/tfCAp */
+    if(size == "768") {
+      e.preventDefault();
+      var $img = $(this).find('img'),
+          src = $img.attr('src');
+      buildLightBox(src);
+    }
+  });
+}
+
+
+/* http://bootsnipp.com/snippets/featured/bootstrap-lightbox */
+function buildLightBox(src) {
+  let $lightbox = $('#lightbox');
+  let css = {
+    'maxWidth': $(window).width() - 100,
+    'maxHeight': $(window).height() - 100
+  };
+
+  $lightbox.find('.close').addClass('hidden');
+  $lightbox.find('img').attr('src', src);
+  $lightbox.find('img').css(css);
+
+  $('#lightbox').find('img').attr('src', src);
+  $("#lightbox").modal('show');
+
+  $lightbox.on('shown.bs.modal', function (e) {
+    var $img = $lightbox.find('img');
+    $lightbox.find('.modal-dialog').css({'width': $img.width()});
+    $lightbox.find('.close').removeClass('hidden');
+  });
 }
 
 //https://codepen.io/nikhil/pen/qcyGF

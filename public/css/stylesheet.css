@@ -22,10 +22,18 @@ body {
 	background-color: white;
 }
 
-.header {
-	background-color: white;
-
+body:after {
+	content: "768";
+	display: none;
 }
+
+@media (max-width: 767px) {
+	body:after { /* http://adactio.com/journal/5429/ */
+			content: '767';
+			display: none;
+	}
+}
+
 
 /******************************************************************
 NAVIGATION BAR
@@ -252,7 +260,7 @@ GALLERY / ALBUM HEADER
 		display: none;
 	}
 	.header {
-			padding-top: 0px;
+		padding-top: 0px;
 	}
 }
 
@@ -390,6 +398,7 @@ THUMBNAILS
 
 .add-btn:hover {
 	color:  #f49fa5;
+	cursor: pointer;
 }
 
 .add-btn:active {
