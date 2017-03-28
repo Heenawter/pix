@@ -3,15 +3,29 @@ $(function() {
   toggle_search();
   if ($('#lightbox').length != 0)
     lightboxInit();
+
+    $('[data-toggle="offcanvas"]').click(function () {
+      $('.row-offcanvas').toggleClass('active')
+    });
+
+    $('.tree-toggle').click(function () {
+	$(this).parent().children('ul.tree').toggle(200);
+});
+$(function(){
+$('.tree-toggle').parent().children('ul.tree').toggle(200);
+})
 });
 
+function triggerLightbox() {
+  $('.thumbnail').click();
+}
 
 function lightboxInit() {
   $('.thumbnail').click(function(e){
     let size = window.getComputedStyle(document.body,':after').getPropertyValue('content').replace( /"/g, '' ); //http://adactio.com/journal/5429/
 
     /* http://codepen.io/bradfrost/pen/tfCAp */
-    if(size == "768") {
+    if(size == "widescreen") {
       e.preventDefault();
       var $img = $(this).find('img'),
           src = $img.attr('src');

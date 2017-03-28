@@ -15,6 +15,11 @@
 
 /* https://coolors.co/551d00-9d6146-b47458-981a3f-eb8a91 */
 
+html,body {
+  overflow-x: hidden; /* Prevent scroll on narrow devices */
+  height:100%;
+}
+
 body {
 	color: #551d00;
 	font-family: 'Open Sans', sans-serif;
@@ -23,13 +28,13 @@ body {
 }
 
 body:after {
-	content: "768";
+	content: 'widescreen';
 	display: none;
 }
 
 @media (max-width: 767px) {
 	body:after { /* http://adactio.com/journal/5429/ */
-			content: '767';
+			content: 'smallscreen';
 			display: none;
 	}
 }
@@ -46,6 +51,8 @@ NAVIGATION BAR
 	background: -webkit-linear-gradient(90deg, #f49fa5 , #FFEDBC); /* Chrome 10-25, Safari 5.1-6 */
 	background: linear-gradient(90deg, #f49fa5 , #FFEDBC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */*/
 	height: auto;
+	padding-left: 50px;
+	padding-right: 50px;
 }
 
 .navbar-brand {
@@ -87,6 +94,10 @@ NAVIGATION BAR
 	#nav-content {
 		padding-top: 0px;
 		text-align: center;
+	}
+
+	.navbar {
+		padding: 0px;
 	}
 
 	.navbar-right {
@@ -214,6 +225,11 @@ SEARCH BOX
 GALLERY / ALBUM HEADER
 ******************************************************************/
 
+.gallery-content {
+	padding-left: 50px;
+	padding-right: 50px;
+}
+
 .header {
 	text-align: center;
 	font-size: 2em;
@@ -273,6 +289,10 @@ THUMBNAILS
 	color: #551d00;
 }
 
+.gallery-item {
+	display: flex;
+	justify-content: center;
+}
 
 .thumbnail {
   border: none;
@@ -280,7 +300,8 @@ THUMBNAILS
 }
 
 .gallery .thumbnail {
-	padding-top: 20px;
+	padding: 10px;
+	max-width: 500px;
 }
 
 .thumbnail:hover {
@@ -322,7 +343,6 @@ THUMBNAILS
 	width: 188px;
 	height: 158px;
 	font-size: 3em;
-	padding-top: 50px;
 	color: white;
 	opacity: 0;
 }
@@ -368,10 +388,6 @@ THUMBNAILS
 }
 
 @media (max-width: 767px) {
-	.after {
-		height: 180px;
-	}
-
 	.album .add-btn {
 		padding-top:0px;
 	}
@@ -460,4 +476,60 @@ LIGHTBOX
 
 #lightbox .close:hover {
 	background-color: #eb8a91;
+}
+
+
+/******************************************************************
+SIDEBAR
+******************************************************************/
+
+.sidebar-offcanvas {
+	background-color: #fcdab6;
+	height:100%;
+	padding: 10px;
+	  position: fixed;
+}
+
+.row-offcanvas {
+	  height:100%;
+}
+
+@media screen and (max-width: 767px) {
+  .row-offcanvas {
+    position: relative;
+    transition: all .25s ease-out;
+  }
+
+  .row-offcanvas-right {
+    right: 0;
+  }
+
+  .row-offcanvas-left {
+    left: 0;
+  }
+
+  .row-offcanvas-right
+  .sidebar-offcanvas {
+    right: -40%; /* 6 columns */
+  }
+
+  .row-offcanvas-left
+  .sidebar-offcanvas {
+    left: -40%; /* 6 columns */
+  }
+
+  .row-offcanvas-right.active {
+    right: 40%; /* 6 columns */
+  }
+
+  .row-offcanvas-left.active {
+    left: 40%; /* 6 columns */
+  }
+
+  .sidebar-offcanvas {
+    position: absolute;
+    top: 0;
+    width: 40%; /* 6 columns */
+		padding-left: 30px;
+  }
 }
