@@ -417,17 +417,13 @@ THUMBNAILS
 	padding: inherit;
 }
 
-.album .add-btn {
-	padding-top:35px;
+.add-btn {
+	margin-bottom:30px;
 }
 
 @media (max-width: 767px) {
 	.after {
 		height: 180px;
-	}
-
-	.album .add-btn {
-		padding-top:0px;
 	}
 }
 
