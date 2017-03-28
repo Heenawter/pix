@@ -7,30 +7,30 @@ $(function() {
 // http://bootsnipp.com/snippets/featured/bootstrap-lightbox
 function handle_photo() {
   var $lightbox = $('#lightbox');
-
-  $($('.thumbnail')).on('click', function(event) {
-    event.preventDefault();
-    if($(window).width() > 767) {
-      var $img = $(this).find('img'),
-        src = $img.attr('src'),
-        alt = $img.attr('alt'),
-        css = {
-          'maxWidth': $(window).width() - 100,
-          'maxHeight': $(window).height() - 100 };
-
-        $lightbox.find('.close').addClass('hidden');
-        $lightbox.find('img').attr('src', src);
-        $lightbox.find('img').attr('alt', alt);
-        $lightbox.find('img').css(css);
-    }
-  });
-
-  $lightbox.on('shown.bs.modal', function (e) {
-    var $img = $lightbox.find('img');
-
-    $lightbox.find('.modal-dialog').css({'width': $img.width()});
-    $lightbox.find('.close').removeClass('hidden');
-  });
+  //
+  // $($('.thumbnail')).on('click', function(event) {
+  //   event.preventDefault();
+  //   if($(window).width() > 767) {
+  //     var $img = $(this).find('img'),
+  //       src = $img.attr('src'),
+  //       alt = $img.attr('alt'),
+  //       css = {
+  //         'maxWidth': $(window).width() - 100,
+  //         'maxHeight': $(window).height() - 100 };
+  //
+  //       $lightbox.find('.close').addClass('hidden');
+  //       $lightbox.find('img').attr('src', src);
+  //       $lightbox.find('img').attr('alt', alt);
+  //       $lightbox.find('img').css(css);
+  //   }
+  // });
+  //
+  // $lightbox.on('shown.bs.modal', function (e) {
+  //   var $img = $lightbox.find('img');
+  //
+  //   $lightbox.find('.modal-dialog').css({'width': $img.width()});
+  //   $lightbox.find('.close').removeClass('hidden');
+  // });
 
       // var $img = $(this).find('img'),
       //   src = $img.attr('src'),
