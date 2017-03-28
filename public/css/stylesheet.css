@@ -214,13 +214,17 @@ GALLERY / ALBUM HEADER
 	color: #981a3f;
 	/*background-color: #f49fa5;*/
 	margin-top: 0px;
-	font-family: 'Pacifico';
 }
 
-
 .header .user-name {
+	font-family: 'Pacifico';
 	display: inline-block;
 	font-size: 1.25em;
+}
+
+.header .subheading {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 0.75em;
 }
 
 .header .user-icon .fa-circle {
@@ -299,7 +303,7 @@ THUMBNAILS
 }
 
 
-/************************ GALLERY OVERLAY **************************/
+/************************* OVERLAY THING ***************************/
 
 .thumbnail .gallery-overlay,
 .thumbnail .album-overlay {
@@ -355,7 +359,7 @@ THUMBNAILS
   opacity: 0.75;
 }
 
-/*************************** ADD GALLERY ***************************/
+/**************************** ADD THING ****************************/
 
 .after {
 	display: flex;
@@ -391,4 +395,18 @@ THUMBNAILS
 	outline: none;
 	box-shadow: none;
 	padding: inherit;
+}
+
+.album .add-btn {
+	padding-top:35px;
+}
+
+@media (max-width: 767px) {
+	.after {
+		height: 180px;
+	}
+
+	.album .add-btn {
+		padding-top:0px;
+	}
 }
