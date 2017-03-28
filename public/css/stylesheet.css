@@ -246,14 +246,6 @@ GALLERY / ALBUM HEADER
 	border-top: 1px solid #551d00;
 }
 
-.gallery-header .user-icon .fa-folder-open {
-	color: white;
-}
-
-.gallery-header .user-icon .fa-folder-open {
-	color: white;
-}
-
 
 @media (max-width: 767px) {
 	.header .line hr {
@@ -285,6 +277,7 @@ THUMBNAILS
 
 .thumbnail:hover {
 	text-decoration: none;
+	cursor: pointer;
 }
 
 .thumbnail:hover .gallery-caption {
@@ -300,6 +293,13 @@ THUMBNAILS
 .album-img {
 	max-width: 300px;
 	width:100%;
+}
+
+
+@media (max-width: 767px) {
+	.thumbnail:hover {
+		cursor: default;
+	}
 }
 
 
@@ -359,6 +359,17 @@ THUMBNAILS
   opacity: 0.75;
 }
 
+@media (max-width: 767px) {
+	.after {
+		height: 180px;
+	}
+
+	.album .add-btn {
+		padding-top:0px;
+	}
+}
+
+
 /**************************** ADD THING ****************************/
 
 .after {
@@ -409,4 +420,28 @@ THUMBNAILS
 	.album .add-btn {
 		padding-top:0px;
 	}
+}
+
+/******************************************************************
+LIGHTBOX
+******************************************************************/
+
+/* Reference: http://bootsnipp.com/snippets/featured/bootstrap-lightbox */
+#lightbox .modal-content {
+    display: inline-block;
+    text-align: center;
+}
+
+#lightbox .close {
+    opacity: 1;
+    color: rgb(255, 255, 255);
+    background-color: rgb(25, 25, 25);
+    padding: 5px 8px;
+    border-radius: 30px;
+    border: 2px solid rgb(255, 255, 255);
+    position: absolute;
+    top: -15px;
+    right: -55px;
+
+    z-index:1032;
 }

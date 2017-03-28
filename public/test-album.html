@@ -85,7 +85,7 @@
   <div class="container">
 
 		 	<div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
-				<a href="#" class="thumbnail">
+				<div class="thumbnail" data-toggle="modal" data-target="#lightbox">
 					<span class="album-pic">
 						<img class="album-img" src="images/test-picture.png">
 						<span class="album-overlay">
@@ -93,10 +93,10 @@
 							<span class="delete-album-icon fa fa-trash fa-lg"></span>
 						</span>
 					</span>
-				</a>
+				</div>
 		 	</div>
 			<div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
-				<a href="#" class="thumbnail">
+				<div class="thumbnail" data-toggle="modal" data-target="#lightbox">
 					<span class="album-pic">
 						<img class="album-img" src="images/test-picture.png">
 						<span class="album-overlay">
@@ -104,21 +104,10 @@
 							<span class="delete-album-icon fa fa-trash fa-lg"></span>
 						</span>
 					</span>
-				</a>
-		 	</div>
-		 	<div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
-				<a href="#" class="thumbnail">
-					<span class="album-pic">
-						<img class="album-img" src="images/test-picture.png">
-						<span class="album-overlay">
-							<span class="view-album-icon fa fa-folder-open fa-lg"></span>
-							<span class="delete-album-icon fa fa-trash fa-lg"></span>
-						</span>
-					</span>
-				</a>
+				</div>
 		 	</div>
 			<div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
-				<a href="#" class="thumbnail">
+				<div class="thumbnail" data-toggle="modal" data-target="#lightbox">
 					<span class="album-pic">
 						<img class="album-img" src="images/test-picture.png">
 						<span class="album-overlay">
@@ -126,10 +115,10 @@
 							<span class="delete-album-icon fa fa-trash fa-lg"></span>
 						</span>
 					</span>
-				</a>
-			</div>
+				</div>
+		 	</div>
 			<div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
-				<a href="#" class="thumbnail">
+				<div class="thumbnail" data-toggle="modal" data-target="#lightbox">
 					<span class="album-pic">
 						<img class="album-img" src="images/test-picture.png">
 						<span class="album-overlay">
@@ -137,8 +126,19 @@
 							<span class="delete-album-icon fa fa-trash fa-lg"></span>
 						</span>
 					</span>
-				</a>
-			</div>
+				</div>
+		 	</div>
+			<div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+				<div class="thumbnail" data-toggle="modal" data-target="#lightbox">
+					<span class="album-pic">
+						<img class="album-img" src="images/test-picture.png">
+						<span class="album-overlay">
+							<span class="view-album-icon fa fa-folder-open fa-lg"></span>
+							<span class="delete-album-icon fa fa-trash fa-lg"></span>
+						</span>
+					</span>
+				</div>
+		 	</div>
 			<div class="after col-lg-3 col-md-3 col-sm-4 col-xs-12">
 				<button type="button" class="thumbnail add-btn">
 						<span class="fa fa-plus-circle fa-lg"></span>
@@ -146,6 +146,17 @@
 			</div>
 	</div><!-- /.container -->
 </div>
-	</body>
+
+<div id="lightbox" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <button type="button" class="close hidden" data-dismiss="modal" aria-hidden="true">×</button>
+        <div class="modal-content">
+            <div class="modal-body">
+                <img src="" alt="" />
+            </div>
+        </div>
+    </div>
+</div>
+</body>
 
 </html>
