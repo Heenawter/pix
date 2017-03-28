@@ -483,11 +483,38 @@ LIGHTBOX
 SIDEBAR
 ******************************************************************/
 
+.row-offcanvas .btn {
+	background-color: #981a3f;
+	border: none;
+	position: relative;
+	text-align: right;
+	left: -70px;
+	width: 70px;
+	color: white;
+	transition: background-color .3s;
+}
+
+.row-offcanvas .btn:enabled {
+	background-color: #981a3f;
+}
+
+.row-offcanvas .btn:active {
+	background-color: #eb8a91;
+	color: white;
+}
+
+.row-offcanvas .btn:hover {
+	background-color: #eb8a91;
+}
+
+
 .sidebar-offcanvas {
 	background-color: #fcdab6;
 	height:100%;
 	padding: 10px;
-	  position: fixed;
+	position: fixed;
+	margin: 0px;
+	z-index: 1000;
 }
 
 .row-offcanvas {
