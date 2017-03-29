@@ -71,24 +71,28 @@
   <div id="sidebar" class="sidebar-offcanvas">
       <div class="col-md-12">
         <h3>Sidebar (fixed)</h3>
-        <ul class="nav nav-pills nav-stacked">
-          <li class="active"><a href="#">Section</a></li>
-          <li><a href="#"></a></li>
-          <li><a href="#">Section</a></li>
-          <li><a href="#">Section</a></li>
-          <li><a href="#">Section</a></li>
-          <li><a href="#">Section</a></li>
-          <li><a href="#">Section</a></li>
-          <li><a href="#">Section</a></li>
-          <li><a href="#">Section</a></li>
-          <li><a href="#">Section</a></li>
+				<ul class="nav affix nav-sidebar"> 
+						<!-- http://www.bootply.com/lE2NPpERdt -->
+            <li><label class="tree-toggle nav-header"><img src="images\folder-small.png"></img>Folder 1</label>
+                <ul class="nav nav-list tree">
+                    <li><a href="#">JavaScript</a></li>
+                    <li><a href="#">CSS</a></li>
+                </ul>
+            </li>
+            <li class="divider"></li>
+            <li><label class="tree-toggle nav-header"><img src="images\folder-small.png"></img>Folder 2</label>
+                <ul class="nav nav-list tree">
+                    <li><a href="#">Overview</a></li>
+                    <li><a href="#">CSS</a></li>
+                </ul>
+            </li>
         </ul>
       </div>
   </div>
-  <div id="main">
+  <div id="main" class="album-content">
       <div class="col-md-12">
 				<p class="visible-xs">
-					<button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas"><i class="glyphicon glyphicon-chevron-left"></i></button>
+					<button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas"><i class="fa fa-chevron-right"></i></button>
 				</p>
       <div class="row header">
         <span class="col-lg-3 col-md-3 col-sm-2 hidden-xs-down line"><hr></span>

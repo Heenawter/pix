@@ -229,7 +229,7 @@ ALBUM HEADER
 	text-align: center;
 	font-size: 2em;
 	padding-bottom: 30px;
-	padding-top: 30px;
+	padding-top: 90px;
 	color: #981a3f;
 	/*background-color: #f49fa5;*/
 	margin-top: 0px;
@@ -271,7 +271,7 @@ ALBUM HEADER
 		display: none;
 	}
 	.header {
-		padding-top: 0px;
+		padding-top: 45px;
 	}
 }
 
@@ -474,6 +474,10 @@ body {
   position:relative;
   overflow-y:auto;
   overflow-x:hidden;
+}
+
+#sidebar {
+	padding-top: 50px;
 }
 #main {
   height:100%;
