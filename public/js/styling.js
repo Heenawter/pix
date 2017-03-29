@@ -4,14 +4,16 @@ $(function() {
   if ($('#lightbox').length != 0)
     lightboxInit();
 
-    $('[data-toggle="offcanvas"]').click(function () {
-      $('.row-offcanvas').toggleClass('active')
-    });
+  // https://www.codeply.com/go/632RvEWJ6P
+  $('[data-toggle="offcanvas"]').click(function () {
+    $('.row-offcanvas').toggleClass('active')
+  });
 
+  // http://www.bootply.com/lE2NPpERdt
   $('.tree-toggle').click(function () {
 	   $(this).parent().children('ul.tree').toggle(200);
   });
-  
+
   $(function(){
     $('.tree-toggle').parent().children('ul.tree').toggle(200);
   })

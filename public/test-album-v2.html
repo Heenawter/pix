@@ -65,94 +65,93 @@
 		</div>
 	</nav>
 
-  <div class="fluid-container">
-    <div class="row row-offcanvas row-offcanvas-left">
-      <div class="gallery-content col-xs-12 col-sm-10 col-sm-push-2">
-        <button type="button" class="pull-left btn btn-default visible-xs" data-toggle="offcanvas" aria-expanded="false" aria-controls="navbar">
-          <i class="fa fa-chevron-right"></i>
-        </button>
-				<div class="row header">
-					<span class="col-lg-3 col-md-3 col-sm-2 hidden-xs-down line"><hr></span>
-					<span class="col-lg-6 col-md-6 col-sm-8 col-xs-12">
-						<span class="user-icon fa-stack fa-lg">
-							<span class="fa fa-circle fa-stack-2x"></span>
-							<span class="album-header fa fa-user fa-stack-1x"></span>
-						</span>
-						<span class="heading user-name">Album Owner</span>
-						<div class="subheading album-name">Loooong Album Name</div>
-					</span>
-					<span class="col-lg-3 col-md-3 col-sm-2 hidden-xs-down line"><hr></span>
-				</div>
 
-        <div class="row gallery">
-					<div class="gallery-item col-lg-3 col-md-4 col-sm-6 col-xs-12">
-						<div class="thumbnail album-pic">
-								<img class="album-img" src="images/test-picture.png">
-								<span class="album-overlay">
-									<span class="delete-album-icon fa fa-trash fa-lg"></span>
-								</span>
-						</div>
-					</div>
-					<div class="gallery-item col-lg-3 col-md-4 col-sm-6 col-xs-12">
-						<div class="thumbnail album-pic">
-								<img class="album-img" src="images/test-picture.png">
-								<span class="album-overlay">
-									<span class="delete-album-icon fa fa-trash fa-lg"></span>
-								</span>
-						</div>
-					</div>
-					<div class="gallery-item col-lg-3 col-md-4 col-sm-6 col-xs-12">
-						<div class="thumbnail album-pic">
-								<img class="album-img" src="images/test-picture.png">
-								<span class="album-overlay">
-									<span class="delete-album-icon fa fa-trash fa-lg"></span>
-								</span>
-						</div>
-					</div>
-					<div class="gallery-item col-lg-3 col-md-4 col-sm-6 col-xs-12">
-						<div class="thumbnail album-pic">
-								<img class="album-img" src="images/test-picture.png">
-								<span class="album-overlay">
-									<span class="delete-album-icon fa fa-trash fa-lg"></span>
-								</span>
-						</div>
-					</div>
-					<div class="gallery-item col-lg-3 col-md-4 col-sm-6 col-xs-12">
-						<div class="thumbnail album-pic">
-								<img class="album-img" src="images/test-picture.png">
-								<span class="album-overlay">
-									<span class="delete-album-icon fa fa-trash fa-lg"></span>
-								</span>
-						</div>
-					</div>
-					<div class="after col-lg-3 col-md-4 col-sm-6 col-xs-12">
-						<button type="button" class="add-btn">
-								<span class="fa fa-plus-circle fa-lg"></span>
-						</a>
-					</div>
-        </div><!--/row gallery-->
-      </div><!--/.col-xs-12.col-sm-9-->
 
-      <div class="sidebar-offcanvas col-xs-4 col-sm-2 col-sm-pull-10" id="sidebar">
-            <ul class="tree nav nav-list">
-                <li><label class="tree-toggle nav-header"><img src="images\folder-small.png"></img>Folder 1</label>
-                    <ul class="nav nav-list tree">
-                        <li><a href="#">JavaScript</a></li>
-                        <li><a href="#">CSS</a></li>
-                    </ul>
-                </li>
-                <li class="divider"></li>
-                <li><label class="tree-toggle nav-header"><img src="images\folder-small.png"></img>Folder 2</label>
-                    <ul class="nav nav-list tree">
-                        <li><a href="#">Overview</a></li>
-                        <li><a href="#">CSS</a></li>
-                    </ul>
-                </li>
-            </ul>
-
-      </div><!--/.sidebar-offcanvas-->
-    </div><!--/row-offcanvas-->
-  </div><!--/.fluid-container-->
+<div class="row-offcanvas row-offcanvas-left">
+  <div id="sidebar" class="sidebar-offcanvas">
+      <div class="col-md-12">
+        <h3>Sidebar (fixed)</h3>
+        <ul class="nav nav-pills nav-stacked">
+          <li class="active"><a href="#">Section</a></li>
+          <li><a href="#"></a></li>
+          <li><a href="#">Section</a></li>
+          <li><a href="#">Section</a></li>
+          <li><a href="#">Section</a></li>
+          <li><a href="#">Section</a></li>
+          <li><a href="#">Section</a></li>
+          <li><a href="#">Section</a></li>
+          <li><a href="#">Section</a></li>
+          <li><a href="#">Section</a></li>
+        </ul>
+      </div>
+  </div>
+  <div id="main">
+      <div class="col-md-12">
+				<p class="visible-xs">
+					<button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas"><i class="glyphicon glyphicon-chevron-left"></i></button>
+				</p>
+      <div class="row header">
+        <span class="col-lg-3 col-md-3 col-sm-2 hidden-xs-down line"><hr></span>
+        <span class="col-lg-6 col-md-6 col-sm-8 col-xs-12">
+          <span class="user-icon fa-stack fa-lg">
+            <span class="fa fa-circle fa-stack-2x"></span>
+            <span class="album-header fa fa-user fa-stack-1x"></span>
+          </span>
+          <span class="heading user-name">Album Owner</span>
+          <div class="subheading album-name">Loooong Album Name</div>
+        </span>
+        <span class="col-lg-3 col-md-3 col-sm-2 hidden-xs-down line"><hr></span>
+      </div>
+      <div class="row gallery">
+        <div class="album-item col-lg-3 col-md-4 col-sm-6 col-xs-12">
+          <div class="thumbnail album-pic">
+              <img class="album-img" src="images/test-picture.png">
+              <span class="album-overlay">
+                <span class="delete-album-icon fa fa-trash fa-lg"></span>
+              </span>
+          </div>
+        </div>
+        <div class="album-item col-lg-3 col-md-4 col-sm-6 col-xs-12">
+          <div class="thumbnail album-pic">
+              <img class="album-img" src="images/test-picture.png">
+              <span class="album-overlay">
+                <span class="delete-album-icon fa fa-trash fa-lg"></span>
+              </span>
+          </div>
+        </div>
+        <div class="album-item col-lg-3 col-md-4 col-sm-6 col-xs-12">
+          <div class="thumbnail album-pic">
+              <img class="album-img" src="images/test-picture.png">
+              <span class="album-overlay">
+                <span class="delete-album-icon fa fa-trash fa-lg"></span>
+              </span>
+          </div>
+        </div>
+        <div class="album-item col-lg-3 col-md-4 col-sm-6 col-xs-12">
+          <div class="thumbnail album-pic">
+              <img class="album-img" src="images/test-picture.png">
+              <span class="album-overlay">
+                <span class="delete-album-icon fa fa-trash fa-lg"></span>
+              </span>
+          </div>
+        </div>
+        <div class="album-item col-lg-3 col-md-4 col-sm-6 col-xs-12">
+          <div class="thumbnail album-pic">
+              <img class="album-img" src="images/test-picture.png">
+              <span class="album-overlay">
+                <span class="delete-album-icon fa fa-trash fa-lg"></span>
+              </span>
+          </div>
+        </div>
+        <div class="after col-lg-3 col-md-4 col-sm-6 col-xs-12">
+          <button type="button" class="add-btn">
+              <span class="fa fa-plus-circle fa-lg"></span>
+          </a>
+        </div>
+      </div>
+      </div>
+  </div>
+</div><!--/row-offcanvas -->
 
 	<div id="lightbox" class="modal fade" tabindex="-1" role="dialog">
 	  <div class="modal-dialog">
