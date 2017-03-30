@@ -23,7 +23,7 @@ html,body {
 body {
 	color: #551d00;
 	font-family: 'Open Sans', sans-serif;
-  padding-top: 110px;
+  padding-top: 50px;
 	background-color: white;
 }
 
@@ -51,8 +51,8 @@ NAVIGATION BAR
 	background: -webkit-linear-gradient(90deg, #f49fa5 , #FFEDBC); /* Chrome 10-25, Safari 5.1-6 */
 	background: linear-gradient(90deg, #f49fa5 , #FFEDBC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */*/
 	height: auto;
-	padding-left: 50px;
-	padding-right: 50px;
+	padding-left: 25px;
+	padding-right: 40px;
 }
 
 .navbar-brand {
@@ -96,17 +96,17 @@ NAVIGATION BAR
 		text-align: center;
 	}
 
-	.navbar {
-		padding: 0px;
-	}
-
 	.navbar-right {
 		margin: auto;
 		padding: 0px;
 	}
 }
 
-@media (max-width: 305px) {
+@media (max-width: 500px) {
+	.navbar {
+		padding: 0px;
+	}
+
 	.navbar-brand {
 		padding-left: 10px;
 	}
@@ -285,8 +285,10 @@ ALBUM THUMBNAILS
 }
 
 .album-content {
-	padding-left: 50px;
-	padding-right: 50px;
+	padding-left: 40px;
+	padding-right: 40px;
+  height:100%;
+  overflow:auto;
 }
 
 .album-item {
@@ -317,6 +319,11 @@ ALBUM THUMBNAILS
 
 
 @media (max-width: 767px) {
+	.album-content {
+		padding-left: 0px;
+		padding-right: 0px;
+	}
+
 	.thumbnail:hover {
 		cursor: default;
 	}
@@ -456,62 +463,64 @@ LIGHTBOX
 /******************************************************************
 SIDEBAR
 ******************************************************************/
-body,html,.row-offcanvas {
+/* http://www.bootply.com/108620# */
+
+.row-offcanvas {
   height:100%;
 }
 
-body {
-  padding-top: 50px;
-}
+/* http://bootsnipp.com/snippets/featured/accordion-menu */
+.panel-body { padding:0px; }
+.panel-body table tr td { padding-left: 15px }
+.panel-body .table {margin-bottom: 0px; }
 
 #sidebar {
   width: inherit;
-  min-width: 220px;
-  max-width: 220px;
+  min-width: 275px;
+  max-width: 275px;
   background-color:#f5f5f5;
   float: left;
   height:100%;
   position:relative;
   overflow-y:auto;
   overflow-x:hidden;
-}
-
-#sidebar {
 	padding-top: 50px;
 }
-#main {
-  height:100%;
-  overflow:auto;
-}
 
-.visible-xs .btn {
-	position: absolute;
-	left: 10px;
-	top: 100px;
+.show-menu {
+	float: left;
+	width: 40px;
+	height: 40px;
+	position: fixed;
+	left: 0px;
+	top: 110px;
 	z-index: 500;
 }
 
-/*
- * off Canvas sidebar
- * --------------------------------------------------
- */
 @media screen and (max-width: 768px) {
   .row-offcanvas {
     position: relative;
-    -webkit-transition: all 0.25s ease-out;
-    -moz-transition: all 0.25s ease-out;
     transition: all 0.25s ease-out;
-    width:calc(100% + 220px);
+    width:calc(100% + 275px);
   }
+
+	.show-menu {
+    transition: all 0.25s ease-out;
+	}
 
   .row-offcanvas-left
   {
-    left: -220px;
+    left: -275px;
   }
 
   .row-offcanvas-left.active {
     left: 0;
   }
+
+
+	.row-offcanvas-left.active  .show-menu {
+		left: 275px;
+	}
 
   .sidebar-offcanvas {
     position: absolute;

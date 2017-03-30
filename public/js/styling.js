@@ -8,15 +8,6 @@ $(function() {
   $('[data-toggle="offcanvas"]').click(function () {
     $('.row-offcanvas').toggleClass('active')
   });
-
-  // http://www.bootply.com/lE2NPpERdt
-  $('.tree-toggle').click(function () {
-	   $(this).parent().children('ul.tree').toggle(200);
-  });
-
-  $(function(){
-    $('.tree-toggle').parent().children('ul.tree').toggle(200);
-  })
 });
 
 function triggerLightbox() {
