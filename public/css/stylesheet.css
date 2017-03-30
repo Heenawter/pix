@@ -351,12 +351,12 @@ ALBUM THUMBNAILS
 }
 
 
-.thumbnail .album-overlay .delete-album-icon  {
+.thumbnail .album-overlay .delete-photo-icon  {
 	transition: .5s color;
 	padding: 5px;
 }
 
-.thumbnail .album-overlay .delete-album-icon:hover {
+.thumbnail .album-overlay .delete-photo-icon:hover {
 	color: #981a3f;
 }
 
@@ -486,6 +486,37 @@ SIDEBAR
 	background-color: #eb8a91 !important;
 	border: 1px solid white !important;
 	border-left: none !important;
+}
+
+.delete-album-icon {
+	color: white;
+}
+
+.delete-photo-icon-small  {
+	color: #eb8a91;
+}
+
+.delete-album-icon,
+.delete-photo-icon-small {
+	padding-left: 10px;
+	padding-right: 10px;
+	height: 20px;
+	font-size: 1.5em;
+	visibility: hidden;
+	opacity: 0;
+	transition: opacity 0.5s, color 0.2s;
+}
+
+.panel-heading:hover .delete-album-icon,
+table td:hover .delete-photo-icon-small {
+	visibility: visible;
+	opacity: 1;
+}
+
+.delete-album-icon:hover,
+.delete-photo-icon-small:hover {
+	color: #981a3f;
+	cursor: pointer;
 }
 
 
