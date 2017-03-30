@@ -614,6 +614,11 @@ table td:hover .delete-photo-icon-small {
   content: "\e114";
 }
 
+#last a:after {
+  content: "\2b";
+}
+
+
 @media screen and (max-width: 768px) {
   .row-offcanvas {
     position: relative;
