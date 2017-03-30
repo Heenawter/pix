@@ -614,7 +614,6 @@ table td:hover .delete-photo-icon-small {
   content: "\e114";
 }
 
-
 @media screen and (max-width: 768px) {
   .row-offcanvas {
     position: relative;
