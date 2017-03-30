@@ -490,21 +490,19 @@ SIDEBAR
 
 
 /* https://codepen.io/Sp00ky/pen/aZJWLa */
-.nav li {
-  border-bottom: 1px solid #eee;
-}
 
-.nav li a {
-  font-size: 14px;
-}
-
-/* http://bootsnipp.com/snippets/featured/accordion-menu */
 .panel-body {
 	padding:0px;
 }
 .panel-body table tr td {
-	padding-left: 15px
+	padding-left: 15px;
+	border: 1px solid #b47458;
 }
+
+.panel-body table tr {
+	border: none;
+}
+
 .panel-body .table {
 	margin-bottom: 0px;
 	background-color: white;
@@ -544,14 +542,13 @@ SIDEBAR
   border-radius: 0;
 }
 
-.panel-default>.panel-heading {
-  color: #333;
-  background-color: #fff;
-  border-color: #e4e5e7;
+.panel-default {
+	border: none;
+}
+
+.panel-default .panel-heading {
+  border-color: #fff2dd;
   padding: 0;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
 }
 
@@ -570,15 +567,12 @@ SIDEBAR
   font-style: normal;
   font-weight: 400;
   line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   float: right;
   transition: transform .25s linear;
-  -webkit-transition: -webkit-transform .25s linear;
 }
 
 .panel-default>.panel-heading a[aria-expanded="true"] {
-  background-color: #eee;
+  background-color: #f8c48d;
 }
 
 .panel-default>.panel-heading a[aria-expanded="true"]:after {
