@@ -28,14 +28,13 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="css/stylesheet.css"/>
 
-		<script src="/socket.io/socket.io.js"></script>
-
 		<script src="js/styling.js"></script>
+		<script src="/socket.io/socket.io.js"></script>
 		<script src="js/client.js"></script>
 	</head>
 
   <body>
-		<nav class="navbar navbar-fixed-top" role="navigation">
+	<nav class="navbar navbar-fixed-top" role="navigation">
 		<div class="fluid-container">
 	  <!-- Brand and toggle get grouped for better mobile display -->
 	  <div class="navbar-header">
@@ -62,19 +61,16 @@
 							<span class="hidden-sm hidden-md hidden-lg">Search</span></a></li>
 						</button>
 					</div>
-			</div>
+				</div>
 			</form>
 	  </div><!-- /.navbar-collapse -->
-		</div>
-	</nav>
-
-
+	</div>
+</nav>
 
 <div class="row-offcanvas row-offcanvas-left">
   <div id="sidebar" class="sidebar-offcanvas">
-		<div class="panel-group" id="accordion" role="tablist">
-      <div class="panel panel-default">
-
+		<div id="accordion" class="panel-group" role="tablist">
+      <div id="album-list" class="panel panel-default">
       </div>
     </div>
   </div>
@@ -90,59 +86,15 @@
             <span class="fa fa-circle fa-stack-2x"></span>
             <span class="album-header fa fa-user fa-stack-1x"></span>
           </span>
-          <span class="heading user-name">Album Owner</span>
-          <div class="subheading album-name">Loooong Album Name</div>
+          <span id="album-owner" class="heading user-name"><!-- ALBUM OWNER GOES HERE --></span>
+          <div id="album-name" class="subheading album-name"><!-- ALBUM NAME GOES HERE --></div>
         </span>
         <span class="col-lg-3 col-md-3 col-sm-2 hidden-xs-down line"><hr></span>
       </div>
       <div class="row gallery">
-        <div class="album-item col-lg-3 col-md-4 col-sm-6 col-xs-12">
-          <div class="thumbnail album-pic">
-              <img class="album-img" src="images/test-picture.png">
-              <span class="album-overlay">
-                <span class="delete-photo-icon fa fa-trash fa-lg"></span>
-              </span>
-          </div>
-        </div>
-        <div class="album-item col-lg-3 col-md-4 col-sm-6 col-xs-12">
-          <div class="thumbnail album-pic">
-              <img class="album-img" src="images/test-picture.png">
-              <span class="album-overlay">
-                <span class="delete-photo-icon fa fa-trash fa-lg"></span>
-              </span>
-          </div>
-        </div>
-        <div class="album-item col-lg-3 col-md-4 col-sm-6 col-xs-12">
-          <div class="thumbnail album-pic">
-              <img class="album-img" src="images/test-picture.png">
-              <span class="album-overlay">
-                <span class="delete-photo-icon fa fa-trash fa-lg"></span>
-              </span>
-          </div>
-        </div>
-        <div class="album-item col-lg-3 col-md-4 col-sm-6 col-xs-12">
-          <div class="thumbnail album-pic">
-              <img class="album-img" src="images/test-picture.png">
-              <span class="album-overlay">
-                <span class="delete-photo-icon fa fa-trash fa-lg"></span>
-              </span>
-          </div>
-        </div>
-        <div class="album-item col-lg-3 col-md-4 col-sm-6 col-xs-12">
-          <div class="thumbnail album-pic">
-              <img class="album-img" src="images/test-picture.png">
-              <span class="album-overlay">
-                <span class="delete-photo-icon fa fa-trash fa-lg"></span>
-              </span>
-          </div>
-        </div>
-        <div class="after col-lg-3 col-md-4 col-sm-6 col-xs-12">
-          <button type="button" class="add-btn">
-              <span class="fa fa-plus-circle fa-lg"></span>
-          </a>
-        </div>
+				<!-- IMAGES GO HERE -->
       </div>
-      </div>
+    </div>
   </div>
 </div><!--/row-offcanvas -->
 
@@ -151,7 +103,7 @@
 	    <button type="button" class="close hidden" data-dismiss="modal" aria-hidden="true">×</button>
 	    <div class="modal-content">
 				<div class="modal-header">
-					<h4 class="modal-title" id="image-gallery-title">I'm an Image Title</h4>
+					<h4 id="image-gallery-title" class="modal-title">I'm an Image Title</h4>
 				</div>
 
 	      <div class="modal-body">

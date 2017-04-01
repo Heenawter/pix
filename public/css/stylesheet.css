@@ -614,7 +614,7 @@ table td:hover .delete-photo-icon-small {
   content: "\e114";
 }
 
-#last a:after {
+#add-new-album a:after {
   content: "\2b";
 }
 

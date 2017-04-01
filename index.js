@@ -214,6 +214,18 @@ io.on('connection', function(socket){
 
 
 
+    //get album image names
+    socket.on('get_album_image_names', function (album) {
+        db.all("SELECT img_name FROM images WHERE (user = '"
+            + album.user + "' AND album_name = '"
+            + album.album_name + "')", function(err,rows){
+            //send album image names to client
+            socket.emit('get_album_image_names', rows);
+        });
+    });
+
+
+
     //get album images
     socket.on('get_album_images', function (album) {
         db.all("SELECT img_name, img_data FROM images WHERE (user = '"
@@ -224,7 +236,7 @@ io.on('connection', function(socket){
         });
     });
 
-    
+
 
     //get image
     socket.on('get_image', function (image) {
@@ -252,4 +264,3 @@ function checkName(name) {
 }
 
 //db.close();
-

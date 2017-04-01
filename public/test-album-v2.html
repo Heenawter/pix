@@ -29,6 +29,8 @@
 		<link rel="stylesheet" href="css/stylesheet.css"/>
 
 		<script src="js/styling.js"></script>
+		<script src="/socket.io/socket.io.js"></script>
+		<script src="js/client.js"></script>
 	</head>
 
   <body>
@@ -74,7 +76,7 @@
         <div class="panel-heading" role="tab">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true">
-							<img src="images/folder-small.png"> Album Title
+							<img src="images/folder-small.png"><span class="album-title">Album Title</span>
 							<span class="delete-album-icon fa fa-trash fa-lg"></span>
 						</a>
           </h4>
@@ -85,14 +87,14 @@
 							<tr>
 								<td>
 									<img src="images/heart.png">
-									Picture 1
+									<span class="picture-name">Picture 1</span>
 									<span class="delete-photo-icon-small fa fa-trash fa-lg"></span>
 								</td>
 							</tr>
 							<tr>
 								<td>
 									<img src="images/heart.png">
-									Picture 2
+									<span class="picture-name">Picture 2</span>
 									<span class="delete-photo-icon-small fa fa-trash fa-lg"></span>
 								</td>
 							</tr>
@@ -102,7 +104,7 @@
 			<div class="panel-heading" role="tab">
 				<h4 class="panel-title">
 						<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false">
-							<img src="images/folder-small.png"> Album Title
+							<img src="images/folder-small.png"><span class="album-title">Album Title</span>
 							<span class="delete-album-icon fa fa-trash fa-lg"></span>
 						</a>
 				</h4>
@@ -113,25 +115,25 @@
 							<tr>
 								<td>
 									<img src="images/heart.png">
-									Picture 1
+									<span class="picture-name">Picture 1</span>
 								</td>
 							</tr>
 							<tr>
 								<td>
 									<img src="images/heart.png">
-									Picture 2
+									<span class="picture-name">Picture 2</span>
 								</td>
 							</tr>
 							<tr>
 								<td>
 									<img src="images/heart.png">
-									Picture 3
+									<span class="picture-name">Picture 3</span>
 								</td>
 							</tr>
 						</table>
 					</div>
 				</div>
-				<div class="panel-heading" id="last">
+				<div class="panel-heading" id="add-new-album">
 					<h4 class="panel-title">
 						<a href="#">
 							<img src="images/folder-small.png"> Add new album...
@@ -153,8 +155,8 @@
             <span class="fa fa-circle fa-stack-2x"></span>
             <span class="album-header fa fa-user fa-stack-1x"></span>
           </span>
-          <span class="heading user-name">Album Owner</span>
-          <div class="subheading album-name">Loooong Album Name</div>
+          <span class="heading user-name" id="album-owner">Album Owner</span>
+          <div class="subheading album-name" id="album-name">Loooong Album Name</div>
         </span>
         <span class="col-lg-3 col-md-3 col-sm-2 hidden-xs-down line"><hr></span>
       </div>
