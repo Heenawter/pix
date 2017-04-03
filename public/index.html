@@ -28,9 +28,9 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="css/stylesheet.css"/>
 
-		<script src="js/styling.js"></script>
 		<script src="/socket.io/socket.io.js"></script>
 		<script src="js/client.js"></script>
+		<script src="js/styling.js"></script>
 	</head>
 
   <body>
@@ -91,7 +91,7 @@
         </span>
         <span class="col-lg-3 col-md-3 col-sm-2 hidden-xs-down line"><hr></span>
       </div>
-      <div class="row gallery">
+      <div id="album-images" class="row gallery">
 				<!-- IMAGES GO HERE -->
       </div>
     </div>
@@ -103,7 +103,7 @@
 	    <button type="button" class="close hidden" data-dismiss="modal" aria-hidden="true">×</button>
 	    <div class="modal-content">
 				<div class="modal-header">
-					<h4 id="image-gallery-title" class="modal-title">I'm an Image Title</h4>
+					<h4 id="modal-img-title" class="modal-title">I'm an Image Title</h4>
 				</div>
 
 	      <div class="modal-body">

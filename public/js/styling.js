@@ -1,8 +1,6 @@
 
 $(function() {
   toggle_search();
-  if ($('#lightbox').length != 0)
-    lightboxInit();
 
   // https://www.codeply.com/go/632RvEWJ6P
   $('[data-toggle="offcanvas"]').click(function () {
@@ -10,27 +8,9 @@ $(function() {
   });
 });
 
-function triggerLightbox() {
-  $('.thumbnail').click();
-}
-
-function lightboxInit() {
-  $('.thumbnail').click(function(e){
-    let size = window.getComputedStyle(document.body,':after').getPropertyValue('content').replace( /"/g, '' ); //http://adactio.com/journal/5429/
-
-    /* http://codepen.io/bradfrost/pen/tfCAp */
-    if(size == "widescreen") {
-      e.preventDefault();
-      var $img = $(this).find('img'),
-          src = $img.attr('src');
-      buildLightBox(src);
-    }
-  });
-}
-
 
 /* http://bootsnipp.com/snippets/featured/bootstrap-lightbox */
-function buildLightBox(src) {
+function buildLightBox(src, name) {
   let $lightbox = $('#lightbox');
   let css = {
     'maxWidth': $(window).width() - 100,
@@ -39,8 +19,10 @@ function buildLightBox(src) {
 
   $lightbox.find('.close').addClass('hidden');
   $lightbox.find('img').attr('src', src);
+  $lightbox.find('img').attr('alt', name);
   $lightbox.find('img').css(css);
 
+  $('#modal-img-title').text(name);
   $('#lightbox').find('img').attr('src', src);
   $("#lightbox").modal('show');
 
@@ -50,6 +32,7 @@ function buildLightBox(src) {
     $lightbox.find('.close').removeClass('hidden');
   });
 }
+
 
 //https://codepen.io/nikhil/pen/qcyGF
 function toggle_search() {
@@ -78,6 +61,7 @@ function toggle_search() {
     return false; //to prevent "form" from submitting
   });
 }
+
 
 function handle_search() {
   console.log("hello");

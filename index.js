@@ -31,7 +31,7 @@ db.serialize(function() {
         "user TEXT, " +
         "album_name TEXT, " +
         "img_name TEXT, " +
-        "img_data BLOB, " +
+        "img_src TEXT, " +
         "PRIMARY KEY (user, album_name, img_name), " +
         "FOREIGN KEY (user, album_name) REFERENCES albums (user, album_name) " +
         "ON UPDATE CASCADE ON DELETE CASCADE" +
@@ -133,7 +133,7 @@ io.on('connection', function(socket){
 
     //add image
     socket.on('add_image', function (image) {
-        //image is an object with fields client, user, album_name, img_name, and img_data
+        //image is an object with fields client, user, album_name, img_name, and img_src
 
         //is the client logged in
         if (image.client !== undefined) {
@@ -160,11 +160,11 @@ io.on('connection', function(socket){
                             } else {
                                 //name not in use
                                 //insert image
-                                db.run("INSERT INTO images (user, album_name, img_name) VALUES ('"
+                                db.run("INSERT INTO images (user, album_name, img_name, img_src) VALUES ('"
                                     + image.user + "', '"
                                     + image.album_name + "', '"
                                     + image.img_name + "', '"
-                                    + image.img_data + "')");
+                                    + image.img_src + "')");
                             }
                         });
                     }
@@ -183,7 +183,7 @@ io.on('connection', function(socket){
 
     //delete image
     socket.on('delete_image', function (image) {
-        //image is an object with fields client, user, album_name, img_name, and img_data
+        //image is an object with fields client, user, album_name, img_name, and img_src
 
         //is the client logged in
         if (image.client !== undefined) {
@@ -228,7 +228,7 @@ io.on('connection', function(socket){
 
     //get album images
     socket.on('get_album_images', function (album) {
-        db.all("SELECT img_name, img_data FROM images WHERE (user = '"
+        db.all("SELECT img_name, img_src FROM images WHERE (user = '"
             + album.user + "' AND album_name = '"
             + album.album_name + "')", function(err,rows){
             //send album images to client
@@ -240,7 +240,7 @@ io.on('connection', function(socket){
 
     //get image
     socket.on('get_image', function (image) {
-        db.all("SELECT img_name, img_data FROM images WHERE (user = '"
+        db.all("SELECT img_name, img_src FROM images WHERE (user = '"
             + image.user + "' AND album_name = '"
             + image.album_name + "' AND img_name = '"
             + image.img_name + "')", function(err,row){
