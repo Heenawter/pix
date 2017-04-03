@@ -64,5 +64,5 @@ function toggle_search() {
 
 
 function handle_search() {
-  console.log("hello");
+  alert("Handle search!!");
 }
