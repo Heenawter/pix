@@ -10,7 +10,7 @@ $(function() {
     $("#album-owner").append(album_owner);
     $("#album-name").append(current_album);
 
-    // socket.emit("add_album", {client: current_user, user: album_owner, album_name: "Test Album"});
+    //socket.emit("add_album", {client: current_user, user: album_owner, album_name: "Empty Album"});
     // socket.emit("add_image", {client: current_user, user: album_owner, album_name: "Test Album", img_name: "Test Image 2", img_src:"images/test-picture.png"});
 
     socket.emit("get_albums", album_owner);
@@ -34,7 +34,6 @@ $(function() {
     //handle first album, then do the rest
     let album_title = response.shift().album_name;
     album_list.append(start_album + collapse + album_html + album_title + end_album + blank_img_list);
-    socket.emit("get_album_image_names", {user: album_owner, album_name: album_title});
     for(album in response) {
       let index = parseInt(album) + 1;
           album_title = response[album].album_name;
@@ -42,6 +41,10 @@ $(function() {
       blank_img_list = "<div id='collapse" + index + "' class='panel-collapse collapse in' role='tabpanel'></div>";
       album_list.append(start_album + collapse + album_html + album_title + end_album + blank_img_list);
     }
+
+    let add_album =  "<div class='panel-heading' id='add-new-album'><h4 class='panel-title'><a href='#'>"
+        add_album += "<img src='images/folder-small.png'> Add new album...</a></h4></div>"
+    album_list.append(add_album);
   });
 
   socket.on("get_album_image_names", function(response) {
