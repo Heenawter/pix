@@ -2,19 +2,16 @@
 $(function() {
   var socket = io.connect('http://127.0.0.1:3000');
 
-  let current_user = "User1";
-  let album_owner = "User1";
-  let current_album = "Test Album";
+  var current_user = "User1";
+  var album_owner = "User1";
+  var current_album;
 
   socket.on('connect', function (data) {
-    $("#album-owner").append(album_owner);
-    $("#album-name").append(current_album);
-
-    //socket.emit("add_album", {client: current_user, user: album_owner, album_name: "Empty Album"});
-    // socket.emit("add_image", {client: current_user, user: album_owner, album_name: "Test Album", img_name: "Test Image 2", img_src:"images/test-picture.png"});
-
+    $("#album-owner").text(album_owner);
     socket.emit("get_albums", album_owner);
-    socket.emit("get_album_images", {user: album_owner, album_name: current_album});
+
+    // socket.emit("add_album", {client: current_user, user: album_owner, album_name: "Empty Album"});
+    // socket.emit("add_image", {client: current_user, user: album_owner, album_name: "Test Album", img_name: "Test Image 2", img_src:"images/test-picture.png"});
   });
 
   socket.on("message", function(message) {
@@ -26,7 +23,7 @@ $(function() {
 
     let start_album = "<div class='panel-heading' role='tab'><h4 class='panel-title'>";
     let collapse    = "<a data-toggle='collapse' data-parent='#accordion' href='#collapse0' aria-expanded='true'>";
-    let album_html  = "<img src='images/folder-small.png'><span class='album-title'> ";
+    let album_html  = "<img src='images/folder-small.png'><span class='album-title'>";
     let end_album   = "</span><span class='delete-album-icon fa fa-trash fa-lg'></span></a></h4></div>";
 
     let blank_img_list = "<div id='collapse0' class='panel-collapse collapse in' role='tabpanel'></div>";
@@ -43,9 +40,32 @@ $(function() {
     }
 
     let add_album =  "<div class='panel-heading' id='add-new-album'><h4 class='panel-title'><a href='#'>"
-        add_album += "<img src='images/folder-small.png'> Add new album...</a></h4></div>"
+        add_album += "<img src='images/folder-small.png'><span id='add-new-album-btn'>Add new album...</a></h4></div>"
     album_list.append(add_album);
+
+    let first_album = $(".album-title").first().text();
+    changeAlbum(album_owner, first_album);
+    initAlbumChange();
   });
+
+  function changeAlbum(owner, name) {
+    $("#album-name").text(name);
+
+    current_album = name;
+    socket.emit("get_album_images", {user: owner, album_name: name});
+  }
+
+  function initAlbumChange() {
+    $('.panel-heading').click(function(e){
+      e.preventDefault();
+      var $title = $(this).find('span'),
+          name = $title.text();
+
+      if(name != "Add new album...")
+        socket.emit("get_album_images", {user: album_owner, album_name: name});
+        changeAlbum(album_owner, name);
+    });
+  }
 
   socket.on("get_album_image_names", function(response) {
     let image_list = $("#collapse" + 1);
@@ -68,6 +88,7 @@ $(function() {
 
   socket.on("get_album_images", function(response) {
     let image_list = $("#album-images");
+    image_list.empty();
 
     let img_start = "<div class='album-item col-lg-3 col-md-4 col-sm-6 col-xs-12'><div class='thumbnail album-pic'>";
     let img_contents = "<img class='album-img' src='";
