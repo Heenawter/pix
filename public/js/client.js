@@ -100,6 +100,11 @@ $(function() {
       image_list.append(img_start + img_contents + img_src + "' alt='" + img_name + img_end);
     }
 
+    let add_img =  "<div class='after col-lg-3 col-md-4 col-sm-6 col-xs-12'><button type='button' class='add-btn'>";
+        add_img += "<span class='fa fa-plus-circle fa-lg'></span></a></div>";
+
+    image_list.append(add_img);
+
     if ($('#lightbox').length != 0)
       lightboxInit();
   });
