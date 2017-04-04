@@ -43,29 +43,28 @@ $(function() {
         add_album += "<img src='images/folder-small.png'><span id='add-new-album-btn'>Add new album...</a></h4></div>"
     album_list.append(add_album);
 
+
+    //
     let first_album = $(".album-title").first().text();
-    changeAlbum(album_owner, first_album);
     initAlbumChange();
   });
 
+  function initAlbumChange() {
+    $('#accordion').on('show.bs.collapse', function (e) {
+      var name = $(e.target).prev('.panel-heading').text();
+
+      if(name != "Add new album...")
+        changeAlbum(album_owner, name);
+    });
+  }
+
+
   function changeAlbum(owner, name) {
     $("#album-name").text(name);
-
     current_album = name;
     socket.emit("get_album_images", {user: owner, album_name: name});
   }
 
-  function initAlbumChange() {
-    $('.panel-heading').click(function(e){
-      e.preventDefault();
-      var $title = $(this).find('span'),
-          name = $title.text();
-
-      if(name != "Add new album...")
-        socket.emit("get_album_images", {user: album_owner, album_name: name});
-        changeAlbum(album_owner, name);
-    });
-  }
 
   socket.on("get_album_image_names", function(response) {
     let image_list = $("#collapse" + 1);
