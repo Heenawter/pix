@@ -622,6 +622,10 @@ table td:hover .delete-photo-icon-small {
   content: "\e114";
 }
 
+#add-new-img-btn:hover {
+  cursor: pointer;
+}
+
 #add-new-album a:after {
   content: "\2b";
 }

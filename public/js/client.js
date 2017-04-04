@@ -20,6 +20,7 @@ $(function() {
   });
 
 
+
   /***************************************************************/
   /* FILL SIDEBAR WITH ALBUMS
   /***************************************************************/
@@ -94,7 +95,9 @@ $(function() {
       image_list.append(start_img + image_name + end_img);
     }
 
-    image_list.append("<tr><td><span class='fa fa-plus'></span><span class='picture-name'>Add new image...</span></td></tr>");
+    let add_new =  "<tr id='add-new-img-btn'><td><span class='fa fa-plus'></span>";
+        add_new += "<span class='picture-name'>Add new image...</span></td></tr>";
+    image_list.append(add_new);
   });
 
   function fillImgList() {
@@ -107,6 +110,7 @@ $(function() {
 
     }
   }
+
 
 
   /***************************************************************/
