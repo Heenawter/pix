@@ -20,6 +20,9 @@ $(function() {
   });
 
 
+  /***************************************************************/
+  /* FILL SIDEBAR WITH ALBUMS
+  /***************************************************************/
 
   socket.on("get_albums", function(response) {
     let album_list = $("#album-list");
@@ -53,6 +56,8 @@ $(function() {
     changeAlbum(album_owner, first_album);
   });
 
+  // bind changing images in main area to expanding an album
+  // that is, when a user clicks on an album on the left, it updates the right
   function initAlbumChange() {
     $('#accordion').on('show.bs.collapse', function (e) {
       var name = $(e.target).prev('.panel-heading').text();
@@ -61,6 +66,8 @@ $(function() {
     });
   }
 
+  // this is called a lot, so made it a function
+  // just changes the name at the top and changes the images being displayed
   function changeAlbum(owner, name) {
     $("#album-name").text(name);
     current_album = name;
@@ -69,6 +76,9 @@ $(function() {
 
 
 
+  /***************************************************************/
+  /* FILL SIDEBAR WITH IMAGE NAMES
+  /***************************************************************/
 
   socket.on("get_album_image_names", function(response) {
     let collapse = $("#collapse" + response.index);
@@ -83,6 +93,8 @@ $(function() {
       let image_name = response.names[image].img_name;
       image_list.append(start_img + image_name + end_img);
     }
+
+    image_list.append("<tr><td><span class='fa fa-plus'></span><span class='picture-name'>Add new image...</span></td></tr>");
   });
 
   function fillImgList() {
@@ -97,6 +109,9 @@ $(function() {
   }
 
 
+  /***************************************************************/
+  /* FILL MAIN AREA WITH IMAGES
+  /***************************************************************/
 
   socket.on("get_album_images", function(response) {
     let image_list = $("#album-images");
@@ -120,6 +135,7 @@ $(function() {
       lightboxInit();
   });
 
+  // this is for the overlay display of images
   function lightboxInit() {
     $('.thumbnail').click(function(e){
       let size = window.getComputedStyle(document.body,':after').getPropertyValue('content').replace( /"/g, '' ); //http://adactio.com/journal/5429/
