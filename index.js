@@ -220,7 +220,7 @@ io.on('connection', function(socket){
             + album.user + "' AND album_name = '"
             + album.album_name + "')", function(err,rows){
             //send album image names to client
-            socket.emit('get_album_image_names', rows);
+            socket.emit('get_album_image_names', {names: rows, index: album.id});
         });
     });
 
