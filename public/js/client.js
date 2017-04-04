@@ -35,7 +35,7 @@ $(function() {
       let index = parseInt(album) + 1;
           album_title = response[album].album_name;
       collapse = "<a data-toggle='collapse' data-parent='#accordion' href='#collapse" + index + "' aria-expanded='false'>";
-      blank_img_list = "<div id='collapse" + index + "' class='panel-collapse collapse in' role='tabpanel'></div>";
+      blank_img_list = "<div id='collapse" + index + "' class='panel-collapse collapse' role='tabpanel'></div>";
       album_list.append(start_album + collapse + album_html + album_title + end_album + blank_img_list);
     }
 
@@ -45,14 +45,15 @@ $(function() {
 
 
     //
-    let first_album = $(".album-title").first().text();
     initAlbumChange();
+
+    let first_album = $(".album-title").first().text();
+    changeAlbum(album_owner, first_album);
   });
 
   function initAlbumChange() {
     $('#accordion').on('show.bs.collapse', function (e) {
       var name = $(e.target).prev('.panel-heading').text();
-
       if(name != "Add new album...")
         changeAlbum(album_owner, name);
     });
