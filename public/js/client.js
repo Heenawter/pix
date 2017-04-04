@@ -49,8 +49,6 @@ $(function() {
     album_list.append(add_album);
 
     initAlbumChange();
-  //  fillImgList();
-
     let first_album = $(".album-title").first().text();
     changeAlbum(album_owner, first_album);
   });
@@ -63,7 +61,6 @@ $(function() {
     });
   }
 
-
   function changeAlbum(owner, name) {
     $("#album-name").text(name);
     current_album = name;
@@ -74,16 +71,17 @@ $(function() {
 
 
   socket.on("get_album_image_names", function(response) {
-    let image_list = $("#collapse" + response.index);
+    let collapse = $("#collapse" + response.index);
 
-    let img_table      = "<div class='panel-body'><table class='table'>"
+    let img_table      = "<div class='panel-body'><table class='table'><tbody></tbody></table></div>"
     let start_img      = "<tr><td><img src='images/heart.png'><span class='picture-name'>";
     let end_img        = "</span><span class='delete-photo-icon-small fa fa-trash fa-lg'></span></td></tr>";
-    let end_img_list   = "</table></div>"
 
+    collapse.append(img_table);
+    let image_list = collapse.find('tbody');
     for(image in response.names) {
       let image_name = response.names[image].img_name;
-      image_list.append(img_table + start_img + image_name + end_img + end_img_list);
+      image_list.append(start_img + image_name + end_img);
     }
   });
 
