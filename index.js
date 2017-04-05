@@ -17,6 +17,12 @@ var db = new sqlite3.Database('pixdb.db');
 
 //Setup database if it doesn't exist
 db.serialize(function() {
+    //Table "users"
+    db.run("CREATE TABLE if not exists users (" +
+        "user TEXT UNIQUE, " +
+        "email TEXT, " +
+        "PRIMARY KEY (email)" +
+        ") without rowid");
 
     //Parent table "albums"
     db.run("CREATE TABLE if not exists albums (" +
@@ -44,6 +50,41 @@ db.serialize(function() {
 
 //Connection
 io.on('connection', function(socket){
+
+
+    //add user
+    socket.on('add_user', function (user) {
+        //user is an object with fields name, and email
+
+        //did they name the bloody thing
+        let name_without_spaces = user.name.replace(/ /g,"");
+        if (name_without_spaces.length > 0) {
+            //check for special characters
+            let name_trimmed = user.name.trim();
+            let error_msg = checkName(name_trimmed);
+            if(!error_msg) {
+                socket.send("ERROR: No special characters allowed.");
+            }
+            else {
+                //check if name in use
+                db.all("SELECT user FROM users WHERE (user = '"
+                    + name_trimmed + "')", function(err,rows){
+
+                    if (rows.length > 0) {
+                        socket.send("ERROR: Name in use.");
+                    } else {
+                        //name not in use
+                        //insert user
+                        db.run("INSERT INTO users (user, email) VALUES ('"
+                            + name_trimmed + "', '"
+                            + user.email + "')");
+                    }
+                });
+            }
+        } else {
+            socket.send("ERROR: You need a user name");
+        }
+    });
 
 
     //add album
@@ -246,6 +287,17 @@ io.on('connection', function(socket){
             + image.img_name + "')", function(err,row){
             //send image to client
             socket.emit('get_image', row);
+        });
+    });
+
+
+    //get user
+    socket.on('get_user', function (user) {
+        //user here is just a string for username
+        db.all("SELECT user FROM users WHERE (user = '"
+            + user + "')", function(err,row){
+            //send image to client
+            socket.emit('get_user', row);
         });
     });
 
