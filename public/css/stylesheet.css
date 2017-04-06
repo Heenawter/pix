@@ -480,6 +480,23 @@ LIGHTBOX
 	z-index:1032;
 }
 
+
+#editorbox .modal-content {
+	display: inline-block;
+	text-align: center;
+	padding: 10px;
+}
+
+#editorbox .close {
+	opacity: 1;
+	color: white;
+	background-color: #981a3f;
+	padding: 5px 8px;
+	border-radius: 30px;
+	border: 2px solid rgb(255, 255, 255);
+	z-index:1032;
+}
+
 /******************************************************************
 SIDEBAR
 ******************************************************************/
