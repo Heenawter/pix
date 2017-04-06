@@ -1,6 +1,6 @@
 
 $(function() {
-  var socket = io.connect('http://127.0.0.1:3000');
+  var socket = io();
 
   var current_user = "User1";
   var album_owner = "User1";
@@ -14,10 +14,10 @@ $(function() {
   });
 
 
-
+/*
   socket.on("message", function(message) {
     alert(message);
-  });
+  });*/
 
 
 
@@ -31,7 +31,7 @@ $(function() {
     let start_album = "<div class='panel-heading' role='tab'><h4 class='panel-title'>";
     let collapse    = "<a data-toggle='collapse' data-parent='#accordion' href='#collapse0' aria-expanded='true'>";
     let album_html  = "<img src='images/folder-small.png'><span class='album-title'>";
-    let end_album   = "</span><span class='delete-album-icon fa fa-trash fa-lg'></span></a></h4></div>";
+    let end_album   = "<span class='del_alb'><span class='delete-album-icon fa fa-trash fa-lg'></span></span></span></a></h4></div>";
 
     let blank_img_list = "<div id='collapse0' class='panel-collapse collapse in' role='tabpanel'></div>";
 
@@ -48,7 +48,7 @@ $(function() {
       socket.emit("get_album_image_names", {user: album_owner, album_name: album_title, id: index});
     }
 
-    let add_album =  "<div class='panel-heading' id='add-new-album'><h4 class='panel-title'><a href='#'>"
+    let add_album =  "<div class='panel-heading' id='add-new-album'><h4 class='panel-title'><a href='#' data-toggle='modal' data-target='#albumformbox'>"
         add_album += "<img src='images/folder-small.png'><span id='add-new-album-btn'>Add new album...</a></h4></div>"
     album_list.append(add_album);
 
@@ -158,5 +158,39 @@ $(function() {
   socket.on("get_image", function(response) {
 
   });
+
+
+
+  /***************************************************************/
+  /* ADD/DELETE ALBUM FUNCTIONS
+  /***************************************************************/
+    $('#albumformbox #album_form').submit(function(){
+        album = {
+            client: current_user,
+            user: album_owner,
+            album_name: $('#alb_name').val().toString()
+        };
+
+        socket.emit('add_album', album);
+        $('#alb_name').val('');
+        $("#album-list").innerHTML('');
+        socket.emit('get_albums', album_owner);
+        return false;
+    });
+
+    $('#album-list').on('click', '.del_alb', function(event){
+      console.log("HELLO ");
+    });
+
+
+
+  /***************************************************************/
+  /* SERVER MESSAGES
+  /***************************************************************/
+
+    socket.on('message', function(msg){
+        $('#albumformbox #error_text').text(msg);
+        console.log(msg);
+    });
 
 });
