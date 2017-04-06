@@ -97,7 +97,7 @@ $(function() {
     }
 
     let add_new =  "<tr id='add-new-img-btn'><td><span class='fa fa-plus'></span>";
-        add_new += "<span class='picture-name'>Add new image...</span></td></tr>";
+        add_new += "<span class='picture-name' data-toggle='modal' data-target='#editorbox'>Add new image...</span></td></tr>";
     image_list.append(add_new);
   });
 
@@ -132,7 +132,7 @@ $(function() {
       image_list.append(img_start + img_contents + img_src + "' alt='" + img_name + img_end);
     }
 
-    let add_img =  "<div class='after col-lg-3 col-md-4 col-sm-6 col-xs-12'><button type='button' class='add-btn'>";
+    let add_img =  "<div class='after col-lg-3 col-md-4 col-sm-6 col-xs-12'><button type='button' class='add-btn' data-toggle='modal' data-target='#editorbox'>";
         add_img += "<span class='fa fa-plus-circle fa-lg'></span></a></div>";
 
     image_list.append(add_img);
@@ -165,6 +165,7 @@ $(function() {
   /***************************************************************/
   /* ADD/DELETE ALBUM FUNCTIONS
   /***************************************************************/
+  //add album
     $('#albumformbox #album_form').submit(function(){
         album = {
             client: current_user,
@@ -173,11 +174,11 @@ $(function() {
         };
 
         socket.emit('add_album', album);
-        $('#alb_name').val('');
         socket.emit('get_albums', album_owner);
         return false;
     });
 
+    //delete album
     $('#album-list').on('click', '.del_alb', function(event){
         var target = event.target.parentNode.parentNode || event.srcElement;
         let albname = target.innerText;
@@ -191,6 +192,18 @@ $(function() {
         socket.emit('get_albums', album_owner);
     });
 
+    //clean up form on close/cancel
+    $('#albumformbox').on('click', 'button[type=\'button\']',function(){
+        $('#alb_name').val('');
+        $('#error_text').text('');
+    });
+
+    //clean form on successful addition of form and close modal
+    socket.on('clean_album_form', function(){
+        $('#alb_name').val('');
+        $('#error_text').text('');
+        $('#albumformbox').modal("toggle");
+    });
 
 
   /***************************************************************/
@@ -198,8 +211,10 @@ $(function() {
   /***************************************************************/
 
     socket.on('message', function(msg){
-        $('#albumformbox #error_text').text(msg);
-        console.log(msg);
+        if (msg.includes("ALBUM")) {
+            $('#albumformbox #error_text').text(msg);
+            console.log(msg);
+        }
     });
 
 });
