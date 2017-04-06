@@ -102,7 +102,7 @@ io.on('connection', function(socket){
                     let name_trimmed = album.album_name.trim();
                     let error_msg = checkName(name_trimmed);
                     if(!error_msg) {
-                        socket.send("ERROR: No special characters allowed.");
+                        socket.send("ALBUM ERROR: No special characters allowed.");
                     }
                     else {
                         //check if name in use
@@ -111,24 +111,25 @@ io.on('connection', function(socket){
                             + name_trimmed + "')", function(err,rows){
 
                             if (rows.length > 0) {
-                                socket.send("ERROR: Name in use.");
+                                socket.send("ALBUM ERROR: Name in use.");
                             } else {
                                 //name not in use
                                 //insert album
                                  db.run("INSERT INTO albums (user, album_name) VALUES ('"
                                  + album.user + "', '"
                                  + name_trimmed + "')");
+                                socket.emit('clean_album_form');
                             }
                         });
                     }
                 } else {
-                    socket.send("ERROR: You need to name your album");
+                    socket.send("ALBUM ERROR: You need to name your album");
                 }
             } else {
-                socket.send("ERROR: You can't add an album to someone else's account");
+                socket.send("ALBUM ERROR: You can't add an album to someone else's account");
             }
         } else {
-            socket.send("ERROR: You're not logged in!");
+            socket.send("ALBUM ERROR: You're not logged in!");
         }
     });
 
