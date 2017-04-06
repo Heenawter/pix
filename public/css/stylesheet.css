@@ -459,6 +459,26 @@ LIGHTBOX
 	background-color: #eb8a91;
 }
 
+#albumformbox {
+	padding: 100px;
+}
+
+#albumformbox .modal-content {
+	display: inline-block;
+	text-align: center;
+	width: 300px;
+	padding: 10px;
+}
+
+#albumformbox .close {
+	opacity: 1;
+	color: white;
+	background-color: #981a3f;
+	padding: 5px 8px;
+	border-radius: 30px;
+	border: 2px solid rgb(255, 255, 255);
+	z-index:1032;
+}
 
 /******************************************************************
 SIDEBAR
