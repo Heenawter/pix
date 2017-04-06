@@ -27,6 +27,7 @@ $(function() {
 
   socket.on("get_albums", function(response) {
     let album_list = $("#album-list");
+    album_list.html("");
 
     let start_album = "<div class='panel-heading' role='tab'><h4 class='panel-title'>";
     let collapse    = "<a data-toggle='collapse' data-parent='#accordion' href='#collapse0' aria-expanded='true'>";
@@ -173,13 +174,21 @@ $(function() {
 
         socket.emit('add_album', album);
         $('#alb_name').val('');
-        $("#album-list").innerHTML('');
         socket.emit('get_albums', album_owner);
         return false;
     });
 
     $('#album-list').on('click', '.del_alb', function(event){
-      console.log("HELLO ");
+        var target = event.target.parentNode.parentNode || event.srcElement;
+        let albname = target.innerText;
+        album = {
+            client: current_user,
+            user: album_owner,
+            album_name: albname
+        };
+
+        socket.emit('delete_album', album);
+        socket.emit('get_albums', album_owner);
     });
 
 
