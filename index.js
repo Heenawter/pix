@@ -231,11 +231,13 @@ io.on('connection', function(socket){
         if (image.client !== undefined) {
             //is the client the owner of the page they're trying to add to
             if (image.client === image.user) {
-                //remove image
-                db.run("DELETE FROM albums WHERE (user = '"
+                //remove image from database
+                db.run("DELETE FROM images WHERE (user = '"
                     + image.user + "' AND album_name = '"
                     + image.album_name + "' AND img_name = '"
                     + image.img_name + "')");
+                //delete from files
+
             } else {
                 socket.send("ERROR: You can't remove an image from someone else's album");
             }
