@@ -10,15 +10,9 @@ $(function() {
     $("#album-owner").text(album_owner);
     socket.emit("get_albums", album_owner);
     // socket.emit("add_album", {client: current_user, user: album_owner, album_name: "Also an Album"});
-    // socket.emit("add_image", {client: current_user, user: album_owner, album_name: "Also an Album", img_name: "An Image", img_src:"images/test-picture.png"});
+     socket.emit("add_image", {client: current_user, user: album_owner, album_name: "Also an Album", img_name: "An Image", img_src:"images/test-picture.png"});
+      socket.emit("add_image", {client: current_user, user: album_owner, album_name: "Also an Album", img_name: "An Image 2", img_src:"images/test-picture.png"});
   });
-
-
-/*
-  socket.on("message", function(message) {
-    alert(message);
-  });*/
-
 
 
   /***************************************************************/
@@ -87,7 +81,7 @@ $(function() {
 
     let img_table      = "<div class='panel-body'><table class='table'><tbody></tbody></table></div>"
     let start_img      = "<tr><td><img src='images/heart.png'><span class='picture-name'>";
-    let end_img        = "</span><span class='delete-photo-icon-small fa fa-trash fa-lg'></span></td></tr>";
+    let end_img        = "<span class='del_img_side'><span class='delete-photo-icon-small fa fa-trash fa-lg'></span></span></span></td></tr>";
 
     collapse.append(img_table);
     let image_list = collapse.find('tbody');
@@ -124,7 +118,7 @@ $(function() {
 
     let img_start = "<div class='album-item col-lg-3 col-md-4 col-sm-6 col-xs-12'><div class='thumbnail album-pic'>";
     let img_contents = "<img class='album-img' src='";
-    let img_end = "'><span class='album-overlay'><span class='delete-photo-icon fa fa-trash fa-lg'></span></span></div>";
+    let img_end = "'><span class='album-overlay'><span class='del_img'><span class='delete-photo-icon fa fa-trash fa-lg'></span></span></span></div>";
 
     for(image in response) {
       let img_name = response[image].img_name;
@@ -156,8 +150,10 @@ $(function() {
     });
   }
 
+  // GET CURRENT IMAGE
+    // Used for deleting image from sidebar
   socket.on("get_image", function(response) {
-
+          buildLightBox(response[0].img_src, response[0].img_name);
   });
 
 
@@ -206,6 +202,131 @@ $(function() {
     });
 
 
+
+    /***************************************************************/
+    /* ADD/DELETE IMAGE FUNCTIONS
+    /***************************************************************/
+
+    //delete image from sidebar
+    $('#album-list').on('click', '.del_img_side', function(event){
+        var target = event.target.parentNode.parentNode || event.srcElement;
+        let imgname = target.innerText;
+        deleteDialog(imgname.trim());
+
+        let size = window.getComputedStyle(document.body,':after').getPropertyValue('content').replace( /"/g, '' ); //http://adactio.com/journal/5429/
+
+        /* http://codepen.io/bradfrost/pen/tfCAp */
+        if(size == "widescreen") {
+            event.preventDefault();
+            image = {
+                client: current_user,
+                user: album_owner,
+                album_name: current_album,
+                img_name: imgname.trim()
+            };
+
+            socket.emit('get_image', image);
+            $('#lightbox').modal("show");
+        } else {
+            $('#deletebox').modal("show");
+        }
+    });
+
+    //delete image from main area
+    $('#album-images').on('click', '.del_img', function(event){
+        let size = window.getComputedStyle(document.body,':after').getPropertyValue('content').replace( /"/g, '' ); //http://adactio.com/journal/5429/
+        //get image name
+        var target = event.target.parentNode.parentNode.parentNode || event.srcElement;
+        let imgname_html = target.innerHTML.toString();
+        let start_str = imgname_html.indexOf("alt=") + 5;
+        let end_str = imgname_html.indexOf(">") - 1;
+        let imgname = imgname_html.substring(start_str,end_str);
+
+        deleteDialog(imgname.trim());
+
+        /* http://codepen.io/bradfrost/pen/tfCAp */
+        if(size == "widescreen") {
+            event.preventDefault();
+        } else {
+            $('#deletebox').modal("show");
+        }
+    });
+
+    //delete dialog
+    function deleteDialog(name) {
+        let size = window.getComputedStyle(document.body,':after').getPropertyValue('content').replace( /"/g, '' ); //http://adactio.com/journal/5429/
+        let del_msg_html = "<p>Are you sure you want to delete this?</p>";
+        del_msg_html += "<button type='button' id='img_del_btn' class='btn btn-default' data-dismiss='modal'>Delete</button>";
+        del_msg_html += "<button type='button' id='img_cancel2' class='btn btn-default' data-dismiss='modal'>Cancel</button>";
+
+        /* http://codepen.io/bradfrost/pen/tfCAp */
+        if(size == "widescreen") {
+            //edit in delete dialog box
+            $('#del_img_msg').html(del_msg_html);
+        } else {
+            $('#del_this_title').text(name);
+            $('#del_msg').html(del_msg_html);
+        }
+
+        //cancel button
+        $('#img_cancel2').on('click', function(){
+            $('#del_img_msg').html('');
+            $('#del_msg').html('');
+            $('#lightbox').modal("hide");
+            $('#deletebox').modal("hide");
+        });
+
+        //top corner cancel button
+        $('#img_cancel1').on('click', function(){
+            $('#del_img_msg').html('');
+            $('#del_msg').html('');
+            $('#lightbox').modal("hide");
+            $('#deletebox').modal("hide");
+        });
+
+        //delete image
+        $('#img_del_btn').on('click', function(event){
+            //get image name
+            var target = event.target.parentNode.parentNode || event.srcElement;
+            let imgname_html = target.innerText;
+            let end_str = imgname_html.indexOf("Are you sure you want to delete this?");
+            let imgname = imgname_html.substring(0,end_str);
+            let imgname_trimmed = imgname.trim();
+
+            image = {
+                client: current_user,
+                user: album_owner,
+                album_name: current_album,
+                img_name: name
+            };
+
+            socket.emit('delete_image', image);
+            socket.emit('get_albums', album_owner);
+        });
+
+    }
+/*
+    //delete image
+    $('#del_img_msg').on('click', '#img_del_btn', function(event){
+        //get image name
+        var target = event.target.parentNode.parentNode || event.srcElement;
+        let imgname_html = target.innerText;
+        let end_str = imgname_html.indexOf("Are you sure you want to delete this?");
+        let imgname = imgname_html.substring(0,end_str);
+        let imgname_trimmed = imgname.trim();
+
+        image = {
+            client: current_user,
+            user: album_owner,
+            album_name: current_album,
+            img_name: imgname_trimmed
+        };
+
+        socket.emit('delete_image', image);
+        socket.emit('get_albums', album_owner);
+    });*/
+
+
   /***************************************************************/
   /* SERVER MESSAGES
   /***************************************************************/
@@ -213,6 +334,8 @@ $(function() {
     socket.on('message', function(msg){
         if (msg.includes("ALBUM")) {
             $('#albumformbox #error_text').text(msg);
+            console.log(msg);
+        } else {
             console.log(msg);
         }
     });
