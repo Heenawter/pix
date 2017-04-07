@@ -459,6 +459,10 @@ LIGHTBOX
 	background-color: #eb8a91;
 }
 
+#del_img_msg {
+	color: #981a3f;
+}
+
 #albumformbox {
 	padding: 100px;
 }
@@ -488,6 +492,22 @@ LIGHTBOX
 }
 
 #editorbox .close {
+	opacity: 1;
+	color: white;
+	background-color: #981a3f;
+	padding: 5px 8px;
+	border-radius: 30px;
+	border: 2px solid rgb(255, 255, 255);
+	z-index:1032;
+}
+
+#deletebox .modal-content {
+	display: inline-block;
+	text-align: center;
+	padding: 10px;
+}
+
+#deletebox .close {
 	opacity: 1;
 	color: white;
 	background-color: #981a3f;
