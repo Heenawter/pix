@@ -291,11 +291,6 @@ ALBUM THUMBNAILS
   overflow:auto;
 }
 
-.album-item {
-	display: flex;
-	justify-content: center;
-}
-
 .thumbnail {
   border: none;
 	background-color: #fff2dd;
@@ -306,10 +301,12 @@ ALBUM THUMBNAILS
 	cursor: pointer;
 }
 
-.album-pic {
+.thumbnail  .album-pic {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+  width: 100%;
+  height: 100%;
 }
 
 .album-img {
@@ -337,11 +334,12 @@ ALBUM THUMBNAILS
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	width: 188px;
-	height: 158px;
+	width: 75px;
+	height: 75px;
 	font-size: 3em;
 	color: white;
 	opacity: 0;
+  z-index: 100 !important;
 }
 
 .thumbnail:hover .album-overlay {

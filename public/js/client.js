@@ -10,8 +10,8 @@ $(function() {
     $("#album-owner").text(album_owner);
     socket.emit("get_albums", album_owner);
     // socket.emit("add_album", {client: current_user, user: album_owner, album_name: "Also an Album"});
-     socket.emit("add_image", {client: current_user, user: album_owner, album_name: "Also an Album", img_name: "An Image", img_src:"images/test-picture.png"});
-      socket.emit("add_image", {client: current_user, user: album_owner, album_name: "Also an Album", img_name: "An Image 2", img_src:"images/test-picture.png"});
+    // socket.emit("add_image", {client: current_user, user: album_owner, album_name: "Also an Album", img_name: "An Image", img_src:"images/test-picture.png"});
+    // socket.emit("add_image", {client: current_user, user: album_owner, album_name: "Also an Album", img_name: "An Image 2", img_src:"images/test-picture.png"});
   });
 
 
@@ -67,7 +67,9 @@ $(function() {
   function changeAlbum(owner, name) {
     $("#album-name").text(name);
     current_album = name;
-    socket.emit("get_album_images", {user: owner, album_name: name});
+    let album = {user: owner,
+      album_name: name}
+    socket.emit("get_album_images", album);
   }
 
 
@@ -100,10 +102,10 @@ $(function() {
     let num_albums = $(".panel-heading").length - 1;
     let album_title = $("#collapse" + index).prev('.panel-heading').text();
 
-    socket.emit("get_album_image_names", {user: album_owner, album_name: album_title, id: index});
-    for(index; index < num_albums; index++) {
-
-    }
+    let album = {user: album_owner,
+        album_name: album_title,
+        id: index}
+    socket.emit("get_album_image_names", album);
   }
 
 
@@ -117,8 +119,8 @@ $(function() {
     image_list.empty();
 
     let img_start = "<div class='album-item col-lg-3 col-md-4 col-sm-6 col-xs-12'><div class='thumbnail album-pic'>";
-    let img_contents = "<img class='album-img' src='";
-    let img_end = "'><span class='album-overlay'><span class='del_img'><span class='delete-photo-icon fa fa-trash fa-lg'></span></span></span></div>";
+    let img_contents = "<span class='album-overlay'><span class='del_img'><span class='delete-photo-icon fa fa-trash fa-lg'></span></span></span><img class='album-img' src='";
+    let img_end = "'></div>";
 
     for(image in response) {
       let img_name = response[image].img_name;
