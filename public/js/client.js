@@ -28,9 +28,11 @@ $(function() {
     let start_album = "<div class='panel-heading' role='tab'><h4 class='panel-title'>";
     let collapse    = "<a data-toggle='collapse' data-parent='#accordion' href='#collapse0' aria-expanded='true'>";
     let album_html  = "<img src='images/folder-small.png'><span class='album-title'>";
-    let end_album   = "<span class='del_alb'><span class='delete-album-icon fa fa-trash fa-lg'></span></span></span></a></h4></div>";
-
+    let end_album   = "</span></a></h4></div>";
     let blank_img_list = "<div id='collapse0' class='panel-collapse collapse in' role='tabpanel'></div>";
+    if(current_user === album_owner) {
+      end_album = "<span class='del_alb'><span class='delete-album-icon fa fa-trash fa-lg'></span></span></span></a></h4></div>";
+    }
 
     //handle first album, then do the rest
     let album_title = response.shift().album_name;
@@ -45,9 +47,11 @@ $(function() {
       socket.emit("get_album_image_names", {user: album_owner, album_name: album_title, id: index});
     }
 
-    let add_album =  "<div class='panel-heading' id='add-new-album'><h4 class='panel-title'><a href='#' data-toggle='modal' data-target='#albumformbox'>"
-        add_album += "<img src='images/folder-small.png'><span id='add-new-album-btn'>Add new album...</a></h4></div>"
-    album_list.append(add_album);
+    if(current_user === album_owner) {
+      let add_album =  "<div class='panel-heading' id='add-new-album'><h4 class='panel-title'><a href='#' data-toggle='modal' data-target='#albumformbox'>"
+          add_album += "<img src='images/folder-small.png'><span id='add-new-album-btn'>Add new album...</a></h4></div>"
+      album_list.append(add_album);
+    }
 
     initAlbumChange();
     let first_album = $(".album-title").first().text();
@@ -85,7 +89,12 @@ $(function() {
 
     let img_table      = "<div class='panel-body'><table class='table'><tbody></tbody></table></div>"
     let start_img      = "<tr><td><img src='images/heart.png'><span class='picture-name'>";
-    let end_img        = "<span class='del_img_side'><span class='delete-photo-icon-small fa fa-trash fa-lg'></span></span></span></td></tr>";
+    let end_img        = "</span></td></tr>";
+
+    if(current_user === album_owner) {
+      end_img = "<span class='del_img_side'><span class='delete-photo-icon-small fa fa-trash fa-lg'></span></span></span></a></h4></div>";
+    }
+
 
     collapse.append(img_table);
     let image_list = collapse.find('tbody');
@@ -94,9 +103,11 @@ $(function() {
       image_list.append(start_img + image_name + end_img);
     }
 
-    let add_new =  "<tr id='add-new-img-btn'><td><span class='fa fa-plus'></span>";
-        add_new += "<span class='picture-name' data-toggle='modal' data-target='#editorbox'>Add new image...</span></td></tr>";
-    image_list.append(add_new);
+    if(current_user === album_owner) {
+      let add_new =  "<tr id='add-new-img-btn'><td><span class='fa fa-plus'></span>";
+          add_new += "<span class='picture-name' data-toggle='modal' data-target='#editorbox'>Add new image...</span></td></tr>";
+      image_list.append(add_new);
+    }
   });
 
   function fillImgList() {
@@ -121,8 +132,12 @@ $(function() {
     image_list.empty();
 
     let img_start = "<div class='album-item col-lg-3 col-md-4 col-sm-6 col-xs-12'><div class='thumbnail album-pic'>";
-    let img_contents = "<span class='album-overlay'><span class='del_img'><span class='delete-photo-icon fa fa-trash fa-lg'></span></span></span><img class='album-img' src='";
+    let img_contents = "<span class='album-overlay'></span><img class='album-img' src='";
     let img_end = "'></div>";
+    if(current_user === album_owner) {
+      img_contents = "<span class='album-overlay'><span class='del_img'><span class='delete-photo-icon fa fa-trash fa-lg'></span></span></span><img class='album-img' src='";
+    }
+
 
     for(image in response) {
       let img_name = response[image].img_name;
@@ -130,10 +145,12 @@ $(function() {
       image_list.append(img_start + img_contents + img_src + "' alt='" + img_name + img_end);
     }
 
-    let add_img =  "<div class='after col-lg-3 col-md-4 col-sm-6 col-xs-12'><button type='button' class='add-btn' data-toggle='modal' data-target='#editorbox'>";
-        add_img += "<span class='fa fa-plus-circle fa-lg'></span></a></div>";
+    if(current_user === album_owner) {
+      let add_img =  "<div class='after col-lg-3 col-md-4 col-sm-6 col-xs-12'><button type='button' class='add-btn' data-toggle='modal' data-target='#editorbox'>";
+          add_img += "<span class='fa fa-plus-circle fa-lg'></span></a></div>";
+      image_list.append(add_img);
+    }
 
-    image_list.append(add_img);
     if ($('#lightbox').length != 0)
       lightboxInit();
   });
