@@ -230,14 +230,8 @@ $(function() {
 
     }
 
-
-
-
-
-
-
     /***************************************************************/
-    /* ADD/DELETE IMAGE FUNCTIONS
+    /* DELETE IMAGE FUNCTIONS
     /***************************************************************/
 
     //delete image from sidebar
@@ -331,6 +325,24 @@ $(function() {
         });
 
     }
+
+    /***************************************************************/
+    /* ADD IMAGE FUNCTIONS
+    /***************************************************************/
+
+    function addImageToDB(img_name, img_src) {
+        image = {
+            client: current_user,
+            user: album_owner,
+            album_name: current_album,
+            img_name: img_name,
+            img_src: img_src
+        };
+
+        socket.emit('add_image', image);
+        socket.emit('get_albums', album_owner);
+    }
+
 
 
 
