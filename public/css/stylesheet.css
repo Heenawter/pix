@@ -524,8 +524,8 @@ LIGHTBOX
   color: white;
 }
 
-.btn-default,
-.btn-default:enabled {
+.modal .btn-default,
+.modal .btn-default:enabled {
   background-color: #fcdab6;
   color: #551d00;
   border: 0px;
@@ -534,8 +534,8 @@ LIGHTBOX
   margin-right: 5px;
 }
 
-.btn-default:hover,
-.btn-default:active{
+.modal .btn-default:hover,
+.modal .btn-default:active{
   background-color: #f8c48d !important;
 }
 
