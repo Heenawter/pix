@@ -238,10 +238,10 @@ $(function() {
     $('#album-images').on('click', '.del_img', function(event){
         let size = window.getComputedStyle(document.body,':after').getPropertyValue('content').replace( /"/g, '' ); //http://adactio.com/journal/5429/
         //get image name
-        var target = event.target.parentNode.parentNode.parentNode || event.srcElement;
+        var target = event.target.parentNode.parentNode.parentNode.parentNode || event.srcElement;
         let imgname_html = target.innerHTML.toString();
         let start_str = imgname_html.indexOf("alt=") + 5;
-        let end_str = imgname_html.indexOf(">") - 1;
+        let end_str = imgname_html.indexOf("></div>") - 1;
         let imgname = imgname_html.substring(start_str,end_str);
 
         deleteDialog(imgname.trim());
