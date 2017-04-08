@@ -366,6 +366,10 @@ $(function() {
   /* SEARCH FUNCTIONS
   /***************************************************************/
 
+  $(".navbar-form").on('submit', function(e) {
+    var $inputs = $('.navbar-form :input');
+    alert($inputs[0].value);
+  });
 
   //https://codepen.io/nikhil/pen/qcyGF
   function toggle_search() {
@@ -394,9 +398,6 @@ $(function() {
       return false; //to prevent "form" from submitting
   })};
 
-  $(".navbar-form").on('submit', function(e) {
-      alert("wow");
-  });
 
 
   /***************************************************************/
