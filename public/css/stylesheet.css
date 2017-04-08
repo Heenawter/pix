@@ -428,24 +428,25 @@ LIGHTBOX
 
 /* Reference: http://bootsnipp.com/snippets/featured/bootstrap-lightbox */
 
-
-#del_img_msg .modal-dialog,
-#albumformbox .modal-dialog,
-#editorbox .modal-dialog {
+.modal-dialog {
   margin: auto;
-  margin-top: 30px;
+  margin-top: 50px;
 }
 
-
-#lightbox .modal-content {
+.modal-content {
   display: inline-block;
   text-align: center;
 	color: #551d00;
 }
 
-#lightbox .modal-header {
+.modal-header {
 	color: #551d00;
 	border-bottom: 1px solid #b47458;
+}
+
+.modal-footer {
+  color: #551d00;
+  border-top: 1px solid #b47458;
 }
 
 .modal .close {
@@ -457,6 +458,7 @@ LIGHTBOX
   border: 2px solid rgb(255, 255, 255);
   position: absolute;
   z-index:1032;
+  transition: .5s background-color;
 }
 
  .modal .close {
@@ -468,15 +470,9 @@ LIGHTBOX
 	background-color: #eb8a91;
 }
 
-#del_img_msg {
+#del_img_msg,
+#del_msg {
 	color: #981a3f;
-}
-
-#albumformbox .modal-content {
-	display: inline-block;
-	text-align: center;
-	padding: 10px;
-  width: 100%;
 }
 
 #albumformbox .modal-dialog,
@@ -488,12 +484,47 @@ LIGHTBOX
   width: 85%;
 }
 
+#albumformbox .modal-content,
 #editorbox .modal-content,
 #deletebox .modal-content {
 	display: inline-block;
 	text-align: center;
 	padding: 10px;
   width: 100%;
+}
+
+.album-name-box {
+  border: 1px solid #981a3f;
+  transition: .2s ease-in-out;
+  color: #551d00;
+  padding: 5px;
+  width: 100%;
+}
+
+.album-name-box::placeholder {
+  color: #eb8a91;
+}
+
+.album-name-box:focus {
+  border-color: rgba(235, 138, 145, 0.8);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(235, 138, 145, 0.6);
+}
+
+.new-album-btn,
+.new-album-btn:enabled {
+  margin-top: 10px;
+  width: 100%;
+  background-color: #981a3f;
+  color: white;
+  border-color: #981a3f;
+  transition: .5s background-color, .5s color;
+}
+
+.new-album-btn:hover,
+.new-album-btn:active {
+  background-color: rgba(235, 138, 145, 0.8);
+  border-color: #eb8a91;
+  color: white;
 }
 
 
@@ -566,7 +597,9 @@ table td:hover .delete-photo-icon-small {
 
 .panel-body {
 	padding:0px;
+  border: none !important;
 }
+
 .panel-body table tr td {
 	padding-left: 15px;
 	border: 1px solid #b47458;
@@ -584,7 +617,7 @@ table td:hover .delete-photo-icon-small {
 	margin-bottom: 0px;
 	background-color: white;
 	border-radius: 0px;
-	border: 1px solid #fff2dd;
+	border: 1px solid #fff2dd !important;
 	box-shadow: none !important;
 	color: #551d00;
 }
