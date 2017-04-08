@@ -391,14 +391,7 @@ ALBUM THUMBNAILS
 	cursor: pointer;
 }
 
-.add-btn:active {
-	background-color: transparent;
-	border: none;
-	outline: none;
-	box-shadow: none;
-	padding: inherit;
-}
-
+.add-btn:active,
 .add-btn:enabled {
 	background-color: transparent;
 	border: none;
@@ -439,6 +432,10 @@ LIGHTBOX
 	color: #551d00;
 }
 
+#lightbox .modal-content {
+  background-color: white !important;
+}
+
 .modal-header {
 	color: #551d00;
 	border-bottom: 1px solid #b47458;
@@ -461,7 +458,7 @@ LIGHTBOX
   transition: .5s background-color;
 }
 
- .modal .close {
+.modal .close {
   left: 97%;
   top: -10px;
 }
@@ -472,7 +469,7 @@ LIGHTBOX
 
 #del_img_msg,
 #del_msg {
-	color: #981a3f;
+	color: #b47458;
 }
 
 #albumformbox .modal-dialog,
@@ -527,6 +524,20 @@ LIGHTBOX
   color: white;
 }
 
+.btn-default,
+.btn-default:enabled {
+  background-color: #fcdab6;
+  color: #551d00;
+  border: 0px;
+  transition: .5s background-color;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.btn-default:hover,
+.btn-default:active{
+  background-color: #f8c48d !important;
+}
 
 /******************************************************************
 SIDEBAR
