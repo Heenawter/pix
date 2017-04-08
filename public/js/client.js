@@ -10,9 +10,10 @@ $(function() {
     $("#album-owner").text(album_owner);
     socket.emit("get_albums", album_owner);
     toggle_search();
-    // socket.emit("add_album", {client: current_user, user: album_owner, album_name: "Also an Album"});
-    // socket.emit("add_image", {client: current_user, user: album_owner, album_name: "Also an Album", img_name: "An Image", img_src:"images/test-picture.png"});
-    // socket.emit("add_image", {client: current_user, user: album_owner, album_name: "Also an Album", img_name: "An Image 2", img_src:"images/test-picture.png"});
+    // socket.emit("add_album", {client: current_user, user: album_owner, album_name: "Album User2"});
+    // socket.emit("add_image", {client: current_user, user: album_owner, album_name: "Album User2", img_name: "An Image", img_src:"images/test-picture.png"});
+    // socket.emit("add_image", {client: current_user, user: album_owner, album_name: "Album User2", img_name: "An Image 2", img_src:"images/test-picture.png"});
+    // socket.emit("add_image", {client: current_user, user: album_owner, album_name: "Album User2", img_name: "An Image 3", img_src:"images/test-picture.png"});
   });
 
 
@@ -366,8 +367,14 @@ $(function() {
   /***************************************************************/
 
   $(".navbar-form").on('submit', function(e) {
+    e.preventDefault();
     var $inputs = $('.navbar-form :input');
-    alert($inputs[0].value);
+
+    album_owner = $inputs[0].value;
+    $("#album-owner").text($inputs[0].value);
+    socket.emit("get_albums", $inputs[0].value);
+
+    //alert($inputs[0].value);
   });
 
   //https://codepen.io/nikhil/pen/qcyGF
