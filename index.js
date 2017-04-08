@@ -310,7 +310,7 @@ io.on('connection', function(socket){
 //check name format
 function checkName(name) {
     let good_format = true;
-    let name_without_legal_chars = name.replace(/[A-Za-z0-9'" "]/g,"");
+    let name_without_legal_chars = name.replace(/[A-Za-z0-9" "]/g,"");
 
     if (name_without_legal_chars.length > 0) {
         good_format = false;
