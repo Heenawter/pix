@@ -163,6 +163,7 @@ $(function() {
   /***************************************************************/
   /* ADD/DELETE ALBUM FUNCTIONS
   /***************************************************************/
+
   //add album
     $('#albumformbox #album_form').submit(function(){
         album = {
@@ -174,20 +175,6 @@ $(function() {
         socket.emit('add_album', album);
         socket.emit('get_albums', album_owner);
         return false;
-    });
-
-    //delete album
-    $('#album-list').on('click', '.del_alb', function(event){
-        var target = event.target.parentNode.parentNode || event.srcElement;
-        let albname = target.innerText;
-        album = {
-            client: current_user,
-            user: album_owner,
-            album_name: albname
-        };
-
-        socket.emit('delete_album', album);
-        socket.emit('get_albums', album_owner);
     });
 
     //clean up form on close/cancel
@@ -202,6 +189,50 @@ $(function() {
         $('#error_text').text('');
         $('#albumformbox').modal("toggle");
     });
+
+
+    //delete album
+    $('#album-list').on('click', '.del_alb', function(event){
+        var target = event.target.parentNode.parentNode || event.srcElement;
+        let albname = target.innerText;
+
+        deleteAlbumDialog(albname);
+
+        $('#deletebox').modal("show");
+    });
+
+    //delete dialog
+    function deleteAlbumDialog(name) {
+        let del_msg_html = "<p>Are you sure you want to delete this album and all its images?</p>";
+        del_msg_html += "<button type='button' id='alb_del_btn' class='btn btn-default' data-dismiss='modal'>Delete</button>";
+        del_msg_html += "<button type='button' id='alb_cancel2' class='btn btn-default' data-dismiss='modal'>Cancel</button>";
+
+        $('#del_this_title').text(name);
+        $('#del_msg').html(del_msg_html);
+
+        //cancel button
+        $('#alb_cancel2').on('click', function(){
+            $('#del_msg').html('');
+            $('#deletebox').modal("hide");
+        });
+
+        //delete album
+        $('#alb_del_btn').on('click', function(){
+            album = {
+                client: current_user,
+                user: album_owner,
+                album_name: name
+            };
+
+            socket.emit('delete_album', album);
+            socket.emit('get_albums', album_owner);
+        });
+
+    }
+
+
+
+
 
 
 
@@ -287,14 +318,7 @@ $(function() {
         });
 
         //delete image
-        $('#img_del_btn').on('click', function(event){
-            //get image name
-            var target = event.target.parentNode.parentNode || event.srcElement;
-            let imgname_html = target.innerText;
-            let end_str = imgname_html.indexOf("Are you sure you want to delete this?");
-            let imgname = imgname_html.substring(0,end_str);
-            let imgname_trimmed = imgname.trim();
-
+        $('#img_del_btn').on('click', function(){
             image = {
                 client: current_user,
                 user: album_owner,
@@ -307,26 +331,7 @@ $(function() {
         });
 
     }
-/*
-    //delete image
-    $('#del_img_msg').on('click', '#img_del_btn', function(event){
-        //get image name
-        var target = event.target.parentNode.parentNode || event.srcElement;
-        let imgname_html = target.innerText;
-        let end_str = imgname_html.indexOf("Are you sure you want to delete this?");
-        let imgname = imgname_html.substring(0,end_str);
-        let imgname_trimmed = imgname.trim();
 
-        image = {
-            client: current_user,
-            user: album_owner,
-            album_name: current_album,
-            img_name: imgname_trimmed
-        };
-
-        socket.emit('delete_image', image);
-        socket.emit('get_albums', album_owner);
-    });*/
 
 
   /***************************************************************/
