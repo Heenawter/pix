@@ -549,6 +549,7 @@ SIDEBAR
 
 .delete-photo-icon-small  {
 	color: #eb8a91;
+  float: right;
 }
 
 .delete-album-icon,

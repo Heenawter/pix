@@ -195,10 +195,12 @@ $(function() {
     $('#album-list').on('click', '.del_alb', function(event){
         var target = event.target.parentNode.parentNode || event.srcElement;
         let albname = target.innerText;
+        event.stopPropagation();
+
 
         deleteAlbumDialog(albname);
-
         $('#deletebox').modal("show");
+
     });
 
     //delete dialog
@@ -276,6 +278,10 @@ $(function() {
             event.preventDefault();
         } else {
             $('#deletebox').modal("show");
+            $('#deletebox').css({
+              'maxWidth': $(window).width() - 100,
+              'maxHeight': $(window).height() - 100
+            });
         }
     });
 
@@ -295,19 +301,10 @@ $(function() {
             $('#del_msg').html(del_msg_html);
         }
 
-        //cancel button
-        $('#img_cancel2').on('click', function(){
+        // when lightbox is closed, clear
+        $('#lightbox').on('hidden.bs.modal', function (e) {
             $('#del_img_msg').html('');
             $('#del_msg').html('');
-            $('#lightbox').modal("hide");
-            $('#deletebox').modal("hide");
-        });
-
-        //top corner cancel button
-        $('#img_cancel1').on('click', function(){
-            $('#del_img_msg').html('');
-            $('#del_msg').html('');
-            $('#lightbox').modal("hide");
             $('#deletebox').modal("hide");
         });
 
@@ -325,6 +322,8 @@ $(function() {
         });
 
     }
+
+
 
     /***************************************************************/
     /* ADD IMAGE FUNCTIONS

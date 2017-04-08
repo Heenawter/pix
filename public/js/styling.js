@@ -12,6 +12,7 @@ $(function() {
 /* http://bootsnipp.com/snippets/featured/bootstrap-lightbox */
 function buildLightBox(src, name) {
   let $lightbox = $('#lightbox');
+  
   let css = {
     'maxWidth': $(window).width() - 100,
     'maxHeight': $(window).height() - 100
