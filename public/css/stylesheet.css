@@ -428,6 +428,15 @@ LIGHTBOX
 
 /* Reference: http://bootsnipp.com/snippets/featured/bootstrap-lightbox */
 
+
+#del_img_msg .modal-dialog,
+#albumformbox .modal-dialog,
+#editorbox .modal-dialog {
+  margin: auto;
+  margin-top: 30px;
+}
+
+
 #lightbox .modal-content {
   display: inline-block;
   text-align: center;
@@ -439,7 +448,7 @@ LIGHTBOX
 	border-bottom: 1px solid #b47458;
 }
 
-#lightbox .close {
+.modal .close {
   opacity: 1;
   color: white;
   background-color: #981a3f;
@@ -447,13 +456,15 @@ LIGHTBOX
   border-radius: 30px;
   border: 2px solid rgb(255, 255, 255);
   position: absolute;
-  top: -15px;
-  right: -55px;
   z-index:1032;
 }
 
+ .modal .close {
+  left: 97%;
+  top: -10px;
+}
 
-#lightbox .close:hover {
+.modal .close:hover {
 	background-color: #eb8a91;
 }
 
@@ -461,59 +472,30 @@ LIGHTBOX
 	color: #981a3f;
 }
 
-#albumformbox {
-	padding: 100px;
-}
-
 #albumformbox .modal-content {
 	display: inline-block;
 	text-align: center;
-	width: 300px;
 	padding: 10px;
+  width: 100%;
 }
 
-#albumformbox .close {
-	opacity: 1;
-	color: white;
-	background-color: #981a3f;
-	padding: 5px 8px;
-	border-radius: 30px;
-	border: 2px solid rgb(255, 255, 255);
-	z-index:1032;
+#albumformbox .modal-dialog,
+#deletebox .modal-dialog {
+  width: 300px;
 }
 
-
-#editorbox .modal-content {
-	display: inline-block;
-	text-align: center;
-	padding: 10px;
+#editorbox .modal-dialog {
+  width: 85%;
 }
 
-#editorbox .close {
-	opacity: 1;
-	color: white;
-	background-color: #981a3f;
-	padding: 5px 8px;
-	border-radius: 30px;
-	border: 2px solid rgb(255, 255, 255);
-	z-index:1032;
-}
-
+#editorbox .modal-content,
 #deletebox .modal-content {
 	display: inline-block;
 	text-align: center;
 	padding: 10px;
+  width: 100%;
 }
 
-#deletebox .close {
-	opacity: 1;
-	color: white;
-	background-color: #981a3f;
-	padding: 5px 8px;
-	border-radius: 30px;
-	border: 2px solid rgb(255, 255, 255);
-	z-index:1032;
-}
 
 /******************************************************************
 SIDEBAR

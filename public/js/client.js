@@ -9,8 +9,7 @@ $(function() {
   socket.on('connect', function (data) {
     $("#album-owner").text(album_owner);
     socket.emit("get_albums", album_owner);
-
-      toggle_search();
+    toggle_search();
     // socket.emit("add_album", {client: current_user, user: album_owner, album_name: "Also an Album"});
     // socket.emit("add_image", {client: current_user, user: album_owner, album_name: "Also an Album", img_name: "An Image", img_src:"images/test-picture.png"});
     // socket.emit("add_image", {client: current_user, user: album_owner, album_name: "Also an Album", img_name: "An Image 2", img_src:"images/test-picture.png"});
