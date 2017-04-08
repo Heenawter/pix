@@ -9,6 +9,8 @@ $(function() {
   socket.on('connect', function (data) {
     $("#album-owner").text(album_owner);
     socket.emit("get_albums", album_owner);
+
+      toggle_search();
     // socket.emit("add_album", {client: current_user, user: album_owner, album_name: "Also an Album"});
     // socket.emit("add_image", {client: current_user, user: album_owner, album_name: "Also an Album", img_name: "An Image", img_src:"images/test-picture.png"});
     // socket.emit("add_image", {client: current_user, user: album_owner, album_name: "Also an Album", img_name: "An Image 2", img_src:"images/test-picture.png"});
@@ -197,7 +199,6 @@ $(function() {
         let albname = target.innerText;
         event.stopPropagation();
 
-
         deleteAlbumDialog(albname);
         $('#deletebox').modal("show");
 
@@ -325,9 +326,9 @@ $(function() {
 
 
 
-    /***************************************************************/
-    /* ADD IMAGE FUNCTIONS
-    /***************************************************************/
+  /***************************************************************/
+  /* ADD IMAGE FUNCTIONS
+  /***************************************************************/
 
     function addImageToDB(img_name, img_src) {
         image = {
@@ -343,6 +344,42 @@ $(function() {
     }
 
 
+
+  /***************************************************************/
+  /* SEARCH FUNCTIONS
+  /***************************************************************/
+
+
+  //https://codepen.io/nikhil/pen/qcyGF
+  function toggle_search() {
+    let submit = $('.input-group-btn');
+    let searchBox = $('.search-bar');
+    let input = $('.search-input');
+    let isOpen = false;
+
+    submit.click(function() {
+      if(isOpen) {
+        let val = input.val();
+        if(val === "") {
+          isOpen = false;
+          searchBox.removeClass('search-bar-open');
+          searchBox.addClass('search-bar-closed');
+          input.focusout();
+        } else {
+          $(".navbar-form").submit();
+        }
+      } else {
+        isOpen = true;
+        searchBox.removeClass('search-bar-closed');
+        searchBox.addClass('search-bar-open');
+      }
+
+      return false; //to prevent "form" from submitting
+  })};
+
+  $(".navbar-form").on('submit', function(e) {
+      alert("wow");
+  });
 
 
   /***************************************************************/
