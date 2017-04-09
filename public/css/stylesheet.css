@@ -473,7 +473,8 @@ LIGHTBOX
 }
 
 #albumformbox .modal-dialog,
-#deletebox .modal-dialog {
+#deletebox .modal-dialog,
+#error-msg-box .modal-dialog {
   width: 300px;
 }
 
@@ -483,7 +484,8 @@ LIGHTBOX
 
 #albumformbox .modal-content,
 #editorbox .modal-content,
-#deletebox .modal-content {
+#deletebox .modal-content,
+#error-msg-box .modal-content {
 	display: inline-block;
 	text-align: center;
 	padding: 10px;
