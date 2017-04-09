@@ -1,4 +1,3 @@
-
 $(function() {
   var socket = io();
 
@@ -385,12 +384,14 @@ $(function() {
     e.preventDefault();
     var $inputs = $('.navbar-form :input');
     socket.emit("get_user", $inputs[0].value);
+
     //alert($inputs[0].value);
   });
 
   socket.on('get_user', function(response) {
     if(response[0] != undefined) {
       album_owner = response[0].user;
+      $(location).append('&album=' + album_owner);
       $("#album-owner").text(album_owner);
       socket.emit("get_albums", album_owner);
     } else {
