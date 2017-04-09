@@ -391,7 +391,6 @@ $(function() {
   socket.on('get_user', function(response) {
     if(response[0] != undefined) {
       album_owner = response[0].user;
-      $(location).append('&album=' + album_owner);
       $("#album-owner").text(album_owner);
       socket.emit("get_albums", album_owner);
     } else {
