@@ -251,6 +251,17 @@ io.on('connection', function(socket){
     //get albums
     socket.on('get_albums', function (user) {
         db.all("SELECT album_name FROM albums WHERE (user = '" + user + "')", function(err,rows){
+            //add default if empty
+            if (rows.length === 0) {
+                db.run("INSERT INTO albums (user, album_name) VALUES ('"
+                    + album.user + "', 'Default')");
+
+                //get albums again
+                db.all("SELECT album_name FROM albums WHERE (user = '" + user + "')", function(err,rows){
+                    //send albums to client
+                    socket.emit('get_albums', rows);
+                });
+            }
             //send albums to client
             socket.emit('get_albums', rows);
         });
