@@ -61,31 +61,7 @@ app.use(passport.session());
 require('./routes.js')(app, passport);
 require('./passport.js')(passport, db);
 
-var loggedInUser;
-let online_users = {};
-
-/*********************************************************************/
-// Everything in here can be removed if we can figure out how to export
-// the user variable from routes.js
-// Note: The commented out functions in routes.js would need to be put
-// back in if this is the case
 var path = require("path");
-// Route for login/home page
-// app.get('/account', ensureAuthenticated, function(request, response) {
-//   socket.emit('set_logged_in', request.user.user);
-//   //loggedInUser = request.user.user;
-//   response.sendFile(path.join(__dirname + '/public/account.html'));
-// });
-
-// Route middleware to ensure a user is logged in (Helper function)
-function ensureAuthenticated(request, response, next) {
-  if (request.isAuthenticated()) {
-     return next(); }
-  // If they aren't logged in, redirect back to the login page
-  return response.redirect('/login');
-}
-
-/*********************************************************************/
 
 //Connection
 io.on('connection', function(socket){

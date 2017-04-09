@@ -6,11 +6,8 @@ module.exports = function(app, passport, socket) {
   	response.sendFile(path.join(__dirname + '/public/index.html'));
   });
 
-// Pasted in index.js currently
   // Route for the account page
   app.get('/account', ensureAuthenticated, function(request, response) {
-    // Need a way to export request.user.user right here
-    // loggedInUser = request.user.user;
     response.sendFile(path.join(__dirname + '/public/account.html'));
   });
 
@@ -36,11 +33,9 @@ module.exports = function(app, passport, socket) {
     }),
     function(request, response) {
   	  // Successful login
-  	  return response.redirect('/account.html?user=' + request.user.user);
+  	 return response.redirect('/account?user=' + request.user.user);
     }
   );
-
-// Pasted in index.js currently
 
   // Route middleware to ensure a user is logged in (Helper function)
   function ensureAuthenticated(request, response, next) {
