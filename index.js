@@ -292,7 +292,7 @@ io.on('connection', function(socket){
             //add default if empty
             if (rows.length === 0) {
                 db.run("INSERT INTO albums (user, album_name) VALUES ('"
-                    + album.user + "', 'Default')");
+                    + user + "', 'Default')");
 
                 //get albums again
                 db.all("SELECT album_name FROM albums WHERE (user = '" + user + "')", function(err,rows){
