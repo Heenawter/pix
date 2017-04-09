@@ -189,7 +189,7 @@ $(function() {
   // GET CURRENT IMAGE
     // Used for deleting image from sidebar
   socket.on("get_image", function(response) {
-          buildLightBox(response[0].img_src, response[0].img_name);
+      buildLightBox(response[0].img_src, response[0].img_name);
   });
 
 
@@ -384,12 +384,19 @@ $(function() {
   $(".navbar-form").on('submit', function(e) {
     e.preventDefault();
     var $inputs = $('.navbar-form :input');
-
-    album_owner = $inputs[0].value;
-    $("#album-owner").text($inputs[0].value);
-    socket.emit("get_albums", $inputs[0].value);
-
+    socket.emit("get_user", $inputs[0].value);
     //alert($inputs[0].value);
+  });
+
+  socket.on('get_user', function(response) {
+    if(response[0] != undefined) {
+      album_owner = response[0].user;
+      $("#album-owner").text(album_owner);
+      socket.emit("get_albums", album_owner);
+    } else {
+      $('#error-msg-modal').html("This user does not exist.");
+      $('#error-msg-box').modal('show');
+    }
   });
 
   //https://codepen.io/nikhil/pen/qcyGF

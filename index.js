@@ -348,6 +348,7 @@ io.on('connection', function(socket){
         db.all("SELECT user FROM users WHERE (user = '"
             + user + "')", function(err,row){
             //send image to client
+                  console.log(row);
             socket.emit('get_user', row);
         });
     });
