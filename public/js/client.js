@@ -7,21 +7,30 @@ $(function() {
   var current_album;
 
   socket.on('connect', function (data) {
-    socket.emit("get_logged_in");
-  });
+    // socket.emit("get_logged_in");
+    current_user = getParameterByName('user');
+    album_owner = current_user;
 
-  socket.on("set_logged_in", function (loggedInUser) {
-    current_user = loggedInUser;
-    album_owner = loggedInUser;
+    $('#logo').attr('href', "account.html?user=" + current_user);
     $("#album-owner").text(album_owner);
     socket.emit("get_albums", album_owner);
+
     toggle_search();
-    // socket.emit("add_album", {client: current_user, user: album_owner, album_name: "Album User2"});
-    // socket.emit("add_image", {client: current_user, user: album_owner, album_name: "Album User2", img_name: "An Image", img_src:"images/test-picture.png"});
-    // socket.emit("add_image", {client: current_user, user: album_owner, album_name: "Album User2", img_name: "An Image 2", img_src:"images/test-picture.png"});
-    // socket.emit("add_image", {client: current_user, user: album_owner, album_name: "Album User2", img_name: "An Image 3", img_src:"images/test-picture.png"});
   });
 
+
+  // http://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
+  function getParameterByName(name, url) {
+    if (!url) {
+      url = window.location.href;
+    }
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
 
   /***************************************************************/
   /* FILL SIDEBAR WITH ALBUMS

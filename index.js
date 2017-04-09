@@ -62,6 +62,8 @@ require('./routes.js')(app, passport);
 require('./passport.js')(passport, db);
 
 var loggedInUser;
+let online_users = {};
+
 /*********************************************************************/
 // Everything in here can be removed if we can figure out how to export
 // the user variable from routes.js
@@ -69,10 +71,11 @@ var loggedInUser;
 // back in if this is the case
 var path = require("path");
 // Route for login/home page
-app.get('/account', ensureAuthenticated, function(request, response) {
-  loggedInUser = request.user.user;
-  response.sendFile(path.join(__dirname + '/public/account.html'));
-});
+// app.get('/account', ensureAuthenticated, function(request, response) {
+//   socket.emit('set_logged_in', request.user.user);
+//   //loggedInUser = request.user.user;
+//   response.sendFile(path.join(__dirname + '/public/account.html'));
+// });
 
 // Route middleware to ensure a user is logged in (Helper function)
 function ensureAuthenticated(request, response, next) {
@@ -81,15 +84,11 @@ function ensureAuthenticated(request, response, next) {
   // If they aren't logged in, redirect back to the login page
   return response.redirect('/login');
 }
+
 /*********************************************************************/
 
 //Connection
 io.on('connection', function(socket){
-    //user data
-    socket.on('get_logged_in', function() {
-      socket.emit('set_logged_in', loggedInUser);
-    });
-
     //add user
     socket.on('add_user', function (user) {
         //user is an object with fields name, and email
