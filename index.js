@@ -294,9 +294,9 @@ io.on('connection', function(socket){
                     + user + "', 'Default')");
 
                 //get albums again
-                db.all("SELECT album_name FROM albums WHERE (user = '" + user + "')", function(err,rows){
+                db.all("SELECT album_name FROM albums WHERE (user = '" + user + "')", function(err,rows2){
                     //send albums to client
-                    socket.emit('get_albums', rows);
+                    socket.emit('get_albums', rows2);
                 });
             }
             //send albums to client
