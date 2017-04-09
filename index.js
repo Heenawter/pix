@@ -85,7 +85,10 @@ function ensureAuthenticated(request, response, next) {
 
 //Connection
 io.on('connection', function(socket){
-
+    //user data
+    socket.on('get_logged_in', function() {
+      socket.emit('set_logged_in', loggedInUser);
+    });
 
     //add user
     socket.on('add_user', function (user) {

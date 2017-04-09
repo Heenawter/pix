@@ -2,11 +2,17 @@
 $(function() {
   var socket = io();
 
-  var current_user = "User1";
-  var album_owner = "User1";
+  var current_user;
+  var album_owner;
   var current_album;
 
   socket.on('connect', function (data) {
+    socket.emit("get_logged_in");
+  });
+
+  socket.on("set_logged_in", function (loggedInUser) {
+    current_user = loggedInUser;
+    album_owner = loggedInUser;
     $("#album-owner").text(album_owner);
     socket.emit("get_albums", album_owner);
     toggle_search();
