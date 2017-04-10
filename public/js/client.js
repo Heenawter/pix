@@ -6,11 +6,10 @@ $(function() {
   var current_album;
 
   socket.on('connect', function (data) {
-    // socket.emit("get_logged_in");
     current_user = getParameterByName('user');
     album_owner = current_user;
 
-    $('#logo').attr('href', "account.html?user=" + current_user);
+    $('#logo').attr('href', "account?user=" + current_user);
     $("#album-owner").text(album_owner);
     socket.emit("get_albums", album_owner);
 

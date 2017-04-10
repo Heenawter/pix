@@ -1,9 +1,11 @@
 var path = require("path");
 
 module.exports = function(app, passport, socket) {
+
   // Route for login/home page
-  app.get('/login', function(request, response) {
-  	response.sendFile(path.join(__dirname + '/public/index.html'));
+
+  app.get('/', function(request, response) {
+    response.sendFile(path.join(__dirname + '/public/index.html'));
   });
 
   // Route for the account page
@@ -33,14 +35,23 @@ module.exports = function(app, passport, socket) {
     }),
     function(request, response) {
   	  // Successful login
-  	 return response.redirect('/account?user=' + request.user.user);
+  	  return response.redirect('/account?user=' + request.user.user);
     }
   );
+
+  app.get('*', function(request, response) {
+    if(request.isAuthenticated()) {
+      return response.redirect('/account?user=' + request.user.user);
+    } else {
+      return response.redirect('/');
+    }
+  });
 
   // Route middleware to ensure a user is logged in (Helper function)
   function ensureAuthenticated(request, response, next) {
     if (request.isAuthenticated()) {
   	console.log('User is authenticated and next is');
+    request.session.returnTo = '/account?user=' + request.user.user;
   	   return next(); }
     // If they aren't logged in, redirect back to the login page
     console.log('bad auth.. redirecing to login');
