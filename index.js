@@ -74,7 +74,6 @@ var loggedInUser;
 var path = require("path");
 // Route for login/home page
 app.get('/account', ensureAuthenticated, function(request, response) {
-  console.log("public/account");
   loggedInUser = request.user.user;
   response.sendFile(path.join(__dirname + '/public/account.html'));
 });

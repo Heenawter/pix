@@ -53,7 +53,7 @@ LOGO STUFF
 
 #logo img {
 	max-width: 100%;
-  padding-bottom: 10px;
+  padding-bottom: 20px;
 }
 
 
@@ -72,8 +72,6 @@ FORM
 .main-center{
  	max-width: 480px;
   width: 100%;
-  padding: 10px 10px;
-  padding-top: 40px;
 }
 
 .input-group span.input-group-addon {
@@ -98,9 +96,11 @@ FORM
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(235, 138, 145, 0.6);
 }
 
-.btn-google {
+.btn-google,
+.btn-google:enabled {
+  margin-top: 20px;
   height:37px;
-  background-color: #eb8a91;
+  background-color: #eb8a91 !important;
   border-color: #981a3f;
   text-align: center;
   transition: .2s ease-in-out;
@@ -112,7 +112,8 @@ FORM
   width:41px;
 }
 
-.btn-google:hover {
+.btn-google:hover,
+.btn-google:active {
   background-color: #eb8a91;
   border-color: #981a3f;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(235, 138, 145, 0.6);
@@ -161,7 +162,10 @@ FANCY DIVIDER
 }
 
 @media (max-width: 480px) {
-	#logo, .main-center {
+	.main-center {
 		max-width: 85%;
 	}
+  .fancy {
+    display: none;
+  }
 }
