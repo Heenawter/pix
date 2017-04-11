@@ -98,7 +98,7 @@ FORM
 
 .btn-google,
 .btn-google:enabled {
-  margin-top: 20px;
+  margin-top: 10px;
   height:37px;
   background-color: #eb8a91 !important;
   border-color: #981a3f;
@@ -144,10 +144,10 @@ FANCY DIVIDER
 
 .fancy span:before,
 .fancy span:after {
-  background: #551d00;
   content: "";
   display: block;
   height: 1px;
+  border-top: 1px solid #981a3f;
   position: absolute;
   top: 60%;
   width: 300%;
@@ -161,11 +161,18 @@ FANCY DIVIDER
   left: 100%;
 }
 
+.bottom-line {
+  margin-top: 40px;
+  border-color: #981a3f;
+}
+
+
 @media (max-width: 480px) {
 	.main-center {
 		max-width: 85%;
 	}
-  .fancy {
+  .fancy, .bottom-line {
     display: none;
   }
+
 }
