@@ -1,29 +1,23 @@
 var path = require("path");
 
 module.exports = function(app, passport, socket) {
-  app.get('../', function(request, response) {
-    console.log("here");
+  app.get('/', function(request, response) {
+    if(request.isAuthenticated()) {
+      return response.redirect('/public/account');
+    } else {
+      response.sendFile(path.join(__dirname + '/public/index.html'));
+    }
   });
 
-  // Route for login/home page
-  app.get('/login', function(request, response) {
-  	response.sendFile(path.join(__dirname + '/public/index.html'));
-  });
-
-// Pasted in index.js currently
-/*
-  // Route for the account page
-  app.get('/account', ensureAuthenticated, function(request, response) {
-    // Need a way to export request.user.user right here
-    // loggedInUser = request.user.user;
-    response.sendFile(path.join(__dirname + '/public/account.html'));
-  });
-*/
+  // // Route for login/home page
+  // app.get('/public/login', function(request, response) {
+  // 	response.sendFile(path.join(__dirname + '/public/index.html'));
+  // });
 
   // Route for logging out
   app.get('/logout', function(request, response){
     request.logout();
-    response.redirect('/login');
+    response.redirect('/');
   });
 
   // Google routes
@@ -38,32 +32,12 @@ module.exports = function(app, passport, socket) {
   // Callback from Google after authenticating the user
   app.get('/auth/google/callback',
     passport.authenticate('google', {
-  	  failureRedirect: '/login'
+  	  failureRedirect: '/'
     }),
     function(request, response) {
   	  // Successful login
-  	  return response.redirect('/account');
+  	  return response.redirect('/public/account');
     }
   );
-  //
-  // app.get('*', function(request, response) {
-  //   if(request.isAuthenticated()) {
-  //     return response.redirect('/account');
-  //   } else {
-  //     return response.redirect('/');
-  //   }
-  // });
 
-// Pasted in index.js currently
-/*
-  // Route middleware to ensure a user is logged in (Helper function)
-  function ensureAuthenticated(request, response, next) {
-    if (request.isAuthenticated()) {
-  	console.log('User is authenticated and next is');
-  	   return next(); }
-    // If they aren't logged in, redirect back to the login page
-    console.log('bad auth.. redirecing to login');
-    return response.redirect('/login');
-  }
-*/
 }

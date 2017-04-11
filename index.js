@@ -4,6 +4,7 @@ var app = express();
 var http = require('http').createServer(app);
 var io = require('socket.io')(http);
 var port = process.env.PORT || 3000;
+var path = require("path");
 
 http.listen( port, function () {
     console.log('listening on port', port);
@@ -55,12 +56,13 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(path.join(__dirname, 'public'), {
+    index: false
+}));
 
 require('./routes.js')(app, passport);
 require('./passport.js')(passport, db);
 
-var path = require("path");
 
 
 var loggedInUser;
@@ -72,16 +74,16 @@ var loggedInUser;
 var path = require("path");
 // Route for login/home page
 app.get('/account', ensureAuthenticated, function(request, response) {
+  console.log("public/account");
   loggedInUser = request.user.user;
   response.sendFile(path.join(__dirname + '/public/account.html'));
 });
 
 app.get('*', function(request, response) {
-  console.log("wow");
   if(request.isAuthenticated()) {
     return response.redirect('/account');
   } else {
-    return response.redirect('/login');
+    return response.redirect('/');
   }
 });
 
@@ -90,8 +92,9 @@ function ensureAuthenticated(request, response, next) {
   if (request.isAuthenticated()) {
      return next(); }
   // If they aren't logged in, redirect back to the login page
-  return response.redirect('/login');
+  return response.redirect('/');
 }
+
 /*********************************************************************/
 
 //Connection
