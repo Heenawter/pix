@@ -6,12 +6,6 @@ $(function() {
   var current_album;
 
   socket.on('connect', function (data) {
-    if(current_user != "")
-      console.log("new!");
-    else {
-      console.log("nope");
-    }
-
     socket.emit("get_logged_in");
   });
 
@@ -217,8 +211,15 @@ $(function() {
         };
 
         socket.emit('add_album', album);
+        socket.emit('album_change', album);
         socket.emit('get_albums', album_owner);
         return false;
+    });
+
+    socket.on('album_change', function(album) {
+      if(album_owner === album.user && current_user != album.user) {
+        socket.emit('get_albums', album_owner);
+      }
     });
 
     //clean up form on close/cancel
@@ -270,6 +271,7 @@ $(function() {
             };
 
             socket.emit('delete_album', album);
+            socket.emit('album_change', album);
             socket.emit('get_albums', album_owner);
         });
 
@@ -361,6 +363,7 @@ $(function() {
             };
 
             socket.emit('delete_image', image);
+            socket.emit('album_change', album);
             socket.emit('get_albums', album_owner);
         });
 
@@ -382,6 +385,7 @@ $(function() {
         };
 
         socket.emit('add_image', image);
+        socket.emit('album_change', album);
         socket.emit('get_albums', album_owner);
     }
 
@@ -436,7 +440,6 @@ $(function() {
 
       return false; //to prevent "form" from submitting
   })};
-
 
 
   /***************************************************************/

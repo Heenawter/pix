@@ -98,9 +98,13 @@ function ensureAuthenticated(request, response, next) {
 
 //Connection
 io.on('connection', function(socket){
-  //user data
+    socket.on('album_change', function(album) {
+      socket.broadcast.emit('album_change', album);
+    });
+
+    //user data
     socket.on('get_logged_in', function() {
-      socket.emit('set_logged_in', loggedInUser);
+        socket.emit('set_logged_in', loggedInUser);
     });
 
     //add user
