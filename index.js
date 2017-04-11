@@ -9,8 +9,6 @@ http.listen( port, function () {
     console.log('listening on port', port);
 });
 
-app.use(express.static(__dirname + '/public'));
-
 //Database setup
 var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database('pixdb.db');
@@ -57,14 +55,52 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(express.static(__dirname + '/public'));
 
 require('./routes.js')(app, passport);
 require('./passport.js')(passport, db);
 
 var path = require("path");
 
+
+var loggedInUser;
+/*********************************************************************/
+// Everything in here can be removed if we can figure out how to export
+// the user variable from routes.js
+// Note: The commented out functions in routes.js would need to be put
+// back in if this is the case
+var path = require("path");
+// Route for login/home page
+app.get('/account', ensureAuthenticated, function(request, response) {
+  loggedInUser = request.user.user;
+  response.sendFile(path.join(__dirname + '/public/account.html'));
+});
+
+app.get('*', function(request, response) {
+  console.log("wow");
+  if(request.isAuthenticated()) {
+    return response.redirect('/account');
+  } else {
+    return response.redirect('/login');
+  }
+});
+
+// Route middleware to ensure a user is logged in (Helper function)
+function ensureAuthenticated(request, response, next) {
+  if (request.isAuthenticated()) {
+     return next(); }
+  // If they aren't logged in, redirect back to the login page
+  return response.redirect('/login');
+}
+/*********************************************************************/
+
 //Connection
 io.on('connection', function(socket){
+  //user data
+    socket.on('get_logged_in', function() {
+      socket.emit('set_logged_in', loggedInUser);
+    });
+
     //add user
     socket.on('add_user', function (user) {
         //user is an object with fields name, and email

@@ -6,15 +6,20 @@ $(function() {
   var current_album;
 
   socket.on('connect', function (data) {
-    current_user = getParameterByName('user');
-    album_owner = current_user;
+    socket.emit("get_logged_in");
+  });
 
-    $('#logo').attr('href', "account?user=" + current_user);
+  socket.on("set_logged_in", function (loggedInUser) {
+    current_user = loggedInUser;
+    album_owner = loggedInUser;
     $("#album-owner").text(album_owner);
     socket.emit("get_albums", album_owner);
-
     toggle_search();
-  });
+    // socket.emit("add_album", {client: current_user, user: album_owner, album_name: "Album User2"});
+    // socket.emit("add_image", {client: current_user, user: album_owner, album_name: "Album User2", img_name: "An Image", img_src:"images/test-picture.png"});
+    // socket.emit("add_image", {client: current_user, user: album_owner, album_name: "Album User2", img_name: "An Image 2", img_src:"images/test-picture.png"});
+    // socket.emit("add_image", {client: current_user, user: album_owner, album_name: "Album User2", img_name: "An Image 3", img_src:"images/test-picture.png"});
+});
 
 
   // http://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
