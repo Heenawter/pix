@@ -1,17 +1,24 @@
 $(function() {
   var socket = io();
 
-  var current_user;
-  var album_owner;
+  var current_user = "";
+  var album_owner = "";
   var current_album;
 
   socket.on('connect', function (data) {
+    if(current_user != "")
+      console.log("new!");
+    else {
+      console.log("nope");
+    }
+
     socket.emit("get_logged_in");
   });
 
   socket.on("set_logged_in", function (loggedInUser) {
     current_user = loggedInUser;
-    album_owner = loggedInUser;
+    if(album_owner === "")
+      album_owner = loggedInUser;
     $("#album-owner").text(album_owner);
     socket.emit("get_albums", album_owner);
     toggle_search();
@@ -389,11 +396,11 @@ $(function() {
     var $inputs = $('.navbar-form :input');
     socket.emit("get_user", $inputs[0].value);
 
-    //alert($inputs[0].value);
   });
 
   socket.on('get_user', function(response) {
     if(response[0] != undefined) {
+      $('.search-input').val("");
       album_owner = response[0].user;
       $("#album-owner").text(album_owner);
       socket.emit("get_albums", album_owner);
