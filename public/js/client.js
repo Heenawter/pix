@@ -29,10 +29,8 @@ $(function() {
     }
   });
 
-
-  socket.on("new_user", function(loggedInUser, num_users) {
-    alert(loggedInUser + " " + num_users)
-    addTab(loggedInUser, num_users);
+  $(".logout-btn").on('click', function(e) {
+    alert("goodbye");
   });
 
   function addTab(new_user, num_users) {
