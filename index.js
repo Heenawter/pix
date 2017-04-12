@@ -96,6 +96,8 @@ function ensureAuthenticated(request, response, next) {
 
 /*********************************************************************/
 
+var online_users = [];
+
 //Connection
 io.on('connection', function(socket){
     socket.on('album_change', function(album) {
@@ -104,7 +106,12 @@ io.on('connection', function(socket){
 
     //user data
     socket.on('get_logged_in', function() {
-        socket.emit('set_logged_in', loggedInUser);
+        if(online_users.indexOf(loggedInUser) < 0){
+          console.log("new user");
+          online_users.push(loggedInUser);
+          socket.broadcast.emit('new_user', loggedInUser, online_users.length);
+        }
+        socket.emit('set_logged_in', loggedInUser, online_users.length);
     });
 
     //add user

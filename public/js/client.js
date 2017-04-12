@@ -5,36 +5,41 @@ $(function() {
   var album_owner = "";
   var current_album;
 
+
+/***************************************************************/
+/* USERS
+/***************************************************************/
+
   socket.on('connect', function (data) {
     socket.emit("get_logged_in");
   });
 
-  socket.on("set_logged_in", function (loggedInUser) {
+  socket.on("set_logged_in", function (loggedInUser, num_users) {
     current_user = loggedInUser;
     if(album_owner === "")
       album_owner = loggedInUser;
     $("#album-owner").text(album_owner);
     socket.emit("get_albums", album_owner);
+    addTab(current_user, num_users);
     toggle_search();
-    // socket.emit("add_album", {client: current_user, user: album_owner, album_name: "Album User2"});
-    // socket.emit("add_image", {client: current_user, user: album_owner, album_name: "Album User2", img_name: "An Image", img_src:"images/test-picture.png"});
-    // socket.emit("add_image", {client: current_user, user: album_owner, album_name: "Album User2", img_name: "An Image 2", img_src:"images/test-picture.png"});
-    // socket.emit("add_image", {client: current_user, user: album_owner, album_name: "Album User2", img_name: "An Image 3", img_src:"images/test-picture.png"});
-});
+  });
 
+  socket.on("new_user", function(loggedInUser, num_users) {
+    alert(loggedInUser + " " + num_users)
+    addTab(loggedInUser, num_users);
+  });
 
-  // http://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
-  function getParameterByName(name, url) {
-    if (!url) {
-      url = window.location.href;
-    }
-    name = name.replace(/[\[\]]/g, "\\$&");
-    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-        results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(/\+/g, " "));
-}
+  function addTab(new_user, num_users) {
+    let tabTemplate = "<li><a href='#{href}'>#{label}</a></li>";
+    let tabs = $('#online-users');
+    var label = new_user;
+      id = "tabs-" + num_users;
+      li = $( tabTemplate.replace( /#\{href\}/g, "#" + id ).replace( /#\{label\}/g, label ) ),
+
+    tabs.find( ".ui-tabs-nav" ).append( li );
+    tabs.tabs( "refresh" );
+  }
+
 
   /***************************************************************/
   /* FILL SIDEBAR WITH ALBUMS
@@ -446,13 +451,13 @@ $(function() {
   /* SERVER MESSAGES
   /***************************************************************/
 
-    socket.on('message', function(msg){
-        if (msg.includes("ALBUM")) {
-            $('#albumformbox #error_text').text(msg);
-            console.log(msg);
-        } else {
-            console.log(msg);
-        }
-    });
+  socket.on('message', function(msg){
+      if (msg.includes("ALBUM")) {
+          $('#albumformbox #error_text').text(msg);
+          console.log(msg);
+      } else {
+          console.log(msg);
+      }
+  });
 
 });

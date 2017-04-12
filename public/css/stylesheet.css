@@ -500,12 +500,16 @@ LIGHTBOX
   width: 100%;
 }
 
+*:focus, *:active {
+    outline: none !important;
+}
+
 .album-name-box::placeholder {
   color: #eb8a91;
 }
 
 .album-name-box:focus {
-  border-color: rgba(235, 138, 145, 0.8);
+  border-color: rgba(235, 138, 145, 0.8) !important;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(235, 138, 145, 0.6);
 }
 
@@ -745,3 +749,8 @@ table td:hover .delete-photo-icon-small {
     top: 0;
   }
 }
+
+
+/******************************************************************
+ONLINE USERS
+******************************************************************/

@@ -1,9 +1,11 @@
 
 $(function() {
-
   // https://www.codeply.com/go/632RvEWJ6P
   $('[data-toggle="offcanvas"]').click(function () {
     $('.row-offcanvas').toggleClass('active')
+  });
+  $( "#online-users" ).tabs({
+    show: { effect: "blind", duration: 800 }
   });
 });
 
