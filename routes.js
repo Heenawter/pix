@@ -1,6 +1,7 @@
 var path = require("path");
 
-module.exports = function(app, passport, socket) {
+module.exports = function(app, passport) {
+
   app.get('/', function(request, response) {
     if(request.isAuthenticated()) {
       return response.redirect('/public/account');
@@ -9,13 +10,12 @@ module.exports = function(app, passport, socket) {
     }
   });
 
-  // // Route for login/home page
-  // app.get('/public/login', function(request, response) {
-  // 	response.sendFile(path.join(__dirname + '/public/index.html'));
-  // });
+  app.get('/account', ensureAuthenticated, function(request, response) {
+    response.sendFile(path.join(__dirname + '/public/account.html'));
+  });
 
-  // Route for logging out
   app.get('/logout', function(request, response){
+    app.emit("logout", request.user.user);
     request.logout();
     response.redirect('/');
   });
@@ -36,8 +36,25 @@ module.exports = function(app, passport, socket) {
     }),
     function(request, response) {
   	  // Successful login
+      app.emit("login", request.user.user);
   	  return response.redirect('/public/account');
     }
   );
+
+  app.get('*', function(request, response) {
+    if(request.isAuthenticated()) {
+      return response.redirect('/account');
+    } else {
+      return response.redirect('/');
+    }
+  });
+
+  // Route middleware to ensure a user is logged in (Helper function)
+  function ensureAuthenticated(request, response, next) {
+    if (request.isAuthenticated()) {
+       return next(); }
+    // If they aren't logged in, redirect back to the login page
+    return response.redirect('/');
+  }
 
 }

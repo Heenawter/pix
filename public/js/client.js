@@ -14,15 +14,21 @@ $(function() {
     socket.emit("get_logged_in");
   });
 
-  socket.on("set_logged_in", function (loggedInUser, num_users) {
+  socket.on("set_logged_in", function (loggedInUser, allUsers) {
     current_user = loggedInUser;
     if(album_owner === "")
       album_owner = loggedInUser;
     $("#album-owner").text(album_owner);
     socket.emit("get_albums", album_owner);
-    addTab(current_user, num_users);
     toggle_search();
+
+    let counter = 0;
+    for(user in allUsers) {
+      addTab(user, counter);
+      counter++;
+    }
   });
+
 
   socket.on("new_user", function(loggedInUser, num_users) {
     alert(loggedInUser + " " + num_users)
