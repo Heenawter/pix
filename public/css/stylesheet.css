@@ -754,3 +754,7 @@ table td:hover .delete-photo-icon-small {
 /******************************************************************
 ONLINE USERS
 ******************************************************************/
+
+.tab_content {
+  display: none !important;
+}

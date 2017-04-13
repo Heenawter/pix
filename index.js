@@ -63,6 +63,9 @@ app.use(express.static(path.join(__dirname, 'public'), {
 require('./routes.js')(app, passport);
 require('./passport.js')(passport, db);
 
+
+
+var loggedInUser;
 /*********************************************************************/
 // Everything in here can be removed if we can figure out how to export
 // the user variable from routes.js
@@ -70,41 +73,56 @@ require('./passport.js')(passport, db);
 // back in if this is the case
 var path = require("path");
 // Route for login/home page
+app.get('/account', ensureAuthenticated, function(request, response) {
+  loggedInUser = request.user.user;
+  response.sendFile(path.join(__dirname + '/public/account.html'));
+});
+
+app.get('*', function(request, response) {
+  if(request.isAuthenticated()) {
+    return response.redirect('/account');
+  } else {
+    return response.redirect('/');
+  }
+});
+
+// Route middleware to ensure a user is logged in (Helper function)
+function ensureAuthenticated(request, response, next) {
+  if (request.isAuthenticated()) {
+     return next(); }
+  // If they aren't logged in, redirect back to the login page
+  return response.redirect('/');
+}
 
 /*********************************************************************/
 
 var online_users = [];
-var loggedInUser;
-var loggedOutUser;
-
-app.on("login", function(newUser) {
-  loggedInUser = newUser;
-  console.log("new_user: " + newUser);
-});
-
-app.on("logout", function(oldUser) {
-  loggedOutUser = oldUser;
-  console.log("remove user: " + oldUser);
-  let index = online_users.indexOf(loggedOutUser);
-  if(index > -1)
-    online_users.splice(index, 1);
-});
 
 //Connection
 io.on('connection', function(socket){
-    socket.on('get_logged_in', function() {
-        if(online_users.indexOf(loggedInUser) < 0){
-          online_users.push(loggedInUser);
-          socket.broadcast.emit('new_user', loggedInUser, online_users.length);
-        }
-        socket.emit('set_logged_in', loggedInUser, online_users.length);
-    });
-
     socket.on('album_change', function(album) {
       socket.broadcast.emit('album_change', album);
     });
 
     //user data
+    socket.on('get_logged_in', function() {
+        if(loggedInUser != undefined && online_users.indexOf(loggedInUser) < 0){
+          online_users.push(loggedInUser);
+          socket.broadcast.emit('new_user', loggedInUser, online_users);
+        }
+        socket.emit('set_logged_in', loggedInUser, online_users);
+        console.log("login " + loggedInUser + " " + online_users);
+    });
+
+    socket.on('get_logged_out', function(loggedOutUser) {
+      let index = online_users.indexOf(loggedOutUser);
+      if(index >= 0) {
+        online_users.splice(index, 1);
+        socket.broadcast.emit('remove_user', online_users);
+      }
+      console.log("logout " + loggedOutUser + " " + online_users);
+    });
+
     //add user
     socket.on('add_user', function (user) {
         //user is an object with fields name, and email

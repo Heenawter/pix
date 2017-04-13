@@ -21,18 +21,40 @@ $(function() {
     $("#album-owner").text(album_owner);
     socket.emit("get_albums", album_owner);
     toggle_search();
-
     let counter = 0;
-    for(user in allUsers) {
-      addTab(user, counter);
+    while(counter < allUsers.length) {
+      addTab(allUsers[counter], counter);
       counter++;
     }
   });
 
-  $(".logout-btn").on('click', function(e) {
-    alert("goodbye");
+  socket.on('new_user', function(user, allUsers) {
+    addTab(user, allUsers.length);
   });
 
+  socket.on("remove_user", function(allUsers) {
+    let tabs = $('#online-users').find(".ui-tabs-nav");
+    tabs.html("");
+    let counter = 0;
+    while(counter < allUsers.length) {
+      addTab(allUsers[counter], counter);
+      counter++;
+    }
+  });
+
+  $('#online-users').tabs({
+    activate: function(event, ui) {
+      album_owner = $('#tabs-' + ui.newTab.index()).text();
+      $("#album-owner").text(album_owner);
+      socket.emit("get_albums", album_owner);
+    }
+  });
+
+  $(".logout-btn").on('click', function(e) {
+    socket.emit("get_logged_out", current_user);
+  });
+
+  // source: https://jqueryui.com/tabs/#manipulation
   function addTab(new_user, num_users) {
     let tabTemplate = "<li><a href='#{href}'>#{label}</a></li>";
     let tabs = $('#online-users');
@@ -41,6 +63,7 @@ $(function() {
       li = $( tabTemplate.replace( /#\{href\}/g, "#" + id ).replace( /#\{label\}/g, label ) ),
 
     tabs.find( ".ui-tabs-nav" ).append( li );
+    tabs.append( "<div class='tab_content' id='" + id + "'><p>" + new_user + "</p></div>");
     tabs.tabs( "refresh" );
   }
 
