@@ -259,7 +259,7 @@ io.on('connection', function(socket){
                     let name_trimmed = image.img_name.trim();
                     let error_msg = checkName(name_trimmed);
                     if(!error_msg) {
-                        socket.send("ERROR: No special characters allowed.");
+                        socket.send("IMAGE ERROR: No special characters allowed.");
                     }
                     else {
                         //check if name in use
@@ -269,7 +269,7 @@ io.on('connection', function(socket){
                             + name_trimmed + "')", function(err,rows){
 
                             if (rows.length > 0) {
-                                socket.send("ERROR: Name in use.");
+                                socket.send("IMAGE ERROR: Name in use.");
                             } else {
                                 //name not in use
                                 //insert image
@@ -277,18 +277,18 @@ io.on('connection', function(socket){
                                     + image.user + "', '"
                                     + image.album_name + "', '"
                                     + image.img_name + "', '"
-                                    + image.img_src + "')");
+                                    + name_trimmed + "')");
                             }
                         });
                     }
                 } else {
-                    socket.send("ERROR: You need to name your image");
+                    socket.send("IMAGE ERROR: You need to name your image");
                 }
             } else {
-                socket.send("ERROR: You can't add an image to someone else's album");
+                socket.send("IMAGE ERROR: You can't add an image to someone else's album");
             }
         } else {
-            socket.send("ERROR: You're not logged in!");
+            socket.send("IMAGE ERROR: You're not logged in!");
         }
     });
 
