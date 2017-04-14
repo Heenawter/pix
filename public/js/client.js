@@ -28,11 +28,7 @@ $(function() {
     }
   });
 
-  socket.on('new_user', function(user, allUsers) {
-    addTab(user, allUsers.length);
-  });
-
-  socket.on("remove_user", function(allUsers) {
+  socket.on('reload_tabs', function(user, allUsers) {
     let tabs = $('#online-users').find(".ui-tabs-nav");
     tabs.html("");
     let counter = 0;
@@ -55,16 +51,20 @@ $(function() {
   });
 
   // source: https://jqueryui.com/tabs/#manipulation
-  function addTab(new_user, num_users) {
-    let tabTemplate = "<li><a href='#{href}'>#{label}</a></li>";
+  function addTab(user, index) {
+    let tabTemplate = "<li id='tab-label-" + index + "'><a href='#{href}'>#{label}</a></li>";
     let tabs = $('#online-users');
-    var label = new_user;
-      id = "tabs-" + num_users;
+    var label = user;
+      id = "tabs-" + index;
       li = $( tabTemplate.replace( /#\{href\}/g, "#" + id ).replace( /#\{label\}/g, label ) ),
 
-    tabs.find( ".ui-tabs-nav" ).append( li );
-    tabs.append( "<div class='tab_content' id='" + id + "'><p>" + new_user + "</p></div>");
+    tabs.find( ".ui-tabs-nav" ).append(li);
+    tabs.append( "<div class='tab_content' id='" + id + "'><p>" + label + "</p></div>");
     tabs.tabs( "refresh" );
+
+    if(user === current_user && user === album_owner) {
+      tabs.tabs({ active: index });
+    }
   }
 
 

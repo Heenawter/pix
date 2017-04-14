@@ -9,11 +9,6 @@ module.exports = function(app, passport, socket) {
     }
   });
 
-  // // Route for login/home page
-  // app.get('/public/login', function(request, response) {
-  // 	response.sendFile(path.join(__dirname + '/public/index.html'));
-  // });
-
   // Route for logging out
   app.get('/logout', function(request, response){
     request.logout();
