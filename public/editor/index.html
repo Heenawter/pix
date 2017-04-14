@@ -1,95 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>pix | image editor</title>
+    <title>.:: pix image editor ::.</title>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://rawgit.com/kangax/fabric.js/master/dist/fabric.min.js"></script>
     <script src="index.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- <link rel="stylesheet" href="../css/stylesheet.css"/> -->
+
   </head>
-  <style>
-  #editor .sticker-overlay {
-    background: rgba(255, 255, 255, 0.75);
-    /*opacity: 0.5;
-    filter: alpha(opacity=50); /* For IE8 and earlier */
-    height: 100%;
-    width: 0;
-    left: 0;
-    top: 0;
-    position: fixed;
-    z-index: 1;
-    overflow-y: hidden;
-    transition: 0.3s;
-    /*display: none;*/
-  }
-  .largeBtn {
-    font-size: 48pt;
-  }
-
-  #editor .sticker-overlay-content {
-    position: relative;
-    top: 10%;
-    text-align: center;
-  }
-
-  .sticker-overlay .closebtn {
-    position: absolute;
-    top: 20px;
-    right: 45px;
-    font-size: 60px;
-  }
-
-  #editor-wrap {
-    /*display: none;*/
-  }
-  #editor {
-    background-color: #ccc;
-    width: 500px;
-    height: 500px;
-  }
-  #editor, #setBg, #editor-menu {
-    display: none;
-  }
-
-  button {
-    vertical-align: middle;
-    border: none;
-    /*display: inline-block;*/
-  }
-  </style>
   <body>
 
     <div id="button-menu"></div>
 
-    <div id="file-wrap">
-      <input name ="" type="file" id="imageLoader"><br />
-    </div>
+    <input type="file" id="imageLoader"><br />
 
-    <div id="editor-wrap">
-      <div id="editor">
-
-        <div id="sticker-nav" class="sticker-overlay">
-          <a href="javascript:void(0)" class="closebtn">&times;</a>
-          <div class="sticker-overlay-content">
-
-            <button id="sticker1"/><img src="stickers/big-heart.png"></button>
-            <button id="sticker2"/><img src="stickers/Frederick.png"></button>
-            <button id="sticker3"/><img src="stickers/rainbow.png"></button>
-            <button id="sticker4"/><img src="stickers/sparkles.png"></button>
-
-          </div>
-        </div>
-        <canvas id="canvas" width="500" height="500" style="border-style: none"></canvas><br>
-
-      </div>
-      <button id="setBg">Set Image</button>
-      <div id="editor-menu">
-        <i class="largeBtn fa fa-trash" id="deleteObject"></i>
-        <i class="largeBtn fa fa-smile-o" id="stickers"></i>
-        <i class="largeBtn fa fa-save" id="saveImg"></i>
-      </div>
+    <div class="editor">
+      <canvas id="canvas" width="450" height="450" style="border-style: solid"></canvas><br>
+      <input type="button" id="setBg" value="Set Background"/><br>
+      <input type="button" id="saveImg" value="Save Image"/><br>
+      <input type="button" id="sticker1" value="Cat Sticker"/>
+      <input type="button" id="deleteObject" value="Delete"/>
     </div>
 
   </body>
