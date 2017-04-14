@@ -754,7 +754,7 @@ table td:hover .delete-photo-icon-small {
 /******************************************************************
 ONLINE USERS
 ******************************************************************/
-/* THIS WAS MADE WITH THE HELP OF JQUERY UI THEME ROLLER */
+
 
 /* Overlays */
 .ui-widget-overlay {
@@ -849,6 +849,7 @@ ONLINE USERS
 .ui-widget-content .ui-state-default,
 .ui-widget-header .ui-state-default,
 .ui-button,
+
 /* We use html here because we need a greater specificity to make sure disabled
 works properly when clicked or hovered */
 html .ui-button.ui-state-disabled:hover,
@@ -914,6 +915,18 @@ html .ui-button.ui-state-disabled:active {
   background: transparent;
   border-width: 0px 0px 0px 0px;
 }
+/*
+#online-user .ui-tabs-nav li {
+  background: transparent;
+  background-color: #f49fa5 !important;
+  background-image: none !important;
+}
+
+
+#online-users .ui-tabs-active a {
+  background: transparent;
+  background-color: #f49fa5;
+}*/
 
 .tab_content {
   display: none !important;

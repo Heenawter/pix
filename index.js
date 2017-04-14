@@ -108,26 +108,26 @@ io.on('connection', function(socket){
     socket.on('get_logged_in', function() {
         if(loggedInUser != undefined && online_users.indexOf(loggedInUser) < 0){
           online_users.push(loggedInUser);
-          socket.broadcast.emit('reload_tabs', loggedInUser, online_users);
+          socket.broadcast.emit('new_user', loggedInUser, online_users);
         }
         socket.emit('set_logged_in', loggedInUser, online_users);
+        console.log("login " + loggedInUser + " " + online_users);
     });
 
     socket.on('get_logged_out', function(loggedOutUser) {
-      if(loggedOutUser != undefined) {
-        let index = online_users.indexOf(loggedOutUser);
-        if(index >= 0) {
-          online_users.splice(index, 1);
-          socket.broadcast.emit('reload_tabs', loggedOutUser, online_users);
-        }
+      let index = online_users.indexOf(loggedOutUser);
+      if(index >= 0) {
+        online_users.splice(index, 1);
+        socket.broadcast.emit('remove_user', online_users);
       }
+      console.log("logout " + loggedOutUser + " " + online_users);
     });
 
     //add user
     socket.on('add_user', function (user) {
         //user is an object with fields name, and email
 
-        //did they name the blsoody thing
+        //did they name the bloody thing
         let name_without_spaces = user.name.replace(/ /g,"");
         if (name_without_spaces.length > 0) {
             //check for special characters
