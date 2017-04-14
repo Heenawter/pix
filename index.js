@@ -108,26 +108,26 @@ io.on('connection', function(socket){
     socket.on('get_logged_in', function() {
         if(loggedInUser != undefined && online_users.indexOf(loggedInUser) < 0){
           online_users.push(loggedInUser);
-          socket.broadcast.emit('new_user', loggedInUser, online_users);
+          socket.broadcast.emit('reload_tabs', loggedInUser, online_users);
         }
         socket.emit('set_logged_in', loggedInUser, online_users);
-        console.log("login " + loggedInUser + " " + online_users);
     });
 
     socket.on('get_logged_out', function(loggedOutUser) {
-      let index = online_users.indexOf(loggedOutUser);
-      if(index >= 0) {
-        online_users.splice(index, 1);
-        socket.broadcast.emit('remove_user', online_users);
+      if(loggedOutUser != undefined) {
+        let index = online_users.indexOf(loggedOutUser);
+        if(index >= 0) {
+          online_users.splice(index, 1);
+          socket.broadcast.emit('reload_tabs', loggedOutUser, online_users);
+        }
       }
-      console.log("logout " + loggedOutUser + " " + online_users);
     });
 
     //add user
     socket.on('add_user', function (user) {
         //user is an object with fields name, and email
 
-        //did they name the bloody thing
+        //did they name the blsoody thing
         let name_without_spaces = user.name.replace(/ /g,"");
         if (name_without_spaces.length > 0) {
             //check for special characters
@@ -259,7 +259,7 @@ io.on('connection', function(socket){
                     let name_trimmed = image.img_name.trim();
                     let error_msg = checkName(name_trimmed);
                     if(!error_msg) {
-                        socket.send("IMAGE ERROR: No special characters allowed.");
+                        socket.send("ERROR: No special characters allowed.");
                     }
                     else {
                         //check if name in use
@@ -269,7 +269,7 @@ io.on('connection', function(socket){
                             + name_trimmed + "')", function(err,rows){
 
                             if (rows.length > 0) {
-                                socket.send("IMAGE ERROR: Name in use.");
+                                socket.send("ERROR: Name in use.");
                             } else {
                                 //name not in use
                                 //insert image
@@ -277,18 +277,18 @@ io.on('connection', function(socket){
                                     + image.user + "', '"
                                     + image.album_name + "', '"
                                     + image.img_name + "', '"
-                                    + name_trimmed + "')");
+                                    + image.img_src + "')");
                             }
                         });
                     }
                 } else {
-                    socket.send("IMAGE ERROR: You need to name your image");
+                    socket.send("ERROR: You need to name your image");
                 }
             } else {
-                socket.send("IMAGE ERROR: You can't add an image to someone else's album");
+                socket.send("ERROR: You can't add an image to someone else's album");
             }
         } else {
-            socket.send("IMAGE ERROR: You're not logged in!");
+            socket.send("ERROR: You're not logged in!");
         }
     });
 
