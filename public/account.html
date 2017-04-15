@@ -27,6 +27,7 @@
 		<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.0/themes/smoothness/jquery-ui.css" />
 
 		<link rel="stylesheet" href="css/stylesheet.css"/>
+		<link rel="stylesheet" href="css/editor.css"/>
 
 		<script src="https://rawgit.com/kangax/fabric.js/master/dist/fabric.min.js"></script>
 		<script src="/socket.io/socket.io.js"></script>
@@ -150,8 +151,42 @@
 				</div>
 				<div class="modal-body">
 					<!--EDITOR GOES HERE-->
-					<canvas id="canvas" width="0" height="0" style="border-style: none"></canvas>
-					<object data="editor.html" style="min-width: 300px; width: 550px; height: 600px;" type="text/html"></object>
+					<!-- edited code -->
+					<input type="file" name="img" id="imageLoader"><br/>
+					<!-- <canvas id="canvas" style="border: solid" height="600" width="500"></canvas> -->
+
+
+					    <div id="editor-wrap">
+					      <div id="editor">
+
+					        <div id="sticker-nav" class="sticker-overlay">
+					          <a href="javascript:void(0)" class="closebtn">&times;</a>
+					          <div class="sticker-overlay-content">
+
+					            <button id="sticker1"/><img src="editor/stickers/big-heart.png"></button>
+					            <button id="sticker2"/><img src="editor/stickers/Frederick.png"></button>
+					            <button id="sticker3"/><img src="editor/stickers/rainbow.png"></button>
+					            <button id="sticker4"/><img src="editor/stickers/sparkles.png"></button>
+
+					          </div>
+					        </div>
+
+					        <canvas id="canvas" width="500" height="500" style="border-style: solid"></canvas><br>
+
+					      </div>
+					      <button id="setBg">Set Image</button>
+					      <div id="editor-menu">
+					        <input type="text" name="image_name" value="Image Name Here" id="imgName">
+					        <i class="largeBtn fa fa-trash" id="deleteObject"></i>
+					        <i class="largeBtn fa fa-smile-o" id="stickers"></i>
+					        <i class="largeBtn fa fa-save" id="saveImg"></i>
+					      </div>
+					    </div>
+
+					<!-- end edited code-->
+
+					<!-- <canvas id="canvas" width="0" height="0" style="border-style: none"></canvas> -->
+					<!-- <object data="editor.html" style="min-width: 300px; width: 550px; height: 600px;" type="text/html"></object> -->
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
