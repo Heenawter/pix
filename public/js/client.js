@@ -406,8 +406,16 @@ $(function() {
   /***************************************************************/
   /* ADD IMAGE FUNCTIONS
   /***************************************************************/
+    $('#album-images').on('click','.add-btn', function(){
+        console.log("HELLO " + current_album);
+        $('#editor_title').text("Create New Image In " + current_album);
+    });
+
 
     function addImageToDB(img_name, img_src) {
+        let alb_name = $("#album-name").text();
+        console.log(alb_name);
+
         image = {
             client: current_user,
             user: album_owner,
@@ -437,6 +445,8 @@ $(function() {
 
 	// imageLoader.addEventListener('change', uploadImage);
 	$('#imageLoader').on('change',function (e) {
+	    let argh = $('#editor_title').text();
+        console.log(argh);
 		var file = e.target.files[0];
 		var reader = new FileReader();
 		reader.onload = function (f) {
@@ -475,12 +485,10 @@ $(function() {
     else {
       window.open(canvas.toDataURL('png'));
 
-			// var fs = require('fs');
-			// var sys = require('sys');
-			// var img = canvas.toDataURL('png');
-			// var buf = new Buffer(data, 'base64');
-			// fs.writeFile('image_generated.png', buf);
-			// window.open('image_generated.png');
+      let imageName = "test";
+      let imageData = canvas.toDataURL('png');
+
+      addImageToDB(imageName, imageData);
     }
 	}
 
@@ -589,6 +597,9 @@ $(function() {
   socket.on('message', function(msg){
       if (msg.includes("ALBUM")) {
           $('#albumformbox #error_text').text(msg);
+          console.log(msg);
+      } else if (msg.includes("ALBUM")) {
+          $('#editorbox #error_text_img').text(msg);
           console.log(msg);
       } else {
           console.log(msg);
