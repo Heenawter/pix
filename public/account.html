@@ -146,12 +146,22 @@
 			<button type="button" class="close" data-dismiss="modal">×</button>
 			<div class="modal-content">
 				<div class="modal-header">
+
 					<h4 id="editor_title" class="modal-title">Create New Image</h4>
+
+					<button id="setBg">
+						<i class="medBtn fa fa-check"></i><span>Set Image</span>
+					</button>
+
+					<input type="text" class="img-name-box" id="imgName" placeholder="Image name" autocomplete="off"><br/ >
+
 					<p id="error_text_img"></p>
+
 				</div>
 				<div class="modal-body">
 					<!-- editor  code -->
 
+					<!-- file upload form -->
 					<div id="file-wrap">
 						<label for="imageLoader" class="file-upload">
 							<i class="largeBtn fa fa-cloud-upload"></i><span>Upload your image</span>
@@ -161,14 +171,10 @@
 
 			    <div id="editor-wrap">
 						<!-- set canvas image background -->
-						<button id="setBg">
-							<i class="medBtn fa fa-check"></i><span>Set Image</span>
-						</button>
+
 
 						<!-- start editor menu buttons -->
 						<div id="editor-menu">
-							<!-- <input type="text" name="image_name" value="Image Name Here" id="imgName"><br/ > -->
-							<input type="text" class="img-name-box" id="imgName" placeholder="Image name" autocomplete="off"><br/ >
 							<i class="largeBtn fa fa-trash" id="deleteObject"></i>
 							<i class="largeBtn fa fa-smile-o" id="stickers"></i>
 							<i class="largeBtn fa fa-save" id="saveImg"></i>
@@ -187,9 +193,6 @@
 			        </div>
 			        <canvas id="canvas" width="500" height="500" style="border-style: none"></canvas>
 			      </div>
-
-
-
 
 			    </div>
 					<!-- end editor code-->

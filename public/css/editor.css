@@ -1,5 +1,5 @@
 /****** hide initially *******/
-#editor, #setBg, #editor-menu {
+#editor, #setBg, #editor-menu, #imgName {
   display: none;
   text-align: center;
 }

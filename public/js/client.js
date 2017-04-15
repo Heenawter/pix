@@ -446,6 +446,7 @@ $(function() {
 		 $('#file-wrap').hide();
 		 $('#editor').show();
 		 $('#setBg').show();
+     $('#editor_title').hide();         // hide 'create img' title
 	 });
 
 	 // set image function (so it doesn't interact)
@@ -457,6 +458,7 @@ $(function() {
     // hide "set background", show editor buttons
 		$('#setBg').hide();
 		$('#editor-menu').show();
+    $('#imgName').show();
 	 }
 
 	 // save image function
@@ -470,9 +472,13 @@ $(function() {
       // success: add image data to database
       let imageName = $('#imgName').val();
       let imageData = canvas.toDataURL('png');
-      addImageToDB(imageName, imageData);
 
-      // close editor modal
+      // add error msg here
+        addImageToDB(imageName, imageData);
+        $('#editorbox').modal("toggle");        // close editor modal
+
+
+
     }
 	}
 
