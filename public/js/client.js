@@ -443,7 +443,7 @@ $(function() {
 			});
 		 };
 		 reader.readAsDataURL(file);
-		 $('#imageLoader').hide();
+		 $('#file-wrap').hide();
 		 $('#editor').show();
 		 $('#setBg').show();
 	 });
@@ -467,10 +467,12 @@ $(function() {
       alert('This browser doesn\'t provide means to serialize canvas to an image');
     }
     else {
-      // add image data to database
+      // success: add image data to database
       let imageName = $('#imgName').val();
       let imageData = canvas.toDataURL('png');
       addImageToDB(imageName, imageData);
+
+      // close editor modal
     }
 	}
 
@@ -492,21 +494,21 @@ $(function() {
 		$('#sticker-nav').css("width", "100%");
 	}
 
-	// close when someone clicks on the "x" symbol inside the overlay
+	// overlay in stickers: close when someone clicks on the "x" symbol
 	$('.closebtn').on('click', closeStickers);
 	function closeStickers() {
 		$('#sticker-nav').css("width", "0%");
 	}
 
   // when user clicks cancel: reset canvas back to normal
-  $('#cancelBtn').on('click', cancelEdit);
-  function cancelEdit () {
+  $('#cancelBtn').on('click', clean_editor);
+  function clean_editor () {
     canvas.clear();
-    $('#imageLoader').val(null);
-    $('#imageLoader').show();
+    $('#imageLoader').val(null);              // clear file upload
     $('#editor').hide();
     $('#setBg').hide();
     $('#editor-menu').hide();
+    $('#file-wrap').show();
   }
 
   // add stickers to canvas
@@ -521,23 +523,24 @@ $(function() {
 		});
 	}
 
+  // slap the stickers in here!
 	$('#sticker1').on('click', function() {
-		url = "editor/stickers/big-heart.png";
+		url = "images/stickers/big-heart.png";
 		addSticker(url);
 	});
 
 	$('#sticker2').on('click', function() {
-		url = "editor/stickers/Frederick.png";
+		url = "images/stickers/Frederick.png";
 		addSticker(url);
 	});
 
 	$('#sticker3').on('click', function() {
-		url = "editor/stickers/rainbow.png";
+		url = "images/stickers/rainbow.png";
 		addSticker(url);
 	});
 
 	$('#sticker4').on('click', function() {
-		url = "editor/stickers/sparkles.png";
+		url = "images/stickers/sparkles.png";
 		addSticker(url);
 	});
 

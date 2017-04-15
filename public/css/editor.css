@@ -1,7 +1,12 @@
+/****** hide initially *******/
+#editor, #setBg, #editor-menu {
+  display: none;
+  text-align: center;
+}
+
+/****** editor wrap styling ******/
 #editor .sticker-overlay {
-  background: rgba(255, 255, 255, 0.75);
-  /*opacity: 0.5;
-  filter: alpha(opacity=50); /* For IE8 and earlier */
+  background: rgba(0, 0, 0, 0.75);
   height: 100%;
   width: 0;
   left: 0;
@@ -10,16 +15,72 @@
   z-index: 1;
   overflow-y: hidden;
   transition: 0.3s;
-  /*display: none;*/
 }
-.largeBtn {
-  font-size: 48pt;
-}
-
 #editor .sticker-overlay-content {
   position: relative;
   top: 10%;
   text-align: center;
+}
+#editor {
+  background-color: #ccc;
+  width: 500px;
+  height: 500px;
+  margin: 0 auto;
+}
+
+/* editor buttons */
+#editor-menu i {
+  color: #981a3f;
+  transition: .2s ease-in-out;
+}
+
+#editor-menu i:hover, #editor-menu i:active {
+  color: #eb8a91;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(235, 138, 145, 0.6);
+}
+
+/****** file wrap styling ******/
+#file-wrap {
+  margin: 0 auto;
+}
+
+input[type="file"] {
+    display: none;
+}
+#file-wrap .file-upload {
+  vertical-align: middle;
+  color: #fff;
+  padding: 2px 15px 2px 15px;
+  background-color: #981a3f;
+  border-color: #981a3f;
+  transition: .2s ease-in-out;
+  border-radius: 20px;
+}
+
+#file-wrap .file-upload:hover, #file-wrap .file-upload:active{
+  background-color: #eb8a91;
+  border-color: #981a3f;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(235, 138, 145, 0.6);
+}
+
+#file-wrap i {
+  vertical-align: middle;
+}
+
+#file-wrap span {
+  vertical-align: middle;
+  padding-left: 5px;
+  display: inline-block;
+}
+
+/****** sticker overlay styling ******/
+.sticker-overlay-content button {
+  vertical-align: middle;
+  border: none;
+  background-color: Transparent;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
 }
 
 .sticker-overlay .closebtn {
@@ -29,23 +90,60 @@
   font-size: 60px;
 }
 
-#file-wrap {
-  text-align: center;
-  margin: 0 auto;
-}
-#editor {
-  background-color: #ccc;
-  width: 500px;
-  height: 500px;
-  margin: 0 auto;
-}
-#editor, #setBg, #editor-menu {
-  display: none;
-  text-align: center;
+.medBtn {
+  font-size: 24pt;
 }
 
-button {
+.largeBtn {
+  font-size: 48pt;
+}
+
+/****** input styling ******/
+#setBg {
   vertical-align: middle;
+  color: #fff;
+  padding: 5px 15px 5px 15px;
+  background-color: #981a3f;
   border: none;
-  /*display: inline-block;*/
+  transition: .2s ease-in-out;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+#setBg:hover, #setBg:active{
+  background-color: #eb8a91;
+  border-color: #981a3f;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(235, 138, 145, 0.6);
+}
+
+#setBg i {
+  vertical-align: middle;
+}
+
+#setBg span {
+  vertical-align: middle;
+  padding-left: 7px;
+  display: inline-block;
+}
+
+.img-name-box {
+  border: 1px solid #981a3f;
+  transition: .2s ease-in-out;
+  color: #551d00;
+  padding: 5px;
+  width: 500px;
+}
+
+*:focus, *:active {
+    outline: none !important;
+}
+
+.img-name-box::placeholder {
+  color: #eb8a91;
+}
+
+.img-name-box:focus {
+  border-color: rgba(235, 138, 145, 0.8) !important;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(235, 138, 145, 0.6);
 }
