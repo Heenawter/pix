@@ -64,16 +64,19 @@
     font-size: 60px;
   }
 
-  #editor-wrap {
-    /*display: none;*/
+  #file-wrap {
+    text-align: center;
+    margin: 0 auto;
   }
   #editor {
     background-color: #ccc;
     width: 500px;
     height: 500px;
+    margin: 0 auto;
   }
   #editor, #setBg, #editor-menu {
     display: none;
+    text-align: center;
   }
 
   button {
@@ -84,10 +87,8 @@
   </style>
   <body>
 
-    <div id="button-menu"></div>
-
     <div id="file-wrap">
-      <input name ="" type="file" id="imageLoader"><br />
+      <input type="file" name="img" id="imageLoader">
     </div>
 
     <div id="editor-wrap">
@@ -104,11 +105,13 @@
 
           </div>
         </div>
+
         <canvas id="canvas" width="500" height="500" style="border-style: none"></canvas><br>
 
       </div>
       <button id="setBg">Set Image</button>
       <div id="editor-menu">
+        <input type="text" name="image_name" value="Image Name Here">
         <i class="largeBtn fa fa-trash" id="deleteObject"></i>
         <i class="largeBtn fa fa-smile-o" id="stickers"></i>
         <i class="largeBtn fa fa-save" id="saveImg"></i>
