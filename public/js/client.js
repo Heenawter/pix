@@ -406,20 +406,11 @@ $(function() {
   /***************************************************************/
   /* ADD IMAGE FUNCTIONS
   /***************************************************************/
-    $('#album-images').on('click','.add-btn', function(){
-        console.log("HELLO " + current_album);
-        $('#editor_title').text("Create New Image In " + current_album);
-    });
-
-
     function addImageToDB(img_name, img_src) {
-        let alb_name = $("#album-name").text();
-        console.log(alb_name);
-
         image = {
             client: current_user,
             user: album_owner,
-            album_name: current_album,
+            album_name: "Default",
             img_name: img_name,
             img_src: img_src
         };
@@ -445,8 +436,6 @@ $(function() {
 
 	// imageLoader.addEventListener('change', uploadImage);
 	$('#imageLoader').on('change',function (e) {
-	    let argh = $('#editor_title').text();
-        console.log(argh);
 		var file = e.target.files[0];
 		var reader = new FileReader();
 		reader.onload = function (f) {
@@ -483,7 +472,7 @@ $(function() {
       alert('This browser doesn\'t provide means to serialize canvas to an image');
     }
     else {
-      window.open(canvas.toDataURL('png'));
+      //window.open(canvas.toDataURL('png'));
 
       let imageName = "test";
       let imageData = canvas.toDataURL('png');
