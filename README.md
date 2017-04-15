@@ -11,9 +11,9 @@ Pix brings a new and exciting twist to the sticker photo booths found in Japan, 
 
 ## instructions
 
-To run pix, download the repository and then run the following commands in the proper folder:
+To run pix, download the repository and then run the following commands in the root directory:
 ```console
 > npm install
 > node index.js
 ```
-You can then connect to the server at `localhost:3000`.
+You can then connect to the server at `localhost:3000` by pointing the browser to http://localhost:3000.
