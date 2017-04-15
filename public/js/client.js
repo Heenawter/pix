@@ -474,9 +474,8 @@ $(function() {
     else {
       //window.open(canvas.toDataURL('png'));
 
-      let imageName = "test";
+      let imageName = $('#imgName').val();
       let imageData = canvas.toDataURL('png');
-
       addImageToDB(imageName, imageData);
     }
 	}
