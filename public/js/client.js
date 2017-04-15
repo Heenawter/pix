@@ -427,15 +427,8 @@ $(function() {
 	var canvas = new fabric.Canvas('canvas');
 	var imgBackground;
 	var url = "";
-  //
-  // function Canvas(id) {
-  //   this.canvas = document.createElement('canvas');
-  //   this.canvas.id = id;
-  //   document.body.appendChild(this.canvas);
-  //   return this.canvas;
-  // }
 
-	// imageLoader.addEventListener('change', uploadImage);
+  // image upload function
 	$('#imageLoader').on('change',function (e) {
 		var file = e.target.files[0];
 		var reader = new FileReader();
@@ -444,7 +437,6 @@ $(function() {
 			fabric.Image.fromURL(data, function (img) {
 				var oImg = img.set({left: 0, top: 0, angle: 00}).scale(0.25);
 				imgBackground = oImg;
-
 				canvas.add(oImg).renderAll();
 				var a = canvas.setActiveObject(oImg);
 				var dataURL = canvas.toDataURL({format: 'png', quality: 1.0});
@@ -456,11 +448,13 @@ $(function() {
 		 $('#setBg').show();
 	 });
 
-	 // set image function
+	 // set image function (so it doesn't interact)
 	 $('#setBg').on('click', setBackground);
 	 function setBackground() {
 	 	imgBackground.set('selectable', false);
 	 	imgBackground.set('evented', false);
+
+    // hide "set background", show editor buttons
 		$('#setBg').hide();
 		$('#editor-menu').show();
 	 }
@@ -473,38 +467,57 @@ $(function() {
       alert('This browser doesn\'t provide means to serialize canvas to an image');
     }
     else {
-      //window.open(canvas.toDataURL('png'));
-
+      // add image data to database
       let imageName = $('#imgName').val();
       let imageData = canvas.toDataURL('png');
       addImageToDB(imageName, imageData);
     }
 	}
 
+  // deletes selected stickers from the canvas
 	$('#deleteObject').on('click', deleteObject);
 	function deleteObject() {
-		canvas.getActiveObject().remove();
+    if(canvas.getActiveGroup()){
+      // remove each selected item in the group
+      canvas.getActiveGroup().forEachObject(function(o){ canvas.remove(o) });
+      canvas.discardActiveGroup().renderAll();
+    } else {
+      canvas.getActiveObject().remove();
+    }
 	}
 
-	// Overlay stuff
-	// Open when someone clicks on the span element
+	// overlay in stickers: open when someone clicks on the span element
 	$('#stickers').on('click', openStickers);
 	function openStickers() {
 		$('#sticker-nav').css("width", "100%");
 	}
 
-	// Close when someone clicks on the "x" symbol inside the overlay
+	// close when someone clicks on the "x" symbol inside the overlay
 	$('.closebtn').on('click', closeStickers);
 	function closeStickers() {
 		$('#sticker-nav').css("width", "0%");
 	}
 
+  // when user clicks cancel: reset canvas back to normal
+  $('#cancelBtn').on('click', cancelEdit);
+  function cancelEdit () {
+    canvas.clear();
+    $('#imageLoader').val(null);
+    $('#imageLoader').show();
+    $('#editor').hide();
+    $('#setBg').hide();
+    $('#editor-menu').hide();
+  }
+
+  // add stickers to canvas
 	function addSticker(url) {
 		fabric.Image.fromURL(url, function(myImg) {
 			myImg.set('left', 50);
 			myImg.set('top', 40);
 			myImg.scale(0.8);
 			canvas.add(myImg);
+      // close the overlay
+      $('#sticker-nav').css("width", "0%");
 		});
 	}
 
