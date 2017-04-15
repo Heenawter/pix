@@ -275,14 +275,12 @@ io.on('connection', function(socket){
                             } else {
                                 //name not in use
                                 let img_path = saveImage(image.user, image.album_name, name_trimmed, image.img_src);
-                                console.log(img_path);
                                 //insert image
-                                /*
                                 db.run("INSERT INTO images (user, album_name, img_name, img_src) VALUES ('"
                                     + image.user + "', '"
                                     + image.album_name + "', '"
                                     + name_trimmed + "', '"
-                                    + image.img_src + "')");*/
+                                    + img_path + "')");
                             }
                         });
                     }
@@ -313,6 +311,7 @@ io.on('connection', function(socket){
                     + image.album_name + "' AND img_name = '"
                     + image.img_name + "')");
                 //delete from files
+                deleteImage(image.user, image.album_name, image.img_name);
 
             } else {
                 socket.send("ERROR: You can't remove an image from someone else's album");
@@ -407,18 +406,28 @@ function checkName(name) {
 
 //save image and return pathway
 function saveImage(user, album, image_name, image_data) {
-    var pathway = user + "/" + album + "/" + image_name + ".png";
+    var pathway = __dirname + "/public/images/user_images/" + user + "_" + album + "_" + image_name + ".png";
+    var relative_pathway = "/images/user_images/" + user + "_" + album + "_" + image_name + ".png";
 
-    /*
     var data = image_data.replace(/^data:image\/\w+;base64,/, "");
     var buff = new Buffer(data, 'base64');
     fs.writeFile(pathway, buff, function(err) {
         if (err) {
             console.log(err);
         }
-        });*/
+        });
 
-    return pathway;
+    return relative_pathway;
+}
+
+//save image and return pathway
+function deleteImage(user, album, image_name) {
+    var pathway = __dirname + "/public/images/user_images/" + user + "_" + album + "_" + image_name + ".png";
+    fs.unlink(pathway, function(err) {
+        if (err) {
+            console.error(err);
+        }
+    });
 }
 
 //db.close();
