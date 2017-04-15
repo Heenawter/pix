@@ -395,7 +395,7 @@ $(function() {
             };
 
             socket.emit('delete_image', image);
-            socket.emit('album_change', album);
+            socket.emit('album_change', image);
             socket.emit('get_albums', album_owner);
         });
 
@@ -410,13 +410,14 @@ $(function() {
         image = {
             client: current_user,
             user: album_owner,
-            album_name: "Default",
+            album_name: current_album,
             img_name: img_name,
             img_src: img_src
         };
 
+        console.log(current_album);
         socket.emit('add_image', image);
-        socket.emit('album_change', album);
+        socket.emit('album_change', image);
         socket.emit('get_albums', album_owner);
     }
 
@@ -586,8 +587,8 @@ $(function() {
       if (msg.includes("ALBUM")) {
           $('#albumformbox #error_text').text(msg);
           console.log(msg);
-      } else if (msg.includes("ALBUM")) {
-          $('#editorbox #error_text_img').text(msg);
+      } else if (msg.includes("IMAGE")) {
+          $('#error_text_img').text(msg);
           console.log(msg);
       } else {
           console.log(msg);
