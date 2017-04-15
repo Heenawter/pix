@@ -1,0 +1,51 @@
+#editor .sticker-overlay {
+  background: rgba(255, 255, 255, 0.75);
+  /*opacity: 0.5;
+  filter: alpha(opacity=50); /* For IE8 and earlier */
+  height: 100%;
+  width: 0;
+  left: 0;
+  top: 0;
+  position: fixed;
+  z-index: 1;
+  overflow-y: hidden;
+  transition: 0.3s;
+  /*display: none;*/
+}
+.largeBtn {
+  font-size: 48pt;
+}
+
+#editor .sticker-overlay-content {
+  position: relative;
+  top: 10%;
+  text-align: center;
+}
+
+.sticker-overlay .closebtn {
+  position: absolute;
+  top: 20px;
+  right: 45px;
+  font-size: 60px;
+}
+
+#file-wrap {
+  text-align: center;
+  margin: 0 auto;
+}
+#editor {
+  background-color: #ccc;
+  width: 500px;
+  height: 500px;
+  margin: 0 auto;
+}
+#editor, #setBg, #editor-menu {
+  display: none;
+  text-align: center;
+}
+
+button {
+  vertical-align: middle;
+  border: none;
+  /*display: inline-block;*/
+}
