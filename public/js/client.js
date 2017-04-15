@@ -421,7 +421,115 @@ $(function() {
         socket.emit('get_albums', album_owner);
     }
 
+/***************************************************************/
+/* IMAGE EDITOR FUNCTIONS
+/***************************************************************/
+	var canvas = new fabric.Canvas('canvas');
+	var imgBackground;
+	var url = "";
+  //
+  // function Canvas(id) {
+  //   this.canvas = document.createElement('canvas');
+  //   this.canvas.id = id;
+  //   document.body.appendChild(this.canvas);
+  //   return this.canvas;
+  // }
 
+	// imageLoader.addEventListener('change', uploadImage);
+	$('#imageLoader').on('change',function (e) {
+		var file = e.target.files[0];
+		var reader = new FileReader();
+		reader.onload = function (f) {
+			var data = f.target.result;
+			fabric.Image.fromURL(data, function (img) {
+				var oImg = img.set({left: 0, top: 0, angle: 00}).scale(0.25);
+				imgBackground = oImg;
+
+				canvas.add(oImg).renderAll();
+				var a = canvas.setActiveObject(oImg);
+				var dataURL = canvas.toDataURL({format: 'png', quality: 1.0});
+			});
+		 };
+		 reader.readAsDataURL(file);
+		 $('#imageLoader').hide();
+		 $('#editor').show();
+		 $('#setBg').show();
+	 });
+
+	 // set image function
+	 $('#setBg').on('click', setBackground);
+	 function setBackground() {
+	 	imgBackground.set('selectable', false);
+	 	imgBackground.set('evented', false);
+		$('#setBg').hide();
+		$('#editor-menu').show();
+	 }
+
+	 // save image function
+	 $('#saveImg').on('click', saveImg);
+	 function saveImg() {
+    console.log('export image');
+			if (!fabric.Canvas.supports('toDataURL')) {
+      alert('This browser doesn\'t provide means to serialize canvas to an image');
+    }
+    else {
+      window.open(canvas.toDataURL('png'));
+
+			// var fs = require('fs');
+			// var sys = require('sys');
+			// var img = canvas.toDataURL('png');
+			// var buf = new Buffer(data, 'base64');
+			// fs.writeFile('image_generated.png', buf);
+			// window.open('image_generated.png');
+    }
+	}
+
+	$('#deleteObject').on('click', deleteObject);
+	function deleteObject() {
+		canvas.getActiveObject().remove();
+	}
+
+	// Overlay stuff
+	// Open when someone clicks on the span element
+	$('#stickers').on('click', openStickers);
+	function openStickers() {
+		$('#sticker-nav').css("width", "100%");
+	}
+
+	// Close when someone clicks on the "x" symbol inside the overlay
+	$('.closebtn').on('click', closeStickers);
+	function closeStickers() {
+		$('#sticker-nav').css("width", "0%");
+	}
+
+	function addSticker(url) {
+		fabric.Image.fromURL(url, function(myImg) {
+			myImg.set('left', 50);
+			myImg.set('top', 40);
+			myImg.scale(0.8);
+			canvas.add(myImg);
+		});
+	}
+
+	$('#sticker1').on('click', function() {
+		url = "editor/stickers/big-heart.png";
+		addSticker(url);
+	});
+
+	$('#sticker2').on('click', function() {
+		url = "editor/stickers/Frederick.png";
+		addSticker(url);
+	});
+
+	$('#sticker3').on('click', function() {
+		url = "editor/stickers/rainbow.png";
+		addSticker(url);
+	});
+
+	$('#sticker4').on('click', function() {
+		url = "editor/stickers/sparkles.png";
+		addSticker(url);
+	});
 
   /***************************************************************/
   /* SEARCH FUNCTIONS
