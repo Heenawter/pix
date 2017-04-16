@@ -85,9 +85,15 @@ input[type="file"] {
 
 .sticker-overlay .closebtn {
   position: absolute;
-  top: 20px;
+  top: 5px;
   right: 45px;
-  font-size: 60px;
+  font-size: 36pt;
+  color: #981a3f;
+  transition: .2s ease-in-out;
+}
+
+.closebtn:hover {
+  color: #eb8a91;
 }
 
 .medBtn {

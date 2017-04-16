@@ -428,6 +428,16 @@ $(function() {
 	var imgBackground;
 	var url = "";
 
+  // changing the default object selection color
+  canvas.on('object:selected', function(o) {
+    var activeObj = o.target;
+    activeObj.set({
+      'borderColor':'#eb8a91',
+      'cornerColor':'#981a3f',
+      'transparentCorners': false,
+      'cornerSize': 6 });
+  });
+
   // image upload function
 	$('#imageLoader').on('change',function (e) {
 		var file = e.target.files[0];
@@ -463,7 +473,6 @@ $(function() {
     $('#imgName').show();
 	 }
 
-
 	 // save image function
 	 $('#saveImg').on('click', saveImg);
 	 function saveImg() {
@@ -479,9 +488,6 @@ $(function() {
       // add error msg here
         addImageToDB(imageName, imageData);
         $('#editorbox').modal("toggle");        // close editor modal
-
-
-
     }
 	}
 
@@ -516,7 +522,10 @@ $(function() {
     $('#imageLoader').val(null);              // clear file upload
     $('#editor').hide();
     $('#setBg').hide();
+    $('#imgName').hide();
     $('#editor-menu').hide();
+    $('#error_text_img').hide();
+    $('#editor_title').show();
     $('#file-wrap').show();
   }
 
@@ -614,6 +623,7 @@ $(function() {
           console.log(msg);
       } else if (msg.includes("IMAGE")) {
           $('#error_text_img').text(msg);
+          $('#error_text_img').show();
           console.log(msg);
       } else {
           console.log(msg);
