@@ -275,12 +275,14 @@ io.on('connection', function(socket){
                             } else {
                                 //name not in use
                                 let img_path = saveImage(image.user, image.album_name, name_trimmed, image.img_src);
+                                socket.emit('clean_editor_form');
                                 //insert image
                                 db.run("INSERT INTO images (user, album_name, img_name, img_src) VALUES ('"
                                     + image.user + "', '"
                                     + image.album_name + "', '"
                                     + name_trimmed + "', '"
                                     + img_path + "')");
+                                socket.emit('clean_editor_form');
                             }
                         });
                     }
