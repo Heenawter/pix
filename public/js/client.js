@@ -454,12 +454,15 @@ $(function() {
 	 function setBackground() {
 	 	imgBackground.set('selectable', false);
 	 	imgBackground.set('evented', false);
+    // deselect background - user doesn't have to click anymore!
+    canvas.deactivateAll().renderAll();
 
     // hide "set background", show editor buttons
 		$('#setBg').hide();
 		$('#editor-menu').show();
     $('#imgName').show();
 	 }
+
 
 	 // save image function
 	 $('#saveImg').on('click', saveImg);
