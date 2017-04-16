@@ -1,8 +1,9 @@
 @font-face {
-      font-family: 'VT323';
+      font-family: 'PressStart2P';
       font-style: normal;
       font-weight: 400;
-      src: url('VT323-Regular.woff') format('woff');
+      /*src: url('VT323-Regular.woff') format('woff');*/
+      src: url('PressStart2P.ttf');
     }
 
 /****** hide initially *******/
@@ -44,6 +45,12 @@
 #editor-menu i:hover, #editor-menu i:active {
   color: #eb8a91;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(235, 138, 145, 0.6);
+}
+
+#editor-menu #unfilterTool {
+  display: none;
+  opacity: 0.35;
+  filter: alpha(opacity=35); /* For IE8 and earlier */
 }
 /****** file wrap styling ******/
 #file-wrap {

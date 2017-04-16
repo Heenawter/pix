@@ -434,6 +434,13 @@ $(function() {
 	var imgBackground;
 	var url = "";
 
+  var filters = [
+    // filter 0
+    new fabric.Image.filters.Pixelate({
+      blocksize: 10
+    })
+  ];
+
   // changing the default object selection color
   canvas.on('object:selected', function(o) {
     var activeObj = o.target;
@@ -509,7 +516,8 @@ $(function() {
   $('#textTool').on('click', addText);
   function addText() {
     var newText = new fabric.IText('text', {
-      fontFamily: 'VT323',
+      fontFamily: 'PressStart2P',
+      fontSize: 20,
       left: 100,
       top: 100
     });
@@ -519,6 +527,33 @@ $(function() {
     newText.enterEditing();
     newText.selectAll();
     newText.hiddenTextarea.focus();
+  }
+
+  $('#filterTool').on('click', addFilter);
+  function addFilter() {
+    $('#editor-menu #unfilterTool').show();
+    $('#filterTool').hide();
+
+    var filter = filters[0];
+    var obj = canvas.getObjects()[0];
+    if(obj != null) {
+    	obj.filters = [];
+      obj.filters.push(filter);
+      obj.applyFilters(function () {
+      canvas.add(obj);
+    });}
+  }
+
+  $('#unfilterTool').on('click', unsetFilter);
+  function unsetFilter() {
+    $('#editor-menu #unfilterTool').hide();
+    $('#filterTool').show();
+
+    var obj = canvas.getObjects()[0];
+    if (!obj) return;
+    obj.filters = [];
+    obj.applyFilters(function() { canvas.add(obj); });
+    canvas.deactivateAll().renderAll();
   }
 
 	// overlay in stickers: open when someone clicks on the span element
@@ -546,6 +581,9 @@ $(function() {
 
     $('#imgName').val('');
     $('#imgName').hide();
+
+    $('#editor-menu #unfilterTool').hide();
+    $('#filterTool').show();
 
     $('#error_text_img').hide();
     $('#editor_title').show();
