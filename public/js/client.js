@@ -480,7 +480,7 @@ $(function() {
 	 }
 
    // save button
-   $('#editor_form').submit(function(){
+    $('#saveImg').on('click', function () {
      console.log('export image');
       if (!fabric.Canvas.supports('toDataURL')) {
        alert('This browser doesn\'t provide means to serialize canvas to an image');
@@ -489,41 +489,9 @@ $(function() {
        // success: add image data to database
        let imageName = $('#imgName').val();
        let imageData = canvas.toDataURL('png');
-       // add error msg here
-
        addImageToDB(imageName, imageData);
-         // $('#editorbox').modal("toggle");        // close editor modal
      }
-      //  album = {
-      //      client: current_user,
-      //      user: album_owner,
-      //      album_name: $('#alb_name').val().toString()
-      //  };
-      //
-      //  socket.emit('add_album', album);
-      //  socket.emit('album_change', album);
-      //  socket.emit('get_albums', album_owner);
-      //  return false;
    });
-
-  //  $('#saveImg').submit()
-	//  save image function
-	//  $('#saveImg').on('click', saveImg);
-	 function saveImg() {
-    console.log('export image');
-			if (!fabric.Canvas.supports('toDataURL')) {
-      alert('This browser doesn\'t provide means to serialize canvas to an image');
-    }
-    else {
-      // success: add image data to database
-      let imageName = $('#imgName').val();
-      let imageData = canvas.toDataURL('png');
-
-      addImageToDB(imageName, imageData);
-    }
-	}
-
-
 
   // deletes selected stickers from the canvas
 	$('#deleteObject').on('click', deleteObject);
