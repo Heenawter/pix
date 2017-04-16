@@ -505,6 +505,22 @@ $(function() {
     }
 	}
 
+  // add text
+  $('#textTool').on('click', addText);
+  function addText() {
+    var newText = new fabric.IText('text', {
+      fontFamily: 'VT323',
+      left: 100,
+      top: 100
+    });
+    canvas.add(newText);
+    canvas.renderAll();
+    canvas.setActiveObject(newText);
+    newText.enterEditing();
+    newText.selectAll();
+    newText.hiddenTextarea.focus();
+  }
+
 	// overlay in stickers: open when someone clicks on the span element
 	$('#stickers').on('click', openStickers);
 	function openStickers() {
@@ -519,6 +535,8 @@ $(function() {
 
   // when user clicks cancel: reset canvas back to normal
   $('#cancelBtn').on('click', clean_editor);
+
+  // clean editor function (reset)
   function clean_editor () {
     canvas.clear();
     $('#imageLoader').val(null);              // clear file upload
@@ -566,6 +584,16 @@ $(function() {
 		url = "images/stickers/sparkles.png";
 		addSticker(url);
 	});
+
+  $('#sticker5').on('click', function() {
+    url = "images/stickers/pink-bow.png";
+    addSticker(url);
+  });
+
+  $('#sticker6').on('click', function() {
+    url = "images/stickers/cat-face.png";
+    addSticker(url);
+  });
 
   /***************************************************************/
   /* SEARCH FUNCTIONS
