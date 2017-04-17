@@ -233,9 +233,11 @@ input[type="color"] {
 }
 
 @media screen and (max-width: 500px) {
+  #editor {
+    width: 100%;
+  }
   canvas {
-    -webkit-transform : scale(0.6);
+    -webkit-transform : scale(0.65);
     -webkit-transform-origin : 0 0;
-    text-align: center;
   }
 }
