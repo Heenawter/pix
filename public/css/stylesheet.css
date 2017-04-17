@@ -486,9 +486,13 @@ LIGHTBOX
 }
 @media screen and (max-width: 768px) {
   #editorbox .modal-dialog {
-    -webkit-transform : scale(0.6);
-  -webkit-transform-origin : 0 0;
-    min-width: 300px;
+    width: 430px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  #editorbox .modal-dialog {
+    width: 350px;
   }
 }
 

@@ -522,7 +522,7 @@ $(function() {
   // add text
   $('#textTool').on('click', addText);
   function addText() {
-    var newText = new fabric.IText('text', {
+    var newText = new fabric.IText('text    ', {
       fontFamily: 'PressStart2P',
       fontSize: 20,
       left: 100,
