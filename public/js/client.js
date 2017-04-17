@@ -622,6 +622,10 @@ $(function() {
 		$('#sticker-nav').css("width", "0%");
 	}
 
+  $('#sticker-nav').click(function () {
+    closeStickers();
+  });
+
   // when user clicks cancel: reset canvas back to normal
   $('#cancelBtn').on('click', clean_editor);
 
