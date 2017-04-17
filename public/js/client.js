@@ -441,7 +441,10 @@ $(function() {
     })
   ];
 
-  // canvas.preserveObjectStacking = true;
+  canvas.setWidth( 450 );
+  canvas.setHeight( 450 );
+  canvas.calcOffset();
+
 
   // changing the default object selection color
   canvas.on('object:selected', function(o) {
@@ -452,6 +455,8 @@ $(function() {
       'transparentCorners': false,
       'cornerSize': 6 });
   });
+
+
 
   // image upload function
 	$('#imageLoader').on('change',function (e) {

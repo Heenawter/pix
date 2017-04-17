@@ -479,7 +479,8 @@ LIGHTBOX
 }
 
 #editorbox .modal-dialog {
-  width: 550px;
+  width: 500px;
+  min-width: 300px;
 }
 
 #albumformbox .modal-content,
