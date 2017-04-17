@@ -479,8 +479,17 @@ LIGHTBOX
 }
 
 #editorbox .modal-dialog {
-  width: 500px;
+  /*width: 500px;*/
+  max-width: 500px;
+  width: 90%;
   min-width: 300px;
+}
+@media screen and (max-width: 768px) {
+  #editorbox .modal-dialog {
+    -webkit-transform : scale(0.6);
+  -webkit-transform-origin : 0 0;
+    min-width: 300px;
+  }
 }
 
 #albumformbox .modal-content,

@@ -441,9 +441,9 @@ $(function() {
     })
   ];
 
-  canvas.setWidth( 450 );
-  canvas.setHeight( 450 );
-  canvas.calcOffset();
+  // canvas.setWidth( 450 );
+  // canvas.setHeight( 450 );
+  // canvas.calcOffset();
 
 
   // changing the default object selection color
