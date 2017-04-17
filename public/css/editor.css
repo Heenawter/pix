@@ -6,6 +6,14 @@
       src: url('PressStart2P.ttf');
     }
 
+@font-face {
+      font-family: 'Minecraft';
+      font-style: normal;
+      font-weight: 400;
+      /*src: url('VT323-Regular.woff') format('woff');*/
+      src: url('Minecraft.ttf');
+    }
+
 /****** hide initially *******/
 #editor, #setBg, #editor-menu, #imgName, #fill {
   display: none;
@@ -84,6 +92,12 @@
 input[type="file"] {
     display: none;
 }
+
+input[type="color"] {
+  border: none;
+  background: transparent;
+}
+
 #file-wrap .file-upload {
   vertical-align: middle;
   color: #fff;

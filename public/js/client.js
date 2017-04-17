@@ -477,6 +477,20 @@ $(function() {
 		 $('#editor').show();
 		 $('#setBg').show();
      $('#editor_title').hide();         // hide 'create img' title
+
+
+     // ugly fix for font load
+     var newText = new fabric.IText('text here    ', {
+       fontFamily: 'Minecraft',
+       fontWeight: 'bold',
+       fontSize: 20,
+       left: 100,
+       top: 100
+     });
+
+     canvas.add(newText);
+     canvas.renderAll();
+     canvas.remove(newText);
 	 });
 
 	 // set image function (so it doesn't interact)
@@ -524,13 +538,16 @@ $(function() {
   function addText() {
     $('#fill').show();
     var newText = new fabric.IText('text here    ', {
-      fontFamily: 'PressStart2P',
+      fontFamily: 'Minecraft',
+      fontWeight: 'bold',
       fontSize: 20,
       left: 100,
       top: 100
     });
+
     canvas.add(newText);
     canvas.renderAll();
+
     canvas.setActiveObject(newText);
     canvas.bringToFront(newText);
     newText.enterEditing();
