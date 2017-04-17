@@ -21,8 +21,9 @@
   top: 0;
   position: fixed;
   z-index: 1;
-  overflow-y: hidden;
+  /*overflow-y: hidden;*/
   transition: 0.3s;
+  overflow-x: hidden;
 }
 #editor .sticker-overlay-content {
   position: relative;
@@ -188,4 +189,18 @@ input[type="file"] {
 .img-name-box:focus {
   border-color: rgba(235, 138, 145, 0.8) !important;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(235, 138, 145, 0.6);
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+::-webkit-scrollbar-track {
+    background-color: #424242;
+    /*border-left: 1px solid #ccc;*/
+}
+::-webkit-scrollbar-thumb {
+    background-color: #981a3f;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: #eb8a91;
 }
