@@ -456,7 +456,19 @@ $(function() {
       'transparentCorners': false,
       'cornerSize': 6 });
 
+      // toggle fill color, text only
+     if(canvas.getActiveObject().get('type')==="i-text") {
+       $('#fill').show();
+     } else {
+       $('#fill').hide();
+     }
+    // console.log(canvas.getActiveObject().get('type'));
     canvas.bringToFront(activeObj);
+  });
+
+  // hide fill color when deselected
+  canvas.on('before:selection:cleared', function (o) {
+    $('#fill').hide();
   });
 
   // image upload function
@@ -537,7 +549,7 @@ $(function() {
   // add text
   $('#textTool').on('click', addText);
   function addText() {
-    $('#fill').show();
+    // $('#fill').show();
     var newText = new fabric.IText('text here    ', {
       fontFamily: 'Minecraft',
       fontWeight: 'bold',
