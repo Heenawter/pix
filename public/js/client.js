@@ -441,10 +441,11 @@ $(function() {
     })
   ];
 
+  canvas.preserveObjectStacking = false;
+
   // canvas.setWidth( 450 );
   // canvas.setHeight( 450 );
   // canvas.calcOffset();
-
 
   // changing the default object selection color
   canvas.on('object:selected', function(o) {
@@ -454,9 +455,9 @@ $(function() {
       'cornerColor':'#981a3f',
       'transparentCorners': false,
       'cornerSize': 6 });
+
+    canvas.bringToFront(activeObj);
   });
-
-
 
   // image upload function
 	$('#imageLoader').on('change',function (e) {
@@ -478,7 +479,6 @@ $(function() {
 		 $('#setBg').show();
      $('#editor_title').hide();         // hide 'create img' title
 
-
      // ugly fix for font load
      var newText = new fabric.IText('text here    ', {
        fontFamily: 'Minecraft',
@@ -491,6 +491,7 @@ $(function() {
      canvas.add(newText);
      canvas.renderAll();
      canvas.remove(newText);
+     canvas.deactivateAll().renderAll();
 	 });
 
 	 // set image function (so it doesn't interact)
@@ -547,7 +548,6 @@ $(function() {
 
     canvas.add(newText);
     canvas.renderAll();
-
     canvas.setActiveObject(newText);
     canvas.bringToFront(newText);
     newText.enterEditing();
@@ -640,6 +640,7 @@ $(function() {
 			myImg.set('top', 40);
 			myImg.scale(0.8);
 			canvas.add(myImg);
+      canvas.bringToFront(myImg);
       // close the overlay
       $('#sticker-nav').css("width", "0%");
 		});
