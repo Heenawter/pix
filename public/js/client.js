@@ -522,7 +522,8 @@ $(function() {
   // add text
   $('#textTool').on('click', addText);
   function addText() {
-    var newText = new fabric.IText('text    ', {
+    $('#fill').show();
+    var newText = new fabric.IText('text here    ', {
       fontFamily: 'PressStart2P',
       fontSize: 20,
       left: 100,
@@ -537,6 +538,15 @@ $(function() {
     newText.hiddenTextarea.focus();
 
   }
+
+  $('#fill').change(function(){
+    var obj = canvas.getActiveObject();
+    if(obj){
+      obj.setFill($(this).val());
+    }
+    canvas.renderAll();
+  });
+
 
   // add filter
   $('#filterTool').on('click', addFilter);
@@ -599,6 +609,7 @@ $(function() {
 
     $('#editor-menu #unfilterTool').hide();
     $('#filterTool').show();
+    $('#fill').hide();
 
     $('#error_text_img').hide();
     $('#editor_title').show();

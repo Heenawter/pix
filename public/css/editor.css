@@ -7,7 +7,7 @@
     }
 
 /****** hide initially *******/
-#editor, #setBg, #editor-menu, #imgName {
+#editor, #setBg, #editor-menu, #imgName, #fill {
   display: none;
   text-align: center;
 }
