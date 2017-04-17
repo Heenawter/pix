@@ -676,6 +676,20 @@ $(function() {
     addSticker(url);
   });
 
+  $('#sticker7').on('click', function() {
+    url = "images/stickers/speech-bubble.png";
+    addSticker(url);
+  });
+
+  $('#sticker8').on('click', function() {
+    url = "images/stickers/speech-bubble2.png";
+    addSticker(url);
+  });
+  $('#sticker9').on('click', function() {
+    url = "images/stickers/googly-eyes.png";
+    addSticker(url);
+  });
+
   /***************************************************************/
   /* SEARCH FUNCTIONS
   /***************************************************************/
