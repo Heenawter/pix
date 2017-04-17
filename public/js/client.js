@@ -441,6 +441,8 @@ $(function() {
     })
   ];
 
+  canvas. preserveObjectStacking = true;
+
   // changing the default object selection color
   canvas.on('object:selected', function(o) {
     var activeObj = o.target;
@@ -524,9 +526,11 @@ $(function() {
     canvas.add(newText);
     canvas.renderAll();
     canvas.setActiveObject(newText);
+    canvas.bringToFront(newText);
     newText.enterEditing();
     newText.selectAll();
     newText.hiddenTextarea.focus();
+
   }
 
   $('#filterTool').on('click', addFilter);
@@ -540,7 +544,8 @@ $(function() {
     	obj.filters = [];
       obj.filters.push(filter);
       obj.applyFilters(function () {
-      canvas.add(obj);
+        canvas.renderAll();
+        canvas.sendToBack(obj);
     });}
   }
 
@@ -552,8 +557,11 @@ $(function() {
     var obj = canvas.getObjects()[0];
     if (!obj) return;
     obj.filters = [];
-    obj.applyFilters(function() { canvas.add(obj); });
-    canvas.deactivateAll().renderAll();
+    obj.applyFilters(function() {
+      canvas.renderAll();
+      canvas.sendToBack(obj);
+     });
+    // canvas.deactivateAll().renderAll();
   }
 
 	// overlay in stickers: open when someone clicks on the span element
