@@ -441,7 +441,7 @@ $(function() {
     })
   ];
 
-  canvas. preserveObjectStacking = true;
+  // canvas.preserveObjectStacking = true;
 
   // changing the default object selection color
   canvas.on('object:selected', function(o) {
@@ -533,6 +533,7 @@ $(function() {
 
   }
 
+  // add filter
   $('#filterTool').on('click', addFilter);
   function addFilter() {
     $('#editor-menu #unfilterTool').show();
@@ -549,6 +550,7 @@ $(function() {
     });}
   }
 
+  // remove filter
   $('#unfilterTool').on('click', unsetFilter);
   function unsetFilter() {
     $('#editor-menu #unfilterTool').hide();
